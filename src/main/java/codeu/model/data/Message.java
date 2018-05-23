@@ -16,6 +16,8 @@ package codeu.model.data;
 
 import java.time.Instant;
 import java.util.UUID;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 
 /** Class representing a message. Messages are sent by a User in a Conversation. */
 public class Message {
@@ -25,6 +27,7 @@ public class Message {
   private final UUID author;
   private final String content;
   private final Instant creation;
+  private String _processedContent;
 
   /**
    * Constructs a new Message.
@@ -38,8 +41,11 @@ public class Message {
   public Message(UUID id, UUID conversation, UUID author, String content, Instant creation) {
     this.id = id;
     this.conversation = conversation;
+    _processedContent = content;
     this.author = author;
-    this.content = content;
+    //get rid of all html tags
+    String cleanedContent = Jsoup.clean(content, Whitelist.none());
+    this.content = cleanedContent;
     this.creation = creation;
   }
 
@@ -61,6 +67,10 @@ public class Message {
   /** Returns the text content of this Message. */
   public String getContent() {
     return content;
+  }
+
+  public String getProcessedContent() {
+    return _processedContent;
   }
 
   /** Returns the creation time of this Message. */

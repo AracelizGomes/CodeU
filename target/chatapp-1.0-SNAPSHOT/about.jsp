@@ -22,7 +22,7 @@
 <body>
 
   <nav>
-    <a id="navTitle" href="/">CodeU Chat App Team 34</a>
+    <a id="navTitle" href="/">CodeU Chat App</a>
     <a href="/conversations">Conversations</a>
     <% if(request.getSession().getAttribute("user") != null){ %>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
@@ -30,7 +30,6 @@
       <a href="/login">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
-    <a href="/about.jsp">Hello We are Team 34 of Google CodeU SU18</a>
   </nav>
 
   <div id="container">
