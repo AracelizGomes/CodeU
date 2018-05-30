@@ -1,5 +1,7 @@
 package codeu.controller;
 
-public class ActivityFeedServlet {
+import javax.servlet.http.HttpServlet;
+
+public class ActivityFeedServlet extends HttpServlet{
 
 }
