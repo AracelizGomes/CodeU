@@ -16,43 +16,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login</title>
+  <title>Profile</title>
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
 
   <nav>
     <a id="navTitle" href="/">CodeU Chat App</a>
-    <a href="/conversations">Conversations</a>
+    <a href="/profile">Profile</a>
     <% if(request.getSession().getAttribute("user") != null){ %>
-      <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
+      <a><%= request.getSession().getAttribute("user") %>'s Profile</a>
     <% } else{ %>
       <a href="/login">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
-		<a href="/profile">Profile</a>
   </nav>
 
   <div id="container">
-    <h1>Login</h1>
+  	<div
+			style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
 
-    <% if(request.getAttribute("error") != null){ %>
-        <h2 style="color:red"><%= request.getAttribute("error") %></h2>
-    <% } %>
+			<h1><strong><%=request.getSession().getAttribute("user")%>'s Profile Page</strong></h1>
+			<h2>Welcome!</h2>
+			
+			<div id="avatar">
+				<img alt="cute dog" src = "https://learnwebcode.com/images/lessons/insert-image-funny-dog.jpg">
+			</div>
 
-    <form action="/login" method="POST">
-      <label for="username">Username: </label>
-      <br/>
-      <input type="text" name="username" id="username">
-      <br/>
-      <label for="password">Password: </label>
-      <br/>
-      <input type="password" name="password" id="password">
-      <br/><br/>
-      <button type="submit">Login</button>
-    </form>
+			<h3 class="font-semibold mgbt-xs-5"> Google CodeU Summer 2018 Student </h3>
+			<h4> University Student </h4>
+			
+			<button class="w3-button w3-bar-item w3-blue w3-hover-white w3-hover-text-blue" onclick="edit">Edit Profile</button>
 
-    <p>New users can register <a href="/register">here</a>.</p>
-  </div>
+			<ul>
+				<li>Edit Your Bio</li>
+				<li>Change Profile Picture</li>
+				<li>Change Profile Color</li>
+			</ul>
+		</div>
+	</div>
 </body>
 </html>
