@@ -6,9 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**import codeu.model.data.ActivityFeed;*/
-
-/** Servlet class responsible for the activity feed. */
 public class ActivityFeedServlet extends HttpServlet{
 	
 	@Override
