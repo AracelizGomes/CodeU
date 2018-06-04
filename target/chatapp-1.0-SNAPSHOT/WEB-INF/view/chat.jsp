@@ -27,7 +27,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
 <head>
   <title><%= conversation.getTitle() %></title>
   <link rel="stylesheet" href="/css/main.css" type="text/css">
-
+  <script src="http://cdn.ckeditor.com/4.7.2/basic/ckeditor.js"></script>
   <style>
     #chat {
       background-color: white;
@@ -71,7 +71,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
         String author = UserStore.getInstance()
           .getUser(message.getAuthorId()).getName();
     %>
-      <li><strong><%= author %>:</strong> <%= message.getProcessedContent() %></li>
+      <li><strong><%= author %>:</strong> <%= message.getContentWithHtml() %></li>
     <%
       }
     %>
@@ -79,13 +79,17 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
     </div>
 
     <hr/>
-
+    <textarea name="content"></textarea>
     <% if (request.getSession().getAttribute("user") != null) { %>
     <form action="/chat/<%= conversation.getTitle() %>" method="POST">
         <input type="text" name="message">
         <br/>
         <button type="submit">Send</button>
     </form>
+
+    <script>
+      CKEDITOR.replace('content');
+    </script>
     <% } else { %>
       <p><a href="/login">Login</a> to send a message.</p>
     <% } %>

@@ -25,9 +25,9 @@ public class Message {
   private final UUID id;
   private final UUID conversation;
   private final UUID author;
-  private final String content;
+  private final String noHtmlContent;
   private final Instant creation;
-  private String _processedContent;
+  private final String contentWithHtml;
 
   /**
    * Constructs a new Message.
@@ -41,11 +41,10 @@ public class Message {
   public Message(UUID id, UUID conversation, UUID author, String content, Instant creation) {
     this.id = id;
     this.conversation = conversation;
-    _processedContent = content;
+    this.contentWithHtml = content;
     this.author = author;
     //get rid of all html tags
-    String cleanedContent = Jsoup.clean(content, Whitelist.none());
-    this.content = cleanedContent;
+    this.noHtmlContent = Jsoup.clean(content, Whitelist.none());
     this.creation = creation;
   }
 
@@ -66,11 +65,11 @@ public class Message {
 
   /** Returns the text content of this Message. */
   public String getContent() {
-    return content;
+    return noHtmlContent;
   }
 
-  public String getProcessedContent() {
-    return _processedContent;
+  public String getContentWithHtml() {
+    return contentWithHtml;
   }
 
   /** Returns the creation time of this Message. */

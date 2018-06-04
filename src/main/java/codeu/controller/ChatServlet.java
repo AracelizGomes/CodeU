@@ -140,16 +140,7 @@ public class ChatServlet extends HttpServlet {
     }
 
     String messageContent = request.getParameter("message");
-
-    /* Can be used if we would rather have Markdown for stylizing text. Doesn't currently
-    pass test because it cleans up html slightly differently (just gets rid of the not allowed
-    html tags, not the content inside of the tags). I think the test can just
-    be edited if this is what we want */
-
-    //TextProcessor processor = BBProcessorFactory.getInstance().createFromResource(ConfigurationFactory.MARKDOWN_CONFIGURATION_FILE);
-    //String processedMessageContent = processor.process(messageContent);
-
-    String processedMessageContent = Jsoup.clean(messageContent, Whitelist.basic());
+    String processedMessageContent = Jsoup.clean(messageContent, Whitelist.basicWithImages());
 
     Message message =
         new Message(
