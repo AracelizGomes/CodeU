@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-public class ActivityFeedTest {
+public class ActivityFeedServletTest {
 	private ActivityFeedServlet activityfeedServlet;
 	private HttpServletRequest mockRequest;
 	private HttpServletResponse mockResponse; 
