@@ -158,7 +158,7 @@ public class PersistentDataStore {
 
 	    for (Entity entity : results.asIterable()) {
 	      try {
-	        ActivityType type = ;
+	        /* ActivityType type = ; */
 	    	UUID uuid = UUID.fromString((String) entity.getProperty("uuid"));
 	        Instant creationTime = Instant.parse((String) entity.getProperty("creation_time"));
 	        ActivityFeed activity = new ActivityFeed(type, uuid, creationTime); 
