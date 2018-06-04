@@ -148,26 +148,7 @@ public class PersistentDataStore {
 
     return messages;
   }
-  
-  public List<ActivityFeed> loadActivities() throws PersistentDataException {
-	  List<ActivityFeed> activities = new ArrayList<>();
 
-	    // Retrieve all messages from the datastore.
-	    Query query = new Query("chat-activities").addSort("creation_time", SortDirection.ASCENDING);
-	    PreparedQuery results = datastore.prepare(query);
-
-	    for (Entity entity : results.asIterable()) {
-	      try {
-	        /* ActivityType type = ; */
-	    	UUID uuid = UUID.fromString((String) entity.getProperty("uuid"));
-	        Instant creationTime = Instant.parse((String) entity.getProperty("creation_time"));
-	        ActivityFeed activity = new ActivityFeed(type, uuid, creationTime); 
-	        activities.add(activity); 
-	      } catch (Exception e) {
-	        throw new PersistentDataStoreException(e);
-	      }
-	  }
-  }
 
   /** Write a User object to the Datastore service. */
   public void writeThrough(User user) {
