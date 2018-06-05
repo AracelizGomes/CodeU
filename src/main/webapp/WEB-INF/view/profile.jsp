@@ -46,8 +46,10 @@
 			<h3 class="font-semibold mgbt-xs-5"> Google CodeU Summer 2018 Student </h3>
 			<h4> University Student </h4>
 			
-			<button class="w3-button w3-bar-item w3-blue w3-hover-white w3-hover-text-blue" onclick="edit">Edit Profile</button>
-
+			
+			 <form action="/users/" method="POST">
+     		 	<button type="Edit Profile Page">Login</button>
+   			 </form>
 			<ul>
 				<li>Edit Your Bio</li>
 				<li>Change Profile Picture</li>
