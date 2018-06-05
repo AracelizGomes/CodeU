@@ -23,7 +23,7 @@
 
   <nav>
     <a id="navTitle" href="/">CodeU Chat App</a>
-    <a href="/profile">Profile</a>
+    <a href="/users/">Profile</a>
     <% if(request.getSession().getAttribute("user") != null){ %>
       <a><%= request.getSession().getAttribute("user") %>'s Profile</a>
     <% } else{ %>

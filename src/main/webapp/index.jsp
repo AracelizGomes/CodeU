@@ -30,7 +30,7 @@
       <a href="/login">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
-		<a href="/profile">Profile</a>
+		<a href="/users/">Profile</a>
 	
   </nav>
 
@@ -48,7 +48,7 @@
             create or join a conversation.</li>
         <li>View the <a href="/about.jsp">about</a> page to learn more about the
             project.</li>
-				<li>View the <a href="/profile">Profile</a></li>
+				<li>View the <a href="/users/">Profile</a></li>
       </ul>
     </div>
   </div>
