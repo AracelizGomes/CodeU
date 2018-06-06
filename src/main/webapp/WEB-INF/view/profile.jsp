@@ -22,10 +22,11 @@
 <body>
 
   <nav>
-    <a id="navTitle" href="/">CodeU Chat App</a>
-    <a href="/users/">Profile</a>
+    <a id="navTitle" href="/">CodeU Chat App Team 34</a>
+    <a href="/conversations">Conversations</a>
+    <a href="/users/<%= request.getSession().getAttribute("user") %>">Profile</a>
     <% if(request.getSession().getAttribute("user") != null){ %>
-      <a><%= request.getSession().getAttribute("user") %>'s Profile</a>
+      <a href="/users/<%= request.getSession().getAttribute("user") %>" > <%= request.getSession().getAttribute("user") %>'s Profile</a>
     <% } else{ %>
       <a href="/login">Login</a>
     <% } %>
@@ -47,8 +48,8 @@
 			<h4> University Student </h4>
 			
 			
-			 <form action="/users/" method="POST">
-     		 	<button type="Edit Profile Page">Login</button>
+			 <form action="/users/<%= request.getSession().getAttribute("user") %>" method="POST">
+     		 	<button type="Edit Profile">Edit Profile</button>
    			 </form>
 			<ul>
 				<li>Edit Your Bio</li>

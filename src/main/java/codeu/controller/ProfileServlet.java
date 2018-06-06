@@ -40,23 +40,16 @@ public class ProfileServlet extends HttpServlet {
 				String userProfile = requestUrl.substring("/users/".length());
 				
 				User user = userStore.getUser(userProfile);
-				//UUID userID = UserStore.getInstance().getUser(username).getId();
-				
-				//if (userID == null) {
-					//response.sendRedirect("/login");
-					//return;
-				//}
-			
 				if (user == null) {
 					response.sendRedirect("/login");
 					return;
 				}
-			
+				
+				
 			request.setAttribute("user", user);
-			//request.setAttribute("userID", userID);
 			request.setAttribute("userProfile", userProfile);
 			request.getRequestDispatcher("/WEB-INF/view/profile.jsp").forward(request, response);
-		
+				
 	}
 	
 
@@ -65,19 +58,20 @@ public class ProfileServlet extends HttpServlet {
 			String requestUrl = request.getRequestURI();
 			String userProfile = requestUrl.substring("/users/".length());
 		
+			User user = userStore.getUser(userProfile);
 		String username = (String) request.getSession().getAttribute("user");
+		/*
 			if (username == null) {
 				response.sendRedirect("/login");
 				return;
 			}
 			
-			
-		User user = userStore.getUser(userProfile);
 			if (user == null) {
 				response.sendRedirect("/login");
 				return;
 			}
-	response.sendRedirect("/users/" + username);
+		*/	
+	response.sendRedirect("/users/" + userProfile);
 	}
 	
 }
