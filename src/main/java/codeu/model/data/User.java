@@ -23,6 +23,7 @@ public class User {
   private final String name;
   private final String passwordHash;
   private final Instant creation;
+  private String biography;
 
   /**
    * Constructs a new User.
@@ -58,4 +59,17 @@ public class User {
   public Instant getCreationTime() {
     return creation;
   }
+
+
+  public void setBiography (String aboutMe) {
+	  biography = aboutMe;
+  }
+  
+  public String getBiography() {
+	  return biography;
+  }
 }
+
+
+
+

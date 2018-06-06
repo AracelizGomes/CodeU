@@ -89,4 +89,18 @@ public class MessageStore {
   public void setMessages(List<Message> messages) {
     this.messages = messages;
   }
-}
+
+
+  public List<Message> getMessagesOfUser(UUID author) {
+	  List<Message> sentMessages = new ArrayList<>();
+	  
+	 for (Message message: messages) {
+		 if (message.getAuthorId().equals(author)) {
+			 sentMessages.add(message);
+		 }
+	 }
+	 return sentMessages;
+  }
+}  
+  
+  
