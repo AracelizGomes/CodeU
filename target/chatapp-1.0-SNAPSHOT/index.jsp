@@ -41,7 +41,7 @@
 
 
       <h1>CodeU Chat App Team 34</h1>
-      <h2>Welcome!!</h2>
+      <h2>Welcome!</h2>
 
       <ul>
         <li><a href="/login">Login</a> to get started.</li>

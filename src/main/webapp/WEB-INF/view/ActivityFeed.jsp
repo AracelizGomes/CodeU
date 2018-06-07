@@ -36,6 +36,11 @@
 
   <div id="container">
   	<h1>Activity Feed</h1>
+  	
+  	<% if(request.getAttribute("error") != null){ %>
+        <h2 style="color:red"><%= request.getAttribute("error") %></h2>
+    <% } %>
+    
     <h2>This where you see what the world is up to!</h2>
   </div>
 </body>
