@@ -28,6 +28,7 @@ public class ActivityFeedTest {
 		Mockito.when(mockResponse.getOutputStream())
         	.thenReturn(mockOutputStream);
 	}
+	
 	@Test
 	  public void testDoGet() throws IOException, ServletException {
 	    activityfeedServlet.doGet(mockRequest, mockResponse);
