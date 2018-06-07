@@ -30,7 +30,8 @@
       <a href="/login">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
-		<a href="/profile">Profile</a>
+	<a href="/profile">Profile</a>
+	<a href="/activityfeed">Activity Feed</a>
 	
   </nav>
 
@@ -40,7 +41,7 @@
 
 
       <h1>CodeU Chat App Team 34</h1>
-      <h2>Welcome!</h2>
+      <h2>Welcome!!</h2>
 
       <ul>
         <li><a href="/login">Login</a> to get started.</li>
@@ -48,7 +49,7 @@
             create or join a conversation.</li>
         <li>View the <a href="/about.jsp">about</a> page to learn more about the
             project.</li>
-				<li>View the <a href="/profile">Profile</a></li>
+		<li>View the <a href="/profile">Profile</a></li>
       </ul>
     </div>
   </div>

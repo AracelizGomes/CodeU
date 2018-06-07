@@ -35,25 +35,8 @@
   </nav>
 
   <div id="container">
-    <h1>Activity Feed</h1>
-
-    <% if(request.getAttribute("error") != null){ %>
-        <h2 style="color:red"><%= request.getAttribute("error") %></h2>
-    <% } %>
-
-    <form action="/activityfeed" method="GET">
-      <label for="username">Username: </label>
-      <br/>
-      <input type="text" name="username" id="username">
-      <br/>
-      <label for="password">Password: </label>
-      <br/>
-      <input type="password" name="password" id="password">
-      <br/><br/>
-      <button type="submit">Login</button>
-    </form>
-
-    <p>New users can register <a href="/register">here</a>.</p>
+  	<h1>Activity Feed</h1>
+    <h2>This where you see what the world is up to!</h2>
   </div>
 </body>
 </html>
