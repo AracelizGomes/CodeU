@@ -10,9 +10,6 @@ public class ActivityFeedServlet extends HttpServlet{
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.getOutputStream().println("This is the Activity Feed");
-		
+		response.getOutputStream().println("This is the Activity Feed");	
 	}
-
-
 }
