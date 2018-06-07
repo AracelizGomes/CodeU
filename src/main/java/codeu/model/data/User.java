@@ -38,6 +38,7 @@ public class User {
     this.name = name;
     this.passwordHash = passwordHash;
     this.creation = creation;
+    setBiography(name + "does not have a Biography");
   }
 
   /** Returns the ID of this User. */

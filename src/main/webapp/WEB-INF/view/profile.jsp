@@ -13,6 +13,17 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 --%>
+<%@ page import="codeu.model.store.basic.UserStore" %>
+<%@ page import="codeu.model.data.User" %>
+<%@ page import="codeu.model.data.Message" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="java.time.Instant" %>
+<%
+/** Gets the UserStore instance to access all users. */
+UserStore userStore = UserStore.getInstance();
+%>
+
 <!DOCTYPE html>
 <html>
 <head>

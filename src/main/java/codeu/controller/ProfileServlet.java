@@ -1,28 +1,26 @@
 package codeu.controller;
 
+import codeu.model.data.Conversation;
+import codeu.model.data.Message;
+import codeu.model.data.User;
+import codeu.model.store.basic.ConversationStore;
+import codeu.model.store.basic.MessageStore;
+import codeu.model.store.basic.UserStore;
 import java.io.IOException;
+import java.time.Instant;
+import java.util.List;
+import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import codeu.model.data.User;
-import java.time.Instant;
-import java.time.format.DateTimeFormatter;
-import java.util.UUID;
-import java.util.List;
-import codeu.model.store.basic.UserStore;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
-import codeu.model.store.basic.ConversationStore;
-import codeu.model.store.basic.MessageStore;
-import codeu.model.store.basic.UserStore;
-import codeu.model.data.User;
-import codeu.model.data.Message;
+
 
 import org.mindrot.jbcrypt.BCrypt;
 /** Servlet class responsible for the Profile page. */
 public class ProfileServlet extends HttpServlet {
-	
 	private UserStore userStore;
 	
 	private ConversationStore conversationStore;
@@ -35,6 +33,7 @@ public class ProfileServlet extends HttpServlet {
 	    setUserStore(UserStore.getInstance());
 	    setConversationStore(ConversationStore.getInstance());
 	    setMessageStore(MessageStore.getInstance());
+	    
 	  }
 
 	  /**
@@ -46,55 +45,57 @@ public class ProfileServlet extends HttpServlet {
 	  }
 	  
 	  void setConversationStore(ConversationStore conversationStore) {
-		  this.conversationStore = conversationStore;
+		 this.conversationStore = conversationStore;
 	  }
 	  
 	  void setMessageStore(MessageStore messageStore) {
-		  this.messageStore = messageStore;
+		 this.messageStore = messageStore;
 	  }
 	  
 	  
 	  
 	  
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws IOException, ServletException {
-				String requestUrl = request.getRequestURI();
-				String userProfile = requestUrl.substring("/users/".length());
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	  String requestUrl = request.getRequestURI();
+	  String userProfile = requestUrl.substring("/users/".length());
 				
-				User user = userStore.getUser(userProfile);
-				if (user == null) {
-					response.sendRedirect("/login");
-					return;
-				}
-		
-			request.setAttribute("user", user);
-			request.setAttribute("userProfile", userProfile);
+	  User user = userStore.getUser(userProfile); //no one logged in
+	  if (user == null) {
+		  System.out.println("Not logged in " + userProfile);
+        response.sendRedirect("/login");
+		return;
+	  }
+	  
+	  //someone is logged in
 				
-			UUID writer = user.getId();
-			MessageStore message = MessageStore.getInstance();
-			List<Message> messagesSent = message.getMessageOfUser(writer); //get the users messages
-			
-			request.setAttribute("messages", messagesSent);
-			
-			request.getRequestDispatcher("/WEB-INF/view/profile.jsp").forward(request, response);
+	  UUID userid = user.getId();
+	  MessageStore message = MessageStore.getInstance();
+	  List<Message> messagesSent = message.getMessagesOfUser(userid); //get the users messages
+	  
+	  request.setAttribute("user", user);
+	  request.setAttribute("userProfile", userProfile);
+	  
+	  request.setAttribute("messages", messagesSent);
+	  
+	  //goes to profile page
+	  request.getRequestDispatcher("/WEB-INF/view/profile.jsp").forward(request, response);
 				
 	}
 	
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) 
-		throws IOException, ServletException {
-			String requestUrl = request.getRequestURI();
-			String userProfile = requestUrl.substring("/users/".length());
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	  String requestUrl = request.getRequestURI();
+	  String userProfile = requestUrl.substring("/users/".length());
 		
-		User user = userStore.getUser(userProfile);
-		String username = (String) request.getSession().getAttribute("user");
-	
-		String biography = request.getParameter("biography"); //get bio
-		String cleanedBiography = Jsoup.clean(biography,Whitelist.none()); //removes html tags
-		user.setBiography(cleanedBiography); //sets bio as instance var for user
+	  User user = userStore.getUser(userProfile);
+	  String username = (String) request.getSession().getAttribute("user");
+	  
+	  String biography = request.getParameter("biography"); //get bio
+	  String cleanedBiography = Jsoup.clean(biography,Whitelist.none()); //removes html tags
+	  user.setBiography(cleanedBiography); //sets bio as instance var for user
 		
-		userStore.updateUser(user);
+	  userStore.updateUser(user);
 		
 		
 		/*
@@ -108,7 +109,7 @@ public class ProfileServlet extends HttpServlet {
 				return;
 			}
 		*/	
-	response.sendRedirect("/users/" + userProfile);
+	  response.sendRedirect("/users/" + userProfile);
 	}
 	
 }
