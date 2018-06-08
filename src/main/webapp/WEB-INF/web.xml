@@ -66,7 +66,17 @@
     <url-pattern>/register</url-pattern>
   </servlet-mapping>
 
-	<servlet>
+  <servlet>
+    <servlet-name>ActivityFeedServlet</servlet-name>
+    <servlet-class>codeu.controller.ActivityFeedServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ActivityFeedServlet</servlet-name>
+    <url-pattern>/activityfeed</url-pattern>
+  </servlet-mapping>    
+
+  <servlet>
     <servlet-name>ProfileServlet</servlet-name>
     <servlet-class>codeu.controller.ProfileServlet</servlet-class>
   </servlet>
