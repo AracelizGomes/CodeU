@@ -13,25 +13,25 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 public class ActivityFeedTest {
-	private ActivityFeedServlet activityfeedServlet;
-	private HttpServletRequest mockRequest;
-	private HttpServletResponse mockResponse; 
-	private ServletOutputStream mockOutputStream;
+  private ActivityFeedServlet activityfeedServlet;
+  private HttpServletRequest mockRequest;
+  private HttpServletResponse mockResponse; 
+  private ServletOutputStream mockOutputStream;
 
 
-	@Before
-	public void setup() throws IOException {
-		activityfeedServlet = new ActivityFeedServlet(); 
-		mockRequest = Mockito.mock(HttpServletRequest.class);
-		mockResponse = Mockito.mock(HttpServletResponse.class);
-		mockOutputStream = Mockito.mock(ServletOutputStream.class);
-		Mockito.when(mockResponse.getOutputStream())
-        	.thenReturn(mockOutputStream);
-	}
+  @Before
+  public void setup() throws IOException {
+    activityfeedServlet = new ActivityFeedServlet(); 
+    mockRequest = Mockito.mock(HttpServletRequest.class);
+    mockResponse = Mockito.mock(HttpServletResponse.class);
+    mockOutputStream = Mockito.mock(ServletOutputStream.class);
+    Mockito.when(mockResponse.getOutputStream())
+    .thenReturn(mockOutputStream);
+  }
 	
-	@Test
-	  public void testDoGet() throws IOException, ServletException {
-	    activityfeedServlet.doGet(mockRequest, mockResponse);
-	    Mockito.verify(mockOutputStream).println("This is the Activity Feed");
-	}
+  @Test
+  public void testDoGet() throws IOException, ServletException {
+  activityfeedServlet.doGet(mockRequest, mockResponse);
+  Mockito.verify(mockOutputStream).println("This is the Activity Feed");
+  }
 }
