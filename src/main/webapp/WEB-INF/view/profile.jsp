@@ -35,10 +35,9 @@ UserStore userStore = UserStore.getInstance();
   <nav>
     <a id="navTitle" href="/">CodeU Chat App Team 34</a>
     <a href="/conversations">Conversations</a>
-    
-    <% if(request.getSession().getAttribute("user") != null){ %>
-      	<a href="/users/<%= request.getSession().getAttribute("user") %>" > <%= request.getSession().getAttribute("user") %>'s Profile</a>
-    <% } else{ %>
+    <% if (request.getSession().getAttribute("user") != null) { %>
+    	 <a href="/users/<%= request.getSession().getAttribute("user") %>" > <%= request.getSession().getAttribute("user") %>'s Profile</a>
+    <% } else { %>
       	<a href="/login">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
@@ -59,20 +58,24 @@ UserStore userStore = UserStore.getInstance();
 			
 			<% } else {
 					 if (sessionUser != null && sessionUser.equals(userProfile)){ %>
-						<h1><strong>Welcome to Your Profile Page!</strong></h1>
-			
+						<h1 style="color:#3498DB"><strong>Welcome To Your Profile Page!</strong></h1>
+						<hr class="section-heading-spacer">
 					<% } else { %>
 						<h1><strong>Welcome to <%=userProfile %>'s Profile Page</strong></h1>
+						<hr class="section-heading-spacer">
 					<% } %>
+		
 			<%/** defult profile pic is a cute puppy */ %>
 			<div id="avatar">
-				<img alt="cute dog" src = "https://learnwebcode.com/images/lessons/insert-image-funny-dog.jpg">
+				<img alt="cute dog" src = "https://learnwebcode.com/images/lessons/insert-image-funny-dog.jpg" class="center">
 			</div>
 			<br/>
 			
+			
 			<%/** user's bio/aboutme section of profile */ %>
 			<% String profileBio = currentUser.getBiography(); %>
-			<h2 style="color:#C70039">About <%=userProfile %> </h2>
+			<h2 style="color:#083BF9">About <%=userProfile %> </h2>
+			<hr class="section-heading-spacer">
 			<a> <%= profileBio %></a>
 			<br/>
 			<br/>
@@ -80,21 +83,27 @@ UserStore userStore = UserStore.getInstance();
 			<%/** Edit profile bio aboutme */ %>
 			
 			<% if (sessionUser != null && sessionUser.equals(userProfile)) { %>
-				<a>Edit Your Bio Here <%=sessionUser %></a>
+				<a>Edit Your Bio Here <%=sessionUser %> (only you can see this)</a>
 				<form action="/users/<%=sessionUser %>" method="POST">
 					<input type="text" name="biography" value="<%= currentUser.getBiography() %>" >
 					<br/>
 				<button type="Submit">Submit</button>
 				</form>
 			<% } %>
-
-			<h3 class="font-semibold mgbt-xs-5"> Google CodeU Summer 2018 Student </h3>
-			<h4> University Student </h4>
 			
+			<hr class="section-heading-spacer">
+			<h3 class="font-semibold mgbt-xs-5"> Google CodeU Summer 2018 Student </h3>
+			<hr class="section-heading-spacer">
 			
 			<h2 style="color:indigo"> <%= userProfile %>'s Sent Messages </h2>
+			<hr class="section-heading-spacer">
 			<% List<Message> messagesSent = (List) request.getAttribute("messages");
-			%>
+				for (Message message: messagesSent) { %>
+					<a><strong> <%=message.getTime() %> </strong> : <%= message.getContent() %></a>
+					<br/>
+				<% } %>
+				<hr class="section-heading-spacer">
+			<% } %>
 			
 
 		</div>
