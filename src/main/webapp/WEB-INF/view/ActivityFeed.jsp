@@ -15,6 +15,7 @@
 --%>
 <%@ page import="java.util.List"%>
 <%@ page import="codeu.model.data.Conversation"%>
+<%@ page import="codeu.model.store.basic.UserStore" %>
 
 <!DOCTYPE html>
 <html>
@@ -26,20 +27,13 @@
 
   <nav>
   <a id="navTitle" href="/">CodeU Chat App</a> <a href="/conversations">Conversations</a>
-  <%
-      if (request.getSession().getAttribute("user") != null) {
-  %>
-  <a>Hello <%=request.getSession().getAttribute("user")%>!
-  </a>
-  <%
-    } else {
-  %>
+  <% if (request.getSession().getAttribute("user") != null) { %>
+  <a>Hello <%=request.getSession().getAttribute("user")%>!</a>
+  <% } else { %>
   <a href="/login">Login</a>
-  <%
-	}
-  %>
-  <a href="/about.jsp">About</a> <a href="/profile">Profile</a> <a
-    href="/activityfeed">Activity Feed</a>
+  <% } %>
+  <a href="/about.jsp">About</a> <a href="/profile">Profile</a>
+  <a href="/activityfeed">Activity Feed</a>
   </nav>
 
 
@@ -63,6 +57,8 @@
 	<ul class="mdl-list">
 	<%
 	  for (Conversation conversation : conversations) {
+	  	/* String author = UserStore.getInstance()
+        .getUser(conversations.getAuthorId()).getName(); */
 	%>
 	<li><a href="/chat/<%=conversation.getTitle()%>"> <%=conversation.getTitle()%></a></li>
 	<%

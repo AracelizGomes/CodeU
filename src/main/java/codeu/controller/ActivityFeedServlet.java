@@ -55,6 +55,8 @@ public class ActivityFeedServlet extends HttpServlet {
 
 		List<Conversation> conversations = conversationStore.getAllConversations();
 		request.setAttribute("conversations", conversations);
+		
+		/*UUID conversationId = ((Conversation) conversations).getId(); */
 
 		request.getRequestDispatcher("/WEB-INF/view/ActivityFeed.jsp").forward(request, response);
 	}
