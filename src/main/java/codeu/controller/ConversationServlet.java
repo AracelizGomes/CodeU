@@ -60,7 +60,7 @@ public class ConversationServlet extends HttpServlet {
    * for use by the test framework or the servlet's init() function.
    */
   void setConversationStore(ConversationStore conversationStore) {
-    this.conversationStore = conversationStore;
+    this.conversationStore = conversationStore; 
   }
 
   /**
