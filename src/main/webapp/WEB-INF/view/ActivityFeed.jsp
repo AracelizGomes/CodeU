@@ -39,31 +39,19 @@
 
   <div id="container">
 
-	<%
-	  if (request.getAttribute("error") != null) {
-    %>
-	<h2 style="color: red"><%=request.getAttribute("error")%></h2>
-	<%
-	  }
-	%>
+	<%if (request.getAttribute("error") != null) { %>
+		<h2 style="color: red"><%=request.getAttribute("error")%></h2>
+	<% } %>
 
 	<h1>Activity Feed</h1>
 
 	<h2>This where you see what the world is up to!</h2>
 
-	<%
-	List<Conversation> conversations = (List<Conversation>) request.getAttribute("conversations");
-	%>
+	<% List<Conversation> conversations = (List<Conversation>) request.getAttribute("conversations"); %>
 	<ul class="mdl-list">
-	<%
-	  for (Conversation conversation : conversations) {
-	  	/* String author = UserStore.getInstance()
-        .getUser(conversations.getAuthorId()).getName(); */
-	%>
-	<li><a href="/chat/<%=conversation.getTitle()%>"> <%=conversation.getTitle()%></a></li>
-	<%
-	  }
-	%>
+	<% for (Conversation conversation : conversations) { %>
+		<li><a href="/chat/<%=conversation.getTitle()%>"> <%=conversation.getTitle()%></a></li>
+	<% } %>
 	</ul>
   </div>
 </body>
