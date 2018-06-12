@@ -52,9 +52,6 @@ public class ProfileServlet extends HttpServlet {
 		 this.messageStore = messageStore;
 	  }
 	  
-	  
-	  
-	  
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 	  String requestUrl = request.getRequestURI();
