@@ -45,11 +45,11 @@ public class ProfileServlet extends HttpServlet {
 	  }
 	  
 	  void setConversationStore(ConversationStore conversationStore) {
-		 this.conversationStore = conversationStore;
+	    this.conversationStore = conversationStore;
 	  }
 	  
 	  void setMessageStore(MessageStore messageStore) {
-		 this.messageStore = messageStore;
+	    this.messageStore = messageStore;
 	  }
 	  
 	@Override
@@ -59,9 +59,9 @@ public class ProfileServlet extends HttpServlet {
 				
 	  User user = userStore.getUser(userProfile); //no one logged in
 	  if (user == null) {
-		  System.out.println("Not logged in " + userProfile);
-        response.sendRedirect("/login");
-		return;
+	    System.out.println("Not logged in " + userProfile);
+            response.sendRedirect("/login");
+	    return;
 	  }
 	  
 	  //someone is logged in
@@ -93,19 +93,6 @@ public class ProfileServlet extends HttpServlet {
 	  user.setBiography(cleanedBiography); //sets bio as instance var for user
 		
 	  userStore.updateUser(user);
-		
-		
-		/*
-			if (username == null) {
-				response.sendRedirect("/login");
-				return;
-			}
-			
-			if (user == null) {
-				response.sendRedirect("/login");
-				return;
-			}
-		*/	
 	  response.sendRedirect("/users/" + userProfile);
 	}
 	
