@@ -16,10 +16,10 @@ import codeu.model.store.basic.UserStore;
 
 public class ActivityFeedServlet extends HttpServlet {
 
-	/** Store class that gives access to Users. */
-	private UserStore userStore;
+  /** Store class that gives access to Users. */
+  private UserStore userStore;
 
-	/** Store class that gives access to Conversations. */
+  /** Store class that gives access to Conversations. */
 	private ConversationStore conversationStore;
 
 	/**
