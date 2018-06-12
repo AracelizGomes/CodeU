@@ -53,7 +53,6 @@ public class ProfileServletTest {
 				  				"$2a$10$bBiLUAVmUFK6Iwg5rmpBUOIBW6rIMhU1eKfi3KR60V9UXaYTwPfHy", 
 				  				Instant.now());
 		  	  
-		 // Mockito.when(mockRequest.getRequestURI()).thenReturn("/users/test_username");
 		  Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 		  
 		  profileServlet.setUserStore(mockUserStore);
