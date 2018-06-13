@@ -71,7 +71,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
         String author = UserStore.getInstance()
           .getUser(message.getAuthorId()).getName();
     %>
-      <li><strong><%= author %>:</strong> <%= message.getContentWithHtml() %></li>
+      <li><strong><%= author %>:</strong> <%= message.getContentWithHtml() %> </li>
     <%
       }
     %>
@@ -79,17 +79,18 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
     </div>
 
     <hr/>
-    <textarea name="content"></textarea>
     <% if (request.getSession().getAttribute("user") != null) { %>
     <form action="/chat/<%= conversation.getTitle() %>" method="POST">
-        <input type="text" name="message">
+        <textarea name="message"></textarea>
         <br/>
-        <button type="submit">Send</button>
+        <input name="send" type="submit" value="Send"></input>
+        <input name="delete" type="submit" value="Delete Last Message"></input>
     </form>
 
     <script>
-      CKEDITOR.replace('content');
+      CKEDITOR.replace('message');
     </script>
+
     <% } else { %>
       <p><a href="/login">Login</a> to send a message.</p>
     <% } %>
