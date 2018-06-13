@@ -21,26 +21,24 @@ import org.jsoup.safety.Whitelist;
 import org.mindrot.jbcrypt.BCrypt;
 /** Servlet class responsible for the Profile page. */
 public class ProfileServlet extends HttpServlet {
-	private UserStore userStore;
+  private UserStore userStore;
+  private ConversationStore conversationStore;	
+  private MessageStore messageStore;
 	
-	private ConversationStore conversationStore;
-	
-	private MessageStore messageStore;
-	
-	@Override
-	public void init() throws ServletException {
-	  super.init();
-	  setUserStore(UserStore.getInstance());
-	  setConversationStore(ConversationStore.getInstance());
-	  setMessageStore(MessageStore.getInstance());
-	}
+    @Override
+    public void init() throws ServletException {
+      super.init();
+      setUserStore(UserStore.getInstance());
+      setConversationStore(ConversationStore.getInstance());
+      setMessageStore(MessageStore.getInstance());
+    }
 
-	  /**
-	   * Sets the UserStore used by this servlet. This function provides a common setup method for use
-	   * by the test framework or the servlet's init() function.
-	   */
-	  void setUserStore(UserStore userStore) {
-	    this.userStore = userStore;
+    /**
+    * Sets the UserStore used by this servlet. This function provides a common setup method for use
+    * by the test framework or the servlet's init() function.
+    */
+    void setUserStore(UserStore userStore) {
+      this.userStore = userStore;
 	  }
 	  
 	  void setConversationStore(ConversationStore conversationStore) {
