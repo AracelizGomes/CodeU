@@ -66,7 +66,7 @@
     <url-pattern>/register</url-pattern>
   </servlet-mapping>
 
-	<servlet>
+  <servlet>
     <servlet-name>ProfileServlet</servlet-name>
     <servlet-class>codeu.controller.ProfileServlet</servlet-class>
   </servlet>
@@ -74,6 +74,16 @@
   <servlet-mapping>
     <servlet-name>ProfileServlet</servlet-name>
     <url-pattern>/users/*</url-pattern>
-  </servlet-mapping>
+ </servlet-mapping>
+
+ <servlet>
+    <servlet-name>GroupChatServlet</servlet-name>
+    <servlet-class>codeu.controller.GroupChatServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>GroupChatServlet</servlet-name>
+		<url-pattern>/groupchat</url-pattern>
+ </servlet-mapping>
 
 </web-app>
