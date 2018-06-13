@@ -60,8 +60,13 @@ public class ProfileServlet extends HttpServlet {
 	  User user = userStore.getUser(userProfile); //no one logged in
 	  if (user == null) {
 	    System.out.println("Not logged in " + userProfile);
+<<<<<<< HEAD
         response.sendRedirect("/login");
 		return;
+=======
+            response.sendRedirect("/login");
+	    return;
+>>>>>>> 897294f37e8c40865cce25e4b62b703259ee379b
 	  }
 	  
 	  //someone is logged in
