@@ -74,15 +74,15 @@ public class Message {
   public String getTime() {
     LocalDateTime localDate = LocalDateTime.ofInstant(creation, ZoneId.systemDefault());
     int hr = localDate.getHour();
-    String AMPM = "";
+    Boolean AM;
     if (hr > 12) {
       hr = hr % 12;
-      AMPM = "PM";
+      AM = false;
     }
     else {
-      AMPM = "AM";
+      AM = true;
     }
-    String Date = localDate.getMonth().toString() + " " + localDate.getDayOfMonth() + ", " + localDate.getYear() + " ~ " + hr + ":" + localDate.getMinute() + " " + AMPM;
-	return Date;  
+    String Date = localDate.getMonth().toString() + " " + localDate.getDayOfMonth() + ", " + localDate.getYear() + " ~ " + hr + ":" + localDate.getMinute() + " " + (AM ? "AM":"PM");
+    return Date;
   }
 } 

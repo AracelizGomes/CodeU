@@ -18,12 +18,12 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 public class ProfileServletTest {
-      private ProfileServlet profileServlet;
-	  private HttpServletRequest mockRequest;
-	  private HttpSession mockSession;
-	  private HttpServletResponse mockResponse;
-	  private RequestDispatcher mockRequestDispatcher;
-	  private UserStore mockUserStore;
+  private ProfileServlet profileServlet;
+  private HttpServletRequest mockRequest;
+	private HttpSession mockSession;
+	private HttpServletResponse mockResponse;
+	private RequestDispatcher mockRequestDispatcher;
+	private UserStore mockUserStore;
 	  
 	  @Before
 	  public void setup() throws IOException {
@@ -36,7 +36,7 @@ public class ProfileServletTest {
 	    mockResponse = Mockito.mock(HttpServletResponse.class);
 	    mockRequestDispatcher = Mockito.mock(RequestDispatcher.class);
 	    Mockito.when(mockRequest.getRequestDispatcher("/WEB-INF/view/profile.jsp"))
-	        .thenReturn(mockRequestDispatcher);
+	      .thenReturn(mockRequestDispatcher);
 	    
 	    mockUserStore = Mockito.mock(UserStore.class);
 	    profileServlet.setUserStore(mockUserStore);
@@ -48,14 +48,12 @@ public class ProfileServletTest {
 		  Mockito.when(mockRequest.getRequestURI()).thenReturn("/users/test_username");
 		  Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username");
 		  User fakeUser = new User(
-				  				UUID.randomUUID(), 
-				  				"test_username", 
-				  				"$2a$10$bBiLUAVmUFK6Iwg5rmpBUOIBW6rIMhU1eKfi3KR60V9UXaYTwPfHy", 
-				  				Instant.now());
-		  	  
-		 // Mockito.when(mockRequest.getRequestURI()).thenReturn("/users/test_username");
-		  Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
+			  UUID.randomUUID(), 
+				"test_username", 
+				"$2a$10$bBiLUAVmUFK6Iwg5rmpBUOIBW6rIMhU1eKfi3KR60V9UXaYTwPfHy", 
+				Instant.now());
 		  
+		  Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 		  profileServlet.setUserStore(mockUserStore);
 		  profileServlet.doGet(mockRequest, mockResponse);
 		  Mockito.verify(mockRequest).setAttribute("user", fakeUser);
