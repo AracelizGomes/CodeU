@@ -28,13 +28,12 @@ public class ProfileServlet extends HttpServlet {
 	private MessageStore messageStore;
 	
 	@Override
-	  public void init() throws ServletException {
-	    super.init();
-	    setUserStore(UserStore.getInstance());
-	    setConversationStore(ConversationStore.getInstance());
-	    setMessageStore(MessageStore.getInstance());
-	    
-	  }
+	public void init() throws ServletException {
+	  super.init();
+	  setUserStore(UserStore.getInstance());
+	  setConversationStore(ConversationStore.getInstance());
+	  setMessageStore(MessageStore.getInstance());
+	}
 
 	  /**
 	   * Sets the UserStore used by this servlet. This function provides a common setup method for use
@@ -60,15 +59,9 @@ public class ProfileServlet extends HttpServlet {
 	  User user = userStore.getUser(userProfile); //no one logged in
 	  if (user == null) {
 	    System.out.println("Not logged in " + userProfile);
-<<<<<<< HEAD
-        response.sendRedirect("/login");
-		return;
-=======
-            response.sendRedirect("/login");
-	    return;
->>>>>>> 897294f37e8c40865cce25e4b62b703259ee379b
+      response.sendRedirect("/login");
+		  return;
 	  }
-	  
 	  //someone is logged in
 				
 	  UUID userid = user.getId();

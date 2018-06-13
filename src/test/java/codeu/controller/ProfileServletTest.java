@@ -48,19 +48,10 @@ public class ProfileServletTest {
 		  Mockito.when(mockRequest.getRequestURI()).thenReturn("/users/test_username");
 		  Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username");
 		  User fakeUser = new User(
-<<<<<<< HEAD
 			  UUID.randomUUID(), 
 				"test_username", 
 				"$2a$10$bBiLUAVmUFK6Iwg5rmpBUOIBW6rIMhU1eKfi3KR60V9UXaYTwPfHy", 
 				Instant.now());
-=======
-				  				UUID.randomUUID(), 
-				  				"test_username", 
-				  				"$2a$10$bBiLUAVmUFK6Iwg5rmpBUOIBW6rIMhU1eKfi3KR60V9UXaYTwPfHy", 
-				  				Instant.now());
-		  	  
-		  Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
->>>>>>> 897294f37e8c40865cce25e4b62b703259ee379b
 		  
 		  Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 		  profileServlet.setUserStore(mockUserStore);
