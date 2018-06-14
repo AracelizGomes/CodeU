@@ -27,7 +27,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
 <head>
   <title><%= conversation.getTitle() %></title>
   <link rel="stylesheet" href="/css/main.css" type="text/css">
-
+  <script src="http://cdn.ckeditor.com/4.7.2/basic/ckeditor.js"></script>
   <style>
     #chat {
       background-color: white;
@@ -55,6 +55,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
       <a href="/login">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
+ 		<a href="/profile">Profile</a>
   </nav>
 
   <div id="container">
@@ -71,7 +72,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
         String author = UserStore.getInstance()
           .getUser(message.getAuthorId()).getName();
     %>
-      <li><strong><%= author %>:</strong> <%= message.getContent() %></li>
+      <li><strong><%= author %>:</strong> <%= message.getContentWithHtml() %> </li>
     <%
       }
     %>
@@ -79,13 +80,18 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
     </div>
 
     <hr/>
-
     <% if (request.getSession().getAttribute("user") != null) { %>
     <form action="/chat/<%= conversation.getTitle() %>" method="POST">
-        <input type="text" name="message">
+        <textarea name="message"></textarea>
         <br/>
-        <button type="submit">Send</button>
+        <input name="send" type="submit" value="Send"></input>
+        <input name="delete" type="submit" value="Delete Last Message"></input>
     </form>
+
+    <script>
+      CKEDITOR.replace('message');
+    </script>
+
     <% } else { %>
       <p><a href="/login">Login</a> to send a message.</p>
     <% } %>

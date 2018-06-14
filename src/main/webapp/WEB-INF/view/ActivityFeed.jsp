@@ -16,7 +16,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login</title>
+  <title>ActivityFeed</title>
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
@@ -27,20 +27,19 @@
     <% if(request.getSession().getAttribute("user") != null){ %>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
     <% } else{ %>
-      <a href="/login">Login</a>
+      <a href="/activityfeed">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
-		<a href="/profile">Profile</a>
   </nav>
 
   <div id="container">
-    <h1>Login</h1>
+    <h1>Activity Feed</h1>
 
     <% if(request.getAttribute("error") != null){ %>
         <h2 style="color:red"><%= request.getAttribute("error") %></h2>
     <% } %>
 
-    <form action="/login" method="POST">
+    <form action="/activityfeed" method="GET">
       <label for="username">Username: </label>
       <br/>
       <input type="text" name="username" id="username">

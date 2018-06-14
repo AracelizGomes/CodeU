@@ -89,4 +89,9 @@ public class MessageStore {
   public void setMessages(List<Message> messages) {
     this.messages = messages;
   }
+
+  public void deleteLastMessage(List<Message> messages) {
+    System.out.println("he there");
+    messages.remove(messages.size()-1);
+  }
 }
