@@ -28,7 +28,7 @@ public class ActivityFeedServlet extends HttpServlet {
 	 */
 	@Override
 	public void init() throws ServletException {
-		super.init();
+	  super.init();
 		setUserStore(UserStore.getInstance());
 		setConversationStore(ConversationStore.getInstance());
 	}
