@@ -140,9 +140,6 @@ public class ChatServlet extends HttpServlet {
     }
     String sendAction = request.getParameter("send");
 
-    if (sendAction == null) { //delete button pressed
-      messageStore.deleteLastMessage(messageStore.getMessagesInConversation(conversation.getId()));
-    } else { //send button pressed
     String messageContent = request.getParameter("message");
     String processedMessageContent = Jsoup.clean(messageContent, Whitelist.basicWithImages());
 
@@ -155,7 +152,6 @@ public class ChatServlet extends HttpServlet {
             Instant.now());
 
     messageStore.addMessage(message);
-    }
 
     // redirect to a GET request
     response.sendRedirect("/chat/" + conversationTitle);
