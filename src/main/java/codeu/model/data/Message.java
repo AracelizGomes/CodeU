@@ -74,13 +74,10 @@ public class Message {
   public String getTime() {
     LocalDateTime localDate = LocalDateTime.ofInstant(creation, ZoneId.systemDefault());
     int hr = localDate.getHour();
-    Boolean AM;
+    Boolean AM=true;
     if (hr > 12) {
       hr = hr % 12;
       AM = false;
-    }
-    else {
-      AM = true;
     }
     String Date = localDate.getMonth().toString() + " " + localDate.getDayOfMonth() + ", " + localDate.getYear() + " ~ " + hr + ":" + localDate.getMinute() + " " + (AM ? "AM":"PM");
     return Date;
