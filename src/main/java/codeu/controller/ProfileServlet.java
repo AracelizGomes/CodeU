@@ -91,7 +91,7 @@ public class ProfileServlet extends HttpServlet {
 	  userStore.updateUser(user);
 	  response.sendRedirect("/users/" + userProfile);
 	}
-	
+
 }
 
 
