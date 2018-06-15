@@ -155,6 +155,7 @@ public class ChatServlet extends HttpServlet {
       messageStore.addMessage(message);
     } else { //the delete button was pressed
       messageStore.deleteLastMessage();
+    }
 
     // redirect to a GET request
     response.sendRedirect("/chat/" + conversationTitle);
