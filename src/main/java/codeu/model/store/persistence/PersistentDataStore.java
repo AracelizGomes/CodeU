@@ -23,6 +23,7 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class PersistentDataStore {
 
   // Handle to Google AppEngine's Datastore service.
   private DatastoreService datastore;
+  private ArrayList<Key> messageKeys;
 
   /**
    * Constructs a new PersistentDataStore and sets up its state to begin loading objects from the
@@ -45,6 +47,7 @@ public class PersistentDataStore {
    */
   public PersistentDataStore() {
     datastore = DatastoreServiceFactory.getDatastoreService();
+    messageKeys = new ArrayList<>();
   }
 
   /**
@@ -125,12 +128,14 @@ public class PersistentDataStore {
 
     List<Message> messages = new ArrayList<>();
 
+
     // Retrieve all messages from the datastore.
     Query query = new Query("chat-messages").addSort("creation_time", SortDirection.ASCENDING);
     PreparedQuery results = datastore.prepare(query);
 
     for (Entity entity : results.asIterable()) {
       try {
+        messageKeys.add(entity.getKey());
         UUID uuid = UUID.fromString((String) entity.getProperty("uuid"));
         UUID conversationUuid = UUID.fromString((String) entity.getProperty("conv_uuid"));
         UUID authorUuid = UUID.fromString((String) entity.getProperty("author_uuid"));
@@ -162,6 +167,7 @@ public class PersistentDataStore {
   /** Write a Message object to the Datastore service. */
   public void writeThrough(Message message) {
     Entity messageEntity = new Entity("chat-messages", message.getId().toString());
+    System.out.println(message.getId().toString());
     messageEntity.setProperty("uuid", message.getId().toString());
     messageEntity.setProperty("conv_uuid", message.getConversationId().toString());
     messageEntity.setProperty("author_uuid", message.getAuthorId().toString());
@@ -179,5 +185,9 @@ public class PersistentDataStore {
     conversationEntity.setProperty("creation_time", conversation.getCreationTime().toString());
     datastore.put(conversationEntity);
   }
-}
 
+  /** Delete message from Datastore service. */
+  public void deleteMessage(int messageIndex) {
+    datastore.delete(messageKeys.get(messageIndex));
+  }
+}

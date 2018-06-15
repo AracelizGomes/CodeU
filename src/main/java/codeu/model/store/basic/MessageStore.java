@@ -90,8 +90,9 @@ public class MessageStore {
     this.messages = messages;
   }
 
-  public void deleteLastMessage(List<Message> messages) {
-    System.out.println("he there");
-    messages.remove(messages.size()-1);
+  public void deleteLastMessage() {
+    int lastMessageIndex = messages.size()-1;
+    persistentStorageAgent.deleteMessage(lastMessageIndex);
+    messages.remove(lastMessageIndex);
   }
 }
