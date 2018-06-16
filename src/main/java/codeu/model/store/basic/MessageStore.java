@@ -89,9 +89,8 @@ public class MessageStore {
     this.messages = messages;
   }
 
-  public void deleteLastMessage() {
-    int lastMessageIndex = messages.size()-1;
-    persistentStorageAgent.deleteMessage(lastMessageIndex);
-    messages.remove(lastMessageIndex);
+  public void deleteMessage(int messageIndex) {
+    persistentStorageAgent.deleteMessage(messageIndex);
+    messages.remove(messageIndex);
   }
 }
