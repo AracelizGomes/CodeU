@@ -66,10 +66,17 @@ public class ConversationServletTest {
 
   @Test
   public void testDoGet() throws IOException, ServletException {
+    List<String> contributorList = new ArrayList<>();
+    contributorList.add("araceliz");
+    contributorList.add("tema1");
+    contributorList.add("lucy1");
+    contributorList.add("julie1");
+    contributorList.add("justice1");
+    
     List<Conversation> fakeConversationList = new ArrayList<>();
     fakeConversationList.add(
-      new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", Instant.now()));
-    Mockito.when(mockConversationStore.getAllConversations()).thenReturn(fakeConversationList);
+      new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", contributorList, Instant.now()));
+    Mockito.when(mockConversationStore.getUserConversations()).thenReturn(fakeConversationList);
 
     conversationServlet.doGet(mockRequest, mockResponse);
 

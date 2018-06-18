@@ -16,8 +16,11 @@ package codeu.model.store.basic;
 
 import codeu.model.data.Conversation;
 import codeu.model.store.persistence.PersistentStorageAgent;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.time.Instant;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Store class that uses in-memory data structures to hold values and automatically loads from and
@@ -57,6 +60,7 @@ public class ConversationStore {
 
   /** The in-memory list of Conversations. */
   private List<Conversation> conversations;
+  private List<Conversation> userconversations;
 
   /** This class is a singleton, so its constructor is private. Call getInstance() instead. */
   private ConversationStore(PersistentStorageAgent persistentStorageAgent) {
@@ -74,7 +78,18 @@ public class ConversationStore {
     conversations.add(conversation);
     persistentStorageAgent.writeThrough(conversation);
   }
+  
+  /**  the current set of conversations a user has access to */
+  public List<Conversation> getUserConversations() {
+    for (Conversation conversation : conversations) {
+      if (conversation.getContributorList().contains(conversation.getId())) {
+        userconversations.add(conversation);
+      }
+    }
+    return userconversations;
+  }
 
+  
   /** Check whether a Conversation title is already known to the application. */
   public boolean isTitleTaken(String title) {
     // This approach will be pretty slow if we have many Conversations.

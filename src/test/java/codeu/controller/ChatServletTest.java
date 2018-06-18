@@ -73,10 +73,17 @@ public class ChatServletTest {
   @Test
   public void testDoGet() throws IOException, ServletException {
     Mockito.when(mockRequest.getRequestURI()).thenReturn("/chat/test_conversation");
-
+    
+    List<String> contributorList = new ArrayList<>();
+    contributorList.add("araceliz");
+    contributorList.add("tema1");
+    contributorList.add("lucy1");
+    contributorList.add("julie1");
+    contributorList.add("justice1");
+    
     UUID fakeConversationId = UUID.randomUUID();
     Conversation fakeConversation =
-        new Conversation(fakeConversationId, UUID.randomUUID(), "test_conversation", Instant.now());
+        new Conversation(fakeConversationId, UUID.randomUUID(), "test_conversation", contributorList, Instant.now());
     Mockito.when(mockConversationStore.getConversationWithTitle("test_conversation"))
         .thenReturn(fakeConversation);
 
@@ -164,9 +171,16 @@ public class ChatServletTest {
             "$2a$10$bBiLUAVmUFK6Iwg5rmpBUOIBW6rIMhU1eKfi3KR60V9UXaYTwPfHy",
             Instant.now());
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
-
+    
+    List<String> contributorList = new ArrayList<>();
+    contributorList.add("araceliz");
+    contributorList.add("tema1");
+    contributorList.add("lucy1");
+    contributorList.add("julie1");
+    contributorList.add("justice1");
+    
     Conversation fakeConversation =
-        new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", Instant.now());
+        new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", contributorList, Instant.now());
     Mockito.when(mockConversationStore.getConversationWithTitle("test_conversation"))
         .thenReturn(fakeConversation);
 
@@ -194,8 +208,15 @@ public class ChatServletTest {
             Instant.now());
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
+    List<String> contributorList = new ArrayList<>();
+    contributorList.add("araceliz");
+    contributorList.add("tema1");
+    contributorList.add("lucy1");
+    contributorList.add("julie1");
+    contributorList.add("justice1");
+    
     Conversation fakeConversation =
-        new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", Instant.now());
+        new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", contributorList, Instant.now());
     Mockito.when(mockConversationStore.getConversationWithTitle("test_conversation"))
         .thenReturn(fakeConversation);
 

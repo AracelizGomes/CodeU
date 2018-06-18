@@ -14,6 +14,7 @@
   limitations under the License.
 --%>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="codeu.model.data.Conversation" %>
 
 <!DOCTYPE html>
@@ -61,7 +62,7 @@
 
     <%
     List<Conversation> conversations =
-      (List<Conversation>) request.getAttribute("conversations");
+      (List<Conversation>) request.getAttribute("userconversations");
     if(conversations == null || conversations.isEmpty()){
     %>
       <p>Create a conversation to get started.</p>

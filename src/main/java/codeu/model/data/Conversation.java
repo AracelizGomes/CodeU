@@ -15,7 +15,10 @@
 package codeu.model.data;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+
 
 /**
  * Class representing a conversation, which can be thought of as a chat room. Conversations are
@@ -26,6 +29,7 @@ public class Conversation {
   public final UUID owner;
   public final Instant creation;
   public final String title;
+  public List<String> contributorList;
 
   /**
    * Constructs a new Conversation.
@@ -34,12 +38,14 @@ public class Conversation {
    * @param owner the ID of the User who created this Conversation
    * @param title the title of this Conversation
    * @param creation the creation time of this Conversation
+   * @param contributorList the contributorList of this Conversation
    */
-  public Conversation(UUID id, UUID owner, String title, Instant creation) {
+  public Conversation(UUID id, UUID owner, String title, List<String> contributorlist, Instant creation) {
     this.id = id;
     this.owner = owner;
     this.creation = creation;
     this.title = title;
+    this.contributorList = contributorList;
   }
 
   /** Returns the ID of this Conversation. */
@@ -55,6 +61,17 @@ public class Conversation {
   /** Returns the title of this Conversation. */
   public String getTitle() {
     return title;
+  }
+  
+  /** Returns the list of users that have access to this Conversation. */
+  public List<String> getContributorList() {
+    List<String> contributorList = new ArrayList<>();
+    contributorList.add("araceliz");
+    contributorList.add("tema1");
+    contributorList.add("lucy1");
+    contributorList.add("julie1");
+    contributorList.add("justice1");
+    return contributorList;
   }
 
   /** Returns the creation time of this Conversation. */

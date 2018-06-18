@@ -103,8 +103,15 @@ public class PersistentDataStore {
         UUID ownerUuid = UUID.fromString((String) entity.getProperty("owner_uuid"));
         String title = (String) entity.getProperty("title");
         Instant creationTime = Instant.parse((String) entity.getProperty("creation_time"));
-        Conversation conversation = new Conversation(uuid, ownerUuid, title, creationTime);
+        List<String> contributorList = new ArrayList<>();
+        contributorList.add("araceliz");
+        contributorList.add("tema1");
+        contributorList.add("lucy1");
+        contributorList.add("julie1");
+        contributorList.add("justice1");
+        Conversation conversation = new Conversation(uuid, ownerUuid, title, contributorList, creationTime);
         conversations.add(conversation);
+
       } catch (Exception e) {
         // In a production environment, errors should be very rare. Errors which may
         // occur include network errors, Datastore service errors, authorization errors,
