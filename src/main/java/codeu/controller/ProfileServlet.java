@@ -21,27 +21,24 @@ import org.jsoup.safety.Whitelist;
 import org.mindrot.jbcrypt.BCrypt;
 /** Servlet class responsible for the Profile page. */
 public class ProfileServlet extends HttpServlet {
-	private UserStore userStore;
+  private UserStore userStore;
+  private ConversationStore conversationStore;	
+  private MessageStore messageStore;
 	
-	private ConversationStore conversationStore;
-	
-	private MessageStore messageStore;
-	
-	@Override
-	  public void init() throws ServletException {
-	    super.init();
-	    setUserStore(UserStore.getInstance());
-	    setConversationStore(ConversationStore.getInstance());
-	    setMessageStore(MessageStore.getInstance());
-	    
-	  }
+    @Override
+    public void init() throws ServletException {
+      super.init();
+      setUserStore(UserStore.getInstance());
+      setConversationStore(ConversationStore.getInstance());
+      setMessageStore(MessageStore.getInstance());
+    }
 
-	  /**
-	   * Sets the UserStore used by this servlet. This function provides a common setup method for use
-	   * by the test framework or the servlet's init() function.
-	   */
-	  void setUserStore(UserStore userStore) {
-	    this.userStore = userStore;
+    /**
+    * Sets the UserStore used by this servlet. This function provides a common setup method for use
+    * by the test framework or the servlet's init() function.
+    */
+    void setUserStore(UserStore userStore) {
+      this.userStore = userStore;
 	  }
 	  
 	  void setConversationStore(ConversationStore conversationStore) {
@@ -60,10 +57,9 @@ public class ProfileServlet extends HttpServlet {
 	  User user = userStore.getUser(userProfile); //no one logged in
 	  if (user == null) {
 	    System.out.println("Not logged in " + userProfile);
-        response.sendRedirect("/login");
-		return;
+      response.sendRedirect("/login");
+		  return;
 	  }
-	  
 	  //someone is logged in
 				
 	  UUID userid = user.getId();
@@ -95,7 +91,7 @@ public class ProfileServlet extends HttpServlet {
 	  userStore.updateUser(user);
 	  response.sendRedirect("/users/" + userProfile);
 	}
-	
+
 }
 
 
