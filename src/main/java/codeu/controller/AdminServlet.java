@@ -83,8 +83,7 @@ public class AdminServlet extends HttpServlet {
 	   */
 	  @Override
 	  public void doGet(HttpServletRequest request, HttpServletResponse response)
-	      throws IOException, ServletException 
-	  {
+	      throws IOException, ServletException {
 		  List<Conversation> conversations = conversationStore.getAllConversations();
 		  request.setAttribute("conversations", conversations);
 		  
@@ -97,35 +96,31 @@ public class AdminServlet extends HttpServlet {
 		  int numMessages = getNumMessages(conversations);
 		  request.setAttribute("numMessages", numMessages);
 		  
-		  int numUsers = userStore.numUsers();
+		  int numUsers = userStore.getNumUsers();
 		  request.setAttribute("numUsers", numUsers);
 		  
 		  request.getRequestDispatcher("/WEB-INF/view/admin.jsp").forward(request, response);
 	  }
 	  
-	  //Calculates the most popular value in a List
-	  public UUID getPopularElement(List<UUID> a)
-	  {
-		if (a == null)
+	  /** Calculates the most popular value in a List */
+	  public UUID getPopularElement(List<UUID> idList) {
+		if (idList == null)
 			return null;
-		else
-		{
-			int count = 1, tempCount;
-		    UUID popular = a.get(0);
-		    UUID temp = null;
-		    for (int i = 0; i < (a.size() - 1); i++)
-		    {
-		      temp = a.get(i);
-		      tempCount = 0;
-		      for (int j = 1; j < a.size(); j++)
-		      {
-		        if (temp == a.get(j))
-		          tempCount++;
+		else {
+			int count = 1;
+			int	idCount = count;
+		    UUID popular = idList.get(0);
+		    UUID tempId = null;
+		    for (int i = 0; i < (idList.size() - 1); i++) {
+		      tempId = idList.get(i);
+		      idCount = 0;
+		      for (int j = 1; j < idList.size(); j++) {
+		        if (tempId == idList.get(j))
+		          idCount++;
 		      }
-		      if (tempCount > count)
-		      {
-		        popular = temp;
-		        count = tempCount;
+		      if (idCount > count) {
+		        popular = tempId;
+		        count = idCount;
 		      }
 		    }
 		    return popular;
@@ -133,55 +128,47 @@ public class AdminServlet extends HttpServlet {
 	    
 	  }
 	  
-	  //calculates the number of conversations
-	  public int getNumConvos(List<Conversation> conversations)
-	  {
-		  int numConvos = 0;
-			if(conversations == null || conversations.isEmpty()){
+	  /** Calculates the number of conversations. */
+	  public int getNumConvos(List<Conversation> conversations) {
+	 	  int numConvos = 0;
+			if (conversations == null || conversations.isEmpty()) {
 				numConvos = 0;
 			}
-			else{
-				for(Conversation conversation : conversations)
-				{
+			else {
+				for(Conversation conversation : conversations) {
 					numConvos++;
 				}
 			}
 			return numConvos;
 	  }
 	  
-	  //calculates the number of messages
-	  public int getNumMessages(List<Conversation> conversations)
-	  {
-		  if (conversations == null){
+	  /** Calculates the number of messages. */
+	  public int getNumMessages(List<Conversation> conversations) {
+		  if (conversations == null) 
 			  return 0;
-		  }
-		  else{
+		  
 			  int numMessages = 0;
-			  for(Conversation conversation : conversations)
-			  {
+			  for(Conversation conversation : conversations) {
 				UUID id = conversation.getId();
 				List<Message> messages = messageStore.getMessagesInConversation(id);
-				for (Message message : messages){
+				for (Message message : messages) {
 					numMessages++;		
 				}		
 			  }
 			  return numMessages;
-		  }	  
-	  }
+	  }	  
 	  
-	  //returns username of most active user (user with most messages)
-	  public String getActiveUser (List<Conversation> conversations)
-	  {
+	  
+	  /** Returns username of most active user by finding user with most messages. */
+	  public String getActiveUser (List<Conversation> conversations) {
 		  if (conversations == null)
 			  return null;
-		  else
-		  {
+		  else {
 			  List<UUID> userId = new ArrayList<UUID>();
-			  for(Conversation conversation : conversations)
-			  {
+			  for (Conversation conversation : conversations) {
 					UUID id = conversation.getId();
 					List<Message> messages = messageStore.getMessagesInConversation(id);
-					for (Message message : messages){
+					for (Message message : messages) {
 						userId.add(message.getAuthorId());			
 					}		
 			  }	
@@ -191,8 +178,7 @@ public class AdminServlet extends HttpServlet {
 			  
 			  return activeUserName;
 		  }		 		  
-	  }
-	
+	  }	
 
 }
 
