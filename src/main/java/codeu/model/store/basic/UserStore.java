@@ -63,7 +63,6 @@ public class UserStore {
     this.persistentStorageAgent = persistentStorageAgent;
     users = new ArrayList<>();
   }
-  
 
   /**
    * Access the User object with the given name.
@@ -128,10 +127,8 @@ public class UserStore {
     this.users = users;
   }
   
-  
-  //JJ Returns number of users.
-  public int numUsers(){
-	  
+  /** Returns number of users. */
+  public int getNumUsers(){
 	  return users.size();
   }
 }
