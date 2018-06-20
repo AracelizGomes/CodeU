@@ -67,12 +67,6 @@
   </servlet-mapping>
 
   <servlet>
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-=======
->>>>>>> fa95c0a8f9362c062dcfd24e0a67b9e37051618d
     <servlet-name>ActivityFeedServlet</servlet-name>
     <servlet-class>codeu.controller.ActivityFeedServlet</servlet-class>
   </servlet>
@@ -83,10 +77,6 @@
   </servlet-mapping>    
 
   <servlet>
-<<<<<<< HEAD
-=======
->>>>>>> dd0cb40922c61cf38f533c730cba44f1cbe6659a
->>>>>>> fa95c0a8f9362c062dcfd24e0a67b9e37051618d
     <servlet-name>ProfileServlet</servlet-name>
     <servlet-class>codeu.controller.ProfileServlet</servlet-class>
   </servlet>
@@ -96,8 +86,4 @@
     <url-pattern>/users/*</url-pattern>
  </servlet-mapping>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> fa95c0a8f9362c062dcfd24e0a67b9e37051618d
 </web-app>

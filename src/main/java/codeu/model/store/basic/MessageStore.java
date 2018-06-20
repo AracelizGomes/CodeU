@@ -90,10 +90,7 @@ public class MessageStore {
     this.messages = messages;
   }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> fa95c0a8f9362c062dcfd24e0a67b9e37051618d
+
   //list of messages sent by user
   public List<Message> getMessagesOfUser(UUID author) {
 	 List<Message> sentMessages = new ArrayList<>();
@@ -106,16 +103,3 @@ public class MessageStore {
 	 return sentMessages;
   }
 }  
-<<<<<<< HEAD
-
-=======
-  
-  
-=======
-  public void deleteLastMessage(List<Message> messages) {
-    System.out.println("he there");
-    messages.remove(messages.size()-1);
-  }
-}
->>>>>>> dd0cb40922c61cf38f533c730cba44f1cbe6659a
->>>>>>> fa95c0a8f9362c062dcfd24e0a67b9e37051618d
