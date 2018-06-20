@@ -16,7 +16,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login</title>
+  <title>CodeU Chat App Team 34</title>
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
@@ -25,36 +25,34 @@
     <a id="navTitle" href="/">CodeU Chat App Team 34</a>
     <a href="/conversations">Conversations</a>
     <% if(request.getSession().getAttribute("user") != null){ %>
-      <a href="/users/<%= request.getSession().getAttribute("user") %>" > <%= request.getSession().getAttribute("user") %>'s Profile</a>
+      <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
     <% } else{ %>
       <a href="/login">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
-    <a href="/users/<%= request.getSession().getAttribute("user") %>">Profile</a>
-    <a href="/profile">Profile</a>
-    <a href="/activityfeed">Activity Feed</a>
+	<a href="/profile">Profile</a>
+	<a href="/activityfeed">Activity Feed</a>
+	
   </nav>
 
   <div id="container">
-    <h1>Login</h1>
+    <div
+      style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
 
-    <% if(request.getAttribute("error") != null){ %>
-        <h2 style="color:red"><%= request.getAttribute("error") %></h2>
-    <% } %>
 
-    <form action="/login" method="POST">
-      <label for="username">Username: </label>
-      <br/>
-      <input type="text" name="username" id="username">
-      <br/>
-      <label for="password">Password: </label>
-      <br/>
-      <input type="password" name="password" id="password">
-      <br/><br/>
-      <button type="submit">Login</button>
-    </form>
+      <h1>CodeU Chat App Team 34</h1>
+      <h2>Welcome!</h2>
 
-    <p>New users can register <a href="/register">here</a>.</p>
+      <ul>
+        <li><a href="/login">Login</a> to get started.</li>
+        <li>Go to the <a href="/conversations">conversations</a> page to
+            create or join a conversation.</li>
+        <li>View the <a href="/about.jsp">about</a> page to learn more about the
+            project.</li>
+		<li>View the <a href="/profile">Profile</a></li>
+		<li>See what everyone is up to in the <a href="/activityfeed">Activity Feed</a></li>
+      </ul>
+    </div>
   </div>
 </body>
 </html>

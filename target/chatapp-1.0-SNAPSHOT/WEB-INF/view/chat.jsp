@@ -27,7 +27,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
 <head>
   <title><%= conversation.getTitle() %></title>
   <link rel="stylesheet" href="/css/main.css" type="text/css">
-  <script src="http://cdn.ckeditor.com/4.7.2/basic/ckeditor.js"></script>
+
   <style>
     #chat {
       background-color: white;
@@ -47,17 +47,16 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
 <body onload="scrollChat()">
 
   <nav>
-    <a id="navTitle" href="/">CodeU Chat App Team 34</a>
+    <a id="navTitle" href="/">CodeU Chat App</a>
     <a href="/conversations">Conversations</a>
-    <% if(request.getSession().getAttribute("user") != null){ %>
-      <a href="/users/<%= request.getSession().getAttribute("user") %>" > <%= request.getSession().getAttribute("user") %>'s Profile</a>
-    <% } else{ %>
+      <% if (request.getSession().getAttribute("user") != null) { %>
+    <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
+    <% } else { %>
       <a href="/login">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
-    <a href="/users/<%= request.getSession().getAttribute("user") %>">Profile</a>
-    <a href="/profile">Profile</a>
-    <a href="/activityfeed">Activity Feed</a>
+ 	<a href="/profile">Profile</a>
+ 	<a href="/activityfeed">Activity Feed</a>
   </nav>
 
   <div id="container">
@@ -74,7 +73,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
         String author = UserStore.getInstance()
           .getUser(message.getAuthorId()).getName();
     %>
-      <li><strong><%= author %>:</strong> <%= message.getContentWithHtml() %> </li>
+      <li><strong><%= author %>:</strong> <%= message.getContent() %></li>
     <%
       }
     %>
@@ -82,18 +81,13 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
     </div>
 
     <hr/>
+
     <% if (request.getSession().getAttribute("user") != null) { %>
     <form action="/chat/<%= conversation.getTitle() %>" method="POST">
-        <textarea name="message"></textarea>
+        <input type="text" name="message">
         <br/>
-        <input name="send" type="submit" value="Send"></input>
-        <input name="delete" type="submit" value="Delete Last Message"></input>
+        <button type="submit">Send</button>
     </form>
-
-    <script>
-      CKEDITOR.replace('message');
-    </script>
-
     <% } else { %>
       <p><a href="/login">Login</a> to send a message.</p>
     <% } %>
