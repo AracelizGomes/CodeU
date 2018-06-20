@@ -55,9 +55,9 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
       <a href="/login">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
+ 	  <a href="/profile">Profile</a>
+ 	  <a href="/activityfeed">Activity Feed</a>
     <a href="/users/<%= request.getSession().getAttribute("user") %>">Profile</a>
-    <a href="/profile">Profile</a>
-    <a href="/activityfeed">Activity Feed</a>
   </nav>
 
   <div id="container">
@@ -75,9 +75,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
           .getUser(message.getAuthorId()).getName();
     %>
       <li><strong><%= author %>:</strong> <%= message.getContentWithHtml() %> </li>
-    <%
-      }
-    %>
+    <% } %>
       </ul>
     </div>
 

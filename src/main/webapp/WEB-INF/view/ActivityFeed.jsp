@@ -44,8 +44,9 @@
 
 	<%
 	  if (request.getAttribute("error") != null) {
-    %>
+  %>
 	<h2 style="color: red"><%=request.getAttribute("error")%></h2>
+    
 	<% } %>
 
 	<h1>Activity Feed</h1>

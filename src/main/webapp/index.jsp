@@ -31,10 +31,9 @@
       <a href="/login">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
-	<a href="/users/<%= request.getSession().getAttribute("user") %>">Profile</a>
-	<a href="/profile">Profile</a>
-	<a href="/activityfeed">Activity Feed</a>
-	
+    <a href="/users/<%= request.getSession().getAttribute("user") %>">Profile</a>
+    <a href="/profile">Profile</a>
+    <a href="/activityfeed">Activity Feed</a>	
   </nav>
 
   <div id="container">
@@ -51,9 +50,8 @@
             create or join a conversation.</li>
         <li>View the <a href="/about.jsp">about</a> page to learn more about the
             project.</li>
-		<li>View the <a href="/users/">Profile</a></li>
-		<li>View the <a href="/profile">Profile</a></li>
-		<li>See what everyone is up to in the <a href="/activityfeed">Activity Feed</a></li>
+		    <li>View the <a href="/users/">Profile</a></li>
+		    <li>See what everyone is up to in the <a href="/activityfeed">Activity Feed</a></li>
       </ul>
     </div>
   </div>
