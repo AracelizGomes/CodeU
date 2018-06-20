@@ -16,6 +16,10 @@ package codeu.model.data;
 
 import java.time.Instant;
 import java.util.UUID;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 
 /** Class representing a message. Messages are sent by a User in a Conversation. */
 public class Message {
@@ -23,8 +27,9 @@ public class Message {
   private final UUID id;
   private final UUID conversation;
   private final UUID author;
-  private final String content;
+  private final String noHtmlContent;
   private final Instant creation;
+  private final String contentWithHtml;
 
   /**
    * Constructs a new Message.
@@ -38,8 +43,10 @@ public class Message {
   public Message(UUID id, UUID conversation, UUID author, String content, Instant creation) {
     this.id = id;
     this.conversation = conversation;
+    this.contentWithHtml = content;
     this.author = author;
-    this.content = content;
+    //get rid of all html tags
+    this.noHtmlContent = Jsoup.clean(content, Whitelist.none());
     this.creation = creation;
   }
 
@@ -60,11 +67,29 @@ public class Message {
 
   /** Returns the text content of this Message. */
   public String getContent() {
-    return content;
+    return noHtmlContent;
+  }
+
+  public String getContentWithHtml() {
+    return contentWithHtml;
   }
 
   /** Returns the creation time of this Message. */
   public Instant getCreationTime() {
     return creation;
   }
-}
+
+
+  /** Time display */ 
+  public String getTime() {
+    LocalDateTime localDate = LocalDateTime.ofInstant(creation, ZoneId.systemDefault());
+    int hr = localDate.getHour();
+    Boolean AM=true;
+    if (hr > 12) {
+      hr = hr % 12;
+      AM = false;
+    }
+    String Date = localDate.getMonth().toString() + " " + localDate.getDayOfMonth() + ", " + localDate.getYear() + " ~ " + hr + ":" + localDate.getMinute() + " " + (AM ? "AM":"PM");
+    return Date;
+  }
+} 

@@ -26,31 +26,41 @@
 <body>
 
   <nav>
-  <a id="navTitle" href="/">CodeU Chat App</a> <a href="/conversations">Conversations</a>
-  <% if (request.getSession().getAttribute("user") != null) { %>
-  	<a>Hello <%=request.getSession().getAttribute("user")%>!</a>
-  <% } else { %>
-    <a href="/login">Login</a>
-  <% } %>
-  <a href="/about.jsp">About</a> <a href="/profile">Profile</a>
-  <a href="/activityfeed">Activity Feed</a>
+    <a id="navTitle" href="/">CodeU Chat App Team 34</a>
+    <a href="/conversations">Conversations</a>
+    <% if(request.getSession().getAttribute("user") != null){ %>
+      <a href="/users/<%= request.getSession().getAttribute("user") %>" > <%= request.getSession().getAttribute("user") %>'s Profile</a>
+    <% } else{ %>
+      <a href="/login">Login</a>
+    <% } %>
+    <a href="/about.jsp">About</a>
+    <a href="/users/<%= request.getSession().getAttribute("user") %>">Profile</a>
+    <a href="/profile">Profile</a>
+    <a href="/activityfeed">Activity Feed</a>
   </nav>
 
 
   <div id="container">
 
-	<%if (request.getAttribute("error") != null) { %>
-		<h2 style="color: red"><%=request.getAttribute("error")%></h2>
+	<%
+	  if (request.getAttribute("error") != null) {
+  %>
+	<h2 style="color: red"><%=request.getAttribute("error")%></h2>
+    
 	<% } %>
 
 	<h1>Activity Feed</h1>
 
 	<h2>This where you see what the world is up to!</h2>
 
-	<% List<Conversation> conversations = (List<Conversation>) request.getAttribute("conversations"); %>
+	<%
+	List<Conversation> conversations = (List<Conversation>) request.getAttribute("conversations");
+	%>
 	<ul class="mdl-list">
-	<% for (Conversation conversation : conversations) { %>
-		<li><a href="/chat/<%=conversation.getTitle()%>"> <%=conversation.getTitle()%></a></li>
+	<%
+	  for (Conversation conversation : conversations) {
+	%>
+	<li><a href="/chat/<%=conversation.getTitle()%>"> <%=conversation.getTitle()%></a></li>
 	<% } %>
 	</ul>
   </div>
