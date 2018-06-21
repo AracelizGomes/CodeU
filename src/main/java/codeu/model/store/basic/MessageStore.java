@@ -81,7 +81,6 @@ public class MessageStore {
         messagesInConversation.add(message);
       }
     }
-
     return messagesInConversation;
   }
 
@@ -90,21 +89,21 @@ public class MessageStore {
     this.messages = messages;
   }
 
+  public void deleteMessage(int messageIndex) {
+    persistentStorageAgent.deleteMessage(messageIndex);
+    messages.remove(messageIndex);
+  }
+  
   //list of messages sent by user
   public List<Message> getMessagesOfUser(UUID author) {
 	 List<Message> sentMessages = new ArrayList<>();
-	  
+
 	 for (Message message : messages) {
 		 if (message.getAuthorId().equals(author)) {
 			 sentMessages.add(message);
 		 }
 	 }
 	 return sentMessages;
-  } 
-  
-  
-  public void deleteLastMessage(List<Message> messages) {
-    System.out.println("he there");
-    messages.remove(messages.size()-1);
   }
+
 }

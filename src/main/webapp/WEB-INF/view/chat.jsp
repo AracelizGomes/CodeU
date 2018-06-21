@@ -70,12 +70,19 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
     <div id="chat">
       <ul>
     <%
+      int messageIndex = 0;
       for (Message message : messages) {
         String author = UserStore.getInstance()
           .getUser(message.getAuthorId()).getName();
     %>
       <li><strong><%= author %>:</strong> <%= message.getContentWithHtml() %> </li>
-    <% } %>
+      <form action="/chat/<%= conversation.getTitle() %>" method="POST">
+          <button name="delete" value="<%= messageIndex %>" type="submit">Delete</button>
+      </form>
+    <%
+        messageIndex ++;
+      }
+    %>
       </ul>
     </div>
 
@@ -85,7 +92,6 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
         <textarea name="message"></textarea>
         <br/>
         <input name="send" type="submit" value="Send"></input>
-        <input name="delete" type="submit" value="Delete Last Message"></input>
     </form>
 
     <script>
