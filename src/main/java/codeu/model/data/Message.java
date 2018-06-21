@@ -16,6 +16,8 @@ package codeu.model.data;
 
 import java.time.Instant;
 import java.util.UUID;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
@@ -76,4 +78,18 @@ public class Message {
   public Instant getCreationTime() {
     return creation;
   }
-}
+
+
+  /** Time display */ 
+  public String getTime() {
+    LocalDateTime localDate = LocalDateTime.ofInstant(creation, ZoneId.systemDefault());
+    int hr = localDate.getHour();
+    Boolean AM=true;
+    if (hr > 12) {
+      hr = hr % 12;
+      AM = false;
+    }
+    String Date = localDate.getMonth().toString() + " " + localDate.getDayOfMonth() + ", " + localDate.getYear() + " ~ " + hr + ":" + localDate.getMinute() + " " + (AM ? "AM":"PM");
+    return Date;
+  }
+} 

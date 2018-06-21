@@ -20,18 +20,20 @@
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-
+	<%@ page import="codeu.model.store.basic.UserStore" %>
+	<%@ page import="codeu.model.data.User" %>
   <nav>
     <a id="navTitle" href="/">CodeU Chat App Team 34</a>
     <a href="/conversations">Conversations</a>
     <% if(request.getSession().getAttribute("user") != null){ %>
-      <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
+      <a href="/users/<%= request.getSession().getAttribute("user") %>" > <%= request.getSession().getAttribute("user") %>'s Profile</a>
     <% } else{ %>
       <a href="/login">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
-		<a href="/profile">Profile</a>
-	
+    <a href="/users/<%= request.getSession().getAttribute("user") %>">Profile</a>
+    <a href="/profile">Profile</a>
+    <a href="/activityfeed">Activity Feed</a>	
   </nav>
 
   <div id="container">
@@ -48,7 +50,8 @@
             create or join a conversation.</li>
         <li>View the <a href="/about.jsp">about</a> page to learn more about the
             project.</li>
-				<li>View the <a href="/profile">Profile</a></li>
+		    <li>View the <a href="/users/">Profile</a></li>
+		    <li>See what everyone is up to in the <a href="/activityfeed">Activity Feed</a></li>
       </ul>
     </div>
   </div>

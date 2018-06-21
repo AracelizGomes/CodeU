@@ -142,7 +142,9 @@ public class ChatServlet extends HttpServlet {
 
     if (sendAction != null) { //if the send button was pressed
       String messageContent = request.getParameter("message");
-      String processedMessageContent = Jsoup.clean(messageContent, Whitelist.basicWithImages());
+      Whitelist wl = Whitelist.basicWithImages();
+      wl.removeTags("p");
+      String processedMessageContent = Jsoup.clean(messageContent, wl);
 
       Message message =
           new Message(
