@@ -15,6 +15,8 @@
 package codeu.model.data;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.UUID;
 
 /** Class representing a registered user. */
@@ -68,6 +70,17 @@ public class User {
   
   public String getBiography() {
 	  return biography;
+  }
+  /** Time display */ 
+  public String getTime() {
+    LocalDateTime localDate = LocalDateTime.ofInstant(creation, ZoneId.systemDefault());
+    int hr = localDate.getHour();
+    Boolean AM = true;
+    if (hr > 12) {
+      hr = hr % 12;
+      AM = false;
+    }
+    return localDate.getMonth().toString() + " " + localDate.getDayOfMonth() + ", " + localDate.getYear() + " ~ " + hr + ":" + localDate.getMinute() + " " + (AM ? "AM" : "PM");
   }
 }
 
