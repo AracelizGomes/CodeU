@@ -72,7 +72,6 @@ public class Conversation {
       hr = hr % 12;
       AM = false;
     }
-    String Date = localDate.getMonth().toString() + " " + localDate.getDayOfMonth() + ", " + localDate.getYear() + " ~ " + hr + " : " + localDate.getMinute() + " " + (AM ? "AM":"PM");
-    return Date;
+    return localDate.getMonth().toString() + " " + localDate.getDayOfMonth() + ", " + localDate.getYear() + " ~ " + hr + " : " + localDate.getMinute() + " " + (AM ? "AM":"PM");
   }
 }
