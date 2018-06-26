@@ -16,6 +16,9 @@
 <%@ page import="java.util.List"%>
 <%@ page import="codeu.model.data.Conversation"%>
 <%@ page import="codeu.model.store.basic.UserStore" %>
+<%
+List<Conversation> conversations = (List<Conversation>) request.getAttribute("conversations");
+%>
 
 <!DOCTYPE html>
 <html>
@@ -42,25 +45,18 @@
 
   <div id="container">
 
-	<%
-	  if (request.getAttribute("error") != null) {
-  %>
-	<h2 style="color: red"><%=request.getAttribute("error")%></h2>
-    
-	<% } %>
-
 	<h1>Activity Feed</h1>
 
 	<h2>This where you see what the world is up to!</h2>
 
-	<%
-	List<Conversation> conversations = (List<Conversation>) request.getAttribute("conversations");
-	%>
 	<ul class="mdl-list">
 	<%
 	  for (Conversation conversation : conversations) {
+	  	String owner = UserStore.getInstance()
+	  	  .getUser(conversation.getOwnerId()).getName();
+	  	String creation = conversation.getTime();
 	%>
-	<li><a href="/chat/<%=conversation.getTitle()%>"> <%=conversation.getTitle()%></a></li>
+	<li><strong><%=owner%></strong> created the conversation <a href="/chat/<%=conversation.getTitle()%>"> <%=conversation.getTitle()%></a> on <font style="color:blue"> <%=creation%> </font></li>
 	<% } %>
 	</ul>
   </div>
