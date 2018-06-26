@@ -104,13 +104,13 @@ public class ConversationStore {
   }
   //list of conversations created by user
   public List<Conversation> getConversationsOfUser(UUID owner) {
-	 List<Conversation> conversations = new ArrayList<>();
+    List<Conversation> conversations = new ArrayList<>();
 
-	 for (Conversation conversation : conversations) {
-		 if (conversation.getOwnerId().equals(owner)) {
-			 conversations.add(conversation);
-		 }
-	 }
-	 return conversations;
+    for (Conversation conversation : conversations) {
+      if (conversation.getOwnerId().equals(owner)) {
+        conversations.add(conversation);
+      }
+    }
+    return conversations;
   }
 }
