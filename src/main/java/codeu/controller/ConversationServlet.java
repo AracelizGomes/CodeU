@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -70,11 +71,11 @@ public class ConversationServlet extends HttpServlet {
    */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws IOException, ServletException {
-    List<Conversation> conversations = conversationStore.getUserConversations();
-    //List<Conversation> userconversations = conversationStore.getUserConversations();
+      throws IOException, ServletException {  
+    String username = (String) request.getSession().getAttribute("user");
+    User user = userStore.getUser(username);
+    List<Conversation> conversations = conversationStore.getAllConversations();
     request.setAttribute("conversations", conversations);
-    //request.setAttribute("userconversations", usersconversations);
     request.getRequestDispatcher("/WEB-INF/view/conversations.jsp").forward(request, response);
   }
 
@@ -115,16 +116,17 @@ public class ConversationServlet extends HttpServlet {
       response.sendRedirect("/chat/" + conversationTitle);
       return;
     }
-    List<String> contributorList = new ArrayList<>();
-    contributorList.add("araceliz");
-    contributorList.add("tema1");
-    contributorList.add("lucy1");
-    contributorList.add("julie1");
-    contributorList.add("justice1");
-    Conversation conversation =
-        new Conversation(UUID.randomUUID(), user.getId(), conversationTitle, contributorList, Instant.now());
+    
 
+    HashSet<User> contributorList = new HashSet<User>();
+    String user1 = (String) request.getSession().getAttribute("user");
+    User addedUser = userStore.getUser(user1);
+    contributorList.add(addedUser);
+    Conversation conversation = 
+        new Conversation(UUID.randomUUID(), user.getId(), conversationTitle, contributorList, Instant.now());
+    request.setAttribute("conversation", conversation);
     conversationStore.addConversation(conversation);
+    
     response.sendRedirect("/chat/" + conversationTitle);
   }
 }

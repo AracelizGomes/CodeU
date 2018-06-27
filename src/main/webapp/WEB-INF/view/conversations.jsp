@@ -15,7 +15,10 @@
 --%>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.UUID" %>
 <%@ page import="codeu.model.data.Conversation" %>
+<%@ page import="codeu.model.store.basic.ConversationStore" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -50,6 +53,9 @@
           <div class="form-group">
             <label class="form-control-label">Title:</label>
           <input type="text" name="conversationTitle">
+          	<label class="form-control-label">Contributors:</label>
+          <input type="text" name="contributorList">
+          
         </div>
 
         <button type="submit">Create</button>
@@ -58,27 +64,40 @@
       <hr/>
     <% } %>
 
-    <h1>Conversations</h1>
+    <h1><%= request.getSession().getAttribute("user") %>'s Conversations</h1>
 
     <%
     List<Conversation> conversations =
-      (List<Conversation>) request.getAttribute("userconversations");
+      (List<Conversation>) request.getAttribute("conversations");
     if(conversations == null || conversations.isEmpty()){
     %>
       <p>Create a conversation to get started.</p>
     <%
     }
     else{
+      UUID id = (UUID) request.getSession().getAttribute("uuid");
     %>
+      <p>Your Conversations Are Here</p>
+      <ul class="mdl-list">
+    <%
+      
+      for(Conversation conversation : conversations){
+        if(conversation.isContributor(id)) {
+    	%>
+      		<li><a href="/chat/<%= conversation.getTitle() %>">
+        	<%= conversation.getTitle() %></a></li>
+        <% } %>
+        <% } %> 
+      </ul>
+      
+      <p>All Conversations Are Here</p>
       <ul class="mdl-list">
     <%
       for(Conversation conversation : conversations){
-    %>
-      <li><a href="/chat/<%= conversation.getTitle() %>">
-        <%= conversation.getTitle() %></a></li>
-    <%
-      }
-    %>
+    	%>
+      		<li><a href="/chat/<%= conversation.getTitle() %>">
+        	<%= conversation.getTitle() %></a></li>
+        <% } %>
       </ul>
     <%
     }

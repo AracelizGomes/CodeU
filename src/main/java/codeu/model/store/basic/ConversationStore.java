@@ -15,6 +15,9 @@
 package codeu.model.store.basic;
 
 import codeu.model.data.Conversation;
+import codeu.model.data.User;
+import codeu.model.store.basic.ConversationStore;
+import codeu.model.store.basic.UserStore;
 import codeu.model.store.persistence.PersistentStorageAgent;
 import java.io.IOException;
 import java.time.Instant;
@@ -66,29 +69,33 @@ public class ConversationStore {
   private ConversationStore(PersistentStorageAgent persistentStorageAgent) {
     this.persistentStorageAgent = persistentStorageAgent;
     conversations = new ArrayList<>();
+    userconversations = new ArrayList<>();
   }
 
 /** Access the current set of conversations known to the application. */
   public List<Conversation> getAllConversations() {
     return conversations;
   }
-
+  
+  public List<Conversation> getUserConversations(User user) {
+    for (Conversation conversation : conversations) {
+      if (conversation.getContributorList().contains(user)) {
+        userconversations.add(conversation);
+      }
+    }
+    return userconversations;
+  }
+  
   /** Add a new conversation to the current set of conversations known to the application. */
   public void addConversation(Conversation conversation) {
     conversations.add(conversation);
     persistentStorageAgent.writeThrough(conversation);
   }
   
-  /**  the current set of conversations a user has access to */
-  public List<Conversation> getUserConversations() {
-    for (Conversation conversation : conversations) {
-      if (conversation.getContributorList().contains(conversation.getId())) {
-        userconversations.add(conversation);
-      }
-    }
-    return userconversations;
+  public void addUserConversation(Conversation conversation) {
+    userconversations.add(conversation);
+    persistentStorageAgent.writeThrough(conversation);    
   }
-
   
   /** Check whether a Conversation title is already known to the application. */
   public boolean isTitleTaken(String title) {
@@ -114,5 +121,9 @@ public class ConversationStore {
   /** Sets the List of Conversations stored by this ConversationStore. */
   public void setConversations(List<Conversation> conversations) {
     this.conversations = conversations;
+  }
+  
+  public void setUserConversations(List<Conversation> userconversations) {
+    this.userconversations = userconversations;
   }
 }

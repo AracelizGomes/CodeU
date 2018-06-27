@@ -16,6 +16,7 @@ package codeu.model.data;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,11 +26,11 @@ import java.util.UUID;
  * created by a User and contain Messages.
  */
 public class Conversation {
-  public final UUID id;
-  public final UUID owner;
-  public final Instant creation;
-  public final String title;
-  public List<String> contributorList;
+  private final UUID id;
+  private final UUID owner;
+  private final Instant creation;
+  private final String title;
+  private final HashSet<User> contributorList;
 
   /**
    * Constructs a new Conversation.
@@ -40,7 +41,7 @@ public class Conversation {
    * @param creation the creation time of this Conversation
    * @param contributorList the contributorList of this Conversation
    */
-  public Conversation(UUID id, UUID owner, String title, List<String> contributorlist, Instant creation) {
+  public Conversation(UUID id, UUID owner, String title, HashSet<User> contributorList, Instant creation) {
     this.id = id;
     this.owner = owner;
     this.creation = creation;
@@ -63,14 +64,27 @@ public class Conversation {
     return title;
   }
   
+  public void addUser(User newUser) {
+    contributorList.add(newUser);
+  }
+  
+  public void deleteUser(User user) {
+    boolean deleted = contributorList.remove(user);
+    System.out.println(deleted);
+    System.out.println("User was removed from conversation");
+  }
+  
+  public boolean isContributor(UUID id) {
+    for(User user : contributorList) {
+      if(user.getId().equals(id)) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
   /** Returns the list of users that have access to this Conversation. */
-  public List<String> getContributorList() {
-    List<String> contributorList = new ArrayList<>();
-    contributorList.add("araceliz");
-    contributorList.add("tema1");
-    contributorList.add("lucy1");
-    contributorList.add("julie1");
-    contributorList.add("justice1");
+  public HashSet getContributorList() {
     return contributorList;
   }
 
