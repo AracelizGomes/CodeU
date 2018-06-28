@@ -27,7 +27,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
 <head>
   <title><%= conversation.getTitle() %></title>
   <link rel="stylesheet" href="/css/main.css" type="text/css">
-  <script src="http://cdn.ckeditor.com/4.7.2/basic/ckeditor.js"></script>
+  <script src="https://cdn.ckeditor.com/4.7.2/basic/ckeditor.js"></script>
   <style>
     #chat {
       background-color: white;
