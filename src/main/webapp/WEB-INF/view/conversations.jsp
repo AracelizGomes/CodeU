@@ -81,8 +81,9 @@
       <ul class="mdl-list">
     <%
       
-      for(Conversation conversation : conversations){
-        if(conversation.isContributor(id)) {
+      for(Conversation conversation : conversations){ %>
+		<p> <% conversation.isContributor(id); %></p>
+        <%if(conversation.isContributor(id)) {
     	%>
       		<li><a href="/chat/<%= conversation.getTitle() %>">
         	<%= conversation.getTitle() %></a></li>

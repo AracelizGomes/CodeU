@@ -75,11 +75,15 @@ public class Conversation {
   }
   
   public boolean isContributor(UUID id) {
+    System.out.println("Before For loop");
     for(User user : contributorList) {
+      System.out.println(user.getId());
       if(user.getId().equals(id)) {
+        System.out.println("true");
         return true;
       }
     }
+    System.out.println("false");
     return false;
   }
   

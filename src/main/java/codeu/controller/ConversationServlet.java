@@ -117,11 +117,15 @@ public class ConversationServlet extends HttpServlet {
       return;
     }
     
-
+    
     HashSet<User> contributorList = new HashSet<User>();
+    System.out.println(contributorList.size());
     String user1 = (String) request.getSession().getAttribute("user");
     User addedUser = userStore.getUser(user1);
     contributorList.add(addedUser);
+    System.out.println(addedUser);
+    System.out.println(contributorList.size());
+
     Conversation conversation = 
         new Conversation(UUID.randomUUID(), user.getId(), conversationTitle, contributorList, Instant.now());
     request.setAttribute("conversation", conversation);
