@@ -79,10 +79,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
       <form action="/chat/<%= conversation.getTitle() %>" method="POST">
           <button name="delete" value="<%= messageIndex %>" type="submit">Delete</button>
       </form>
-    <%
-        messageIndex ++;
-      }
-    %>
+    <% messageIndex ++; } %>
       </ul>
     </div>
 
