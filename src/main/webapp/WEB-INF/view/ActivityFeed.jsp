@@ -15,9 +15,13 @@
 --%>
 <%@ page import="java.util.List"%>
 <%@ page import="codeu.model.data.Conversation"%>
+<%@ page import="codeu.model.data.User"%>
 <%@ page import="codeu.model.store.basic.UserStore" %>
 <%
-List<Conversation> conversations = (List<Conversation>) request.getAttribute("conversations");
+List<Conversation> conversations = (List<Conversation>) request.getAttribute("conversations"); 		
+%>
+<%
+List<User> users = (List<User>) request.getAttribute("users");		
 %>
 
 <!DOCTYPE html>
@@ -56,7 +60,16 @@ List<Conversation> conversations = (List<Conversation>) request.getAttribute("co
 	  	  .getUser(conversation.getOwnerId()).getName();
 	  	String creation = conversation.getTime();
 	%>
-	<li><strong><%=owner%></strong> created the conversation <a href="/chat/<%=conversation.getTitle()%>"> <%=conversation.getTitle()%></a> on <font style="color:blue"> <%=creation%> </font></li>
+	<li><strong><a href="/users/<%=owner%>"><%=owner%></a></strong> created the conversation <a href="/chat/<%=conversation.getTitle()%>"> <%=conversation.getTitle()%></a> on <font style="color:blue"> <%=creation%> </font></li>
+	<% } %>
+	
+	<%
+	  for (User user : users) {
+	  	String name = UserStore.getInstance()
+	  	  .getUser(user.getId()).getName();
+	  	String creation = user.getTime();
+	%>
+	<li><strong><a href="/users/<%=name%>"><%=name%></a></strong> joined CodeU Chat App Team 34 on <font style="color:blue"> <%=creation%> </font></li>
 	<% } %>
 	</ul>
   </div>
