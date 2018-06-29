@@ -77,6 +77,8 @@ public class ConversationServlet extends HttpServlet {
     List<Conversation> conversations = conversationStore.getAllConversations();
     request.setAttribute("conversations", conversations);
     request.getRequestDispatcher("/WEB-INF/view/conversations.jsp").forward(request, response);
+    HashSet<User> contributorList = new HashSet<User>();
+    request.setAttribute("contributorList", contributorList);
   }
 
   /**
@@ -119,18 +121,22 @@ public class ConversationServlet extends HttpServlet {
     
     
     HashSet<User> contributorList = new HashSet<User>();
+    
     System.out.println(contributorList.size());
+    
     String user1 = (String) request.getSession().getAttribute("user");
     User addedUser = userStore.getUser(user1);
+    
     contributorList.add(addedUser);
-    System.out.println(addedUser);
+    System.out.println(contributorList + "contributorList after added user");
     System.out.println(contributorList.size());
-
+    
     Conversation conversation = 
         new Conversation(UUID.randomUUID(), user.getId(), conversationTitle, contributorList, Instant.now());
     request.setAttribute("conversation", conversation);
-    conversationStore.addConversation(conversation);
+    request.setAttribute("contributorList", contributorList);
     
+    conversationStore.addConversation(conversation);
     response.sendRedirect("/chat/" + conversationTitle);
   }
 }

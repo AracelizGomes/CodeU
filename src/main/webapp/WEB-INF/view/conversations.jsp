@@ -17,8 +17,15 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.UUID" %>
 <%@ page import="codeu.model.data.Conversation" %>
+<%@ page import="codeu.model.data.User" %>
+<%@ page import="codeu.model.store.basic.UserStore" %>
 <%@ page import="codeu.model.store.basic.ConversationStore" %>
-
+<%@ page import="java.util.Iterator" %>
+<%@ page import="java.time.Instant" %>
+<%
+/** Gets the UserStore instance to access all users. */
+UserStore userStore = UserStore.getInstance();
+%>
 
 <!DOCTYPE html>
 <html>
@@ -75,15 +82,18 @@
     <%
     }
     else{
-      UUID id = (UUID) request.getSession().getAttribute("uuid");
+      //UUID id = (UUID) request.getSession().getAttribute("uuid");
+      String username = (String) request.getSession().getAttribute("user");
+      User user = userStore.getUser(username);
+      
     %>
       <p>Your Conversations Are Here</p>
       <ul class="mdl-list">
     <%
       
       for(Conversation conversation : conversations){ %>
-		<p> <% conversation.isContributor(id); %></p>
-        <%if(conversation.isContributor(id)) {
+		
+        <%if(conversation.isContributor(user)) {
     	%>
       		<li><a href="/chat/<%= conversation.getTitle() %>">
         	<%= conversation.getTitle() %></a></li>

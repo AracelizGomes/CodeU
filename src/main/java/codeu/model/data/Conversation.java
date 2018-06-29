@@ -74,15 +74,17 @@ public class Conversation {
     System.out.println("User was removed from conversation");
   }
   
-  public boolean isContributor(UUID id) {
-    System.out.println("Before For loop");
+  public boolean isContributor(User user1) {
     for(User user : contributorList) {
-      System.out.println(user.getId());
-      if(user.getId().equals(id)) {
+      System.out.println(contributorList + " - contributorList");
+      System.out.println(user1 + " - user1");
+      if(user.equals(user1)) {
         System.out.println("true");
         return true;
       }
     }
+    System.out.println(contributorList + " - contributorList");
+    System.out.println(user1 + " - user1");
     System.out.println("false");
     return false;
   }
