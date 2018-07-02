@@ -16,6 +16,7 @@ package codeu.model.data;
 
 import java.time.Instant;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -30,19 +31,15 @@ public class ConversationTest {
     UUID owner = UUID.randomUUID();
     String title = "Test_Title";
     Instant creation = Instant.now();
+    HashSet<User> contributorList = new HashSet<>();
     
-    List<String> contributorList = new ArrayList<>();
-    contributorList.add("araceliz");
-    contributorList.add("tema1");
-    contributorList.add("lucy1");
-    contributorList.add("julie1");
-    contributorList.add("justice1");
 
     Conversation conversation = new Conversation(id, owner, title, contributorList, creation);
 
     Assert.assertEquals(id, conversation.getId());
     Assert.assertEquals(owner, conversation.getOwnerId());
     Assert.assertEquals(title, conversation.getTitle());
+    Assert.assertEquals(contributorList, conversation.getContributorList());
     Assert.assertEquals(creation, conversation.getCreationTime());
   }
 }

@@ -77,8 +77,8 @@ public class ConversationServlet extends HttpServlet {
     List<Conversation> conversations = conversationStore.getAllConversations();
     request.setAttribute("conversations", conversations);
     request.getRequestDispatcher("/WEB-INF/view/conversations.jsp").forward(request, response);
-    HashSet<User> contributorList = new HashSet<User>();
-    request.setAttribute("contributorList", contributorList);
+    //HashSet<User> contributorList = conversationStore.getUserConversations(user);
+    //request.setAttribute("contributorList", contributorList);
   }
 
   /**

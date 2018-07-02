@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashSet;
 import java.util.UUID;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -66,17 +67,12 @@ public class ConversationServletTest {
 
   @Test
   public void testDoGet() throws IOException, ServletException {
-    List<String> contributorList = new ArrayList<>();
-    contributorList.add("araceliz");
-    contributorList.add("tema1");
-    contributorList.add("lucy1");
-    contributorList.add("julie1");
-    contributorList.add("justice1");
+    HashSet<User> contributorList = new HashSet<>();
     
     List<Conversation> fakeConversationList = new ArrayList<>();
     fakeConversationList.add(
       new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", contributorList, Instant.now()));
-    Mockito.when(mockConversationStore.getUserConversations()).thenReturn(fakeConversationList);
+    Mockito.when(mockConversationStore.getAllConversations()).thenReturn(fakeConversationList);
 
     conversationServlet.doGet(mockRequest, mockResponse);
 

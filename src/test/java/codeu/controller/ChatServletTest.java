@@ -25,6 +25,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.HashSet;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -74,12 +75,7 @@ public class ChatServletTest {
   public void testDoGet() throws IOException, ServletException {
     Mockito.when(mockRequest.getRequestURI()).thenReturn("/chat/test_conversation");
     
-    List<String> contributorList = new ArrayList<>();
-    contributorList.add("araceliz");
-    contributorList.add("tema1");
-    contributorList.add("lucy1");
-    contributorList.add("julie1");
-    contributorList.add("justice1");
+    HashSet<User> contributorList = new HashSet<>();
     
     UUID fakeConversationId = UUID.randomUUID();
     Conversation fakeConversation =
@@ -172,12 +168,7 @@ public class ChatServletTest {
             Instant.now());
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
     
-    List<String> contributorList = new ArrayList<>();
-    contributorList.add("araceliz");
-    contributorList.add("tema1");
-    contributorList.add("lucy1");
-    contributorList.add("julie1");
-    contributorList.add("justice1");
+    HashSet<User> contributorList = new HashSet<>();
     
     Conversation fakeConversation =
         new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", contributorList, Instant.now());
@@ -208,13 +199,7 @@ public class ChatServletTest {
             Instant.now());
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
-    List<String> contributorList = new ArrayList<>();
-    contributorList.add("araceliz");
-    contributorList.add("tema1");
-    contributorList.add("lucy1");
-    contributorList.add("julie1");
-    contributorList.add("justice1");
-    
+    HashSet<User> contributorList = new HashSet<>();
     Conversation fakeConversation =
         new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", contributorList, Instant.now());
     Mockito.when(mockConversationStore.getConversationWithTitle("test_conversation"))
