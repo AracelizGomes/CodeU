@@ -81,21 +81,22 @@ public class PersistentDataStoreTest {
     String titleOne = "Test_Title";
     Instant creationOne = Instant.ofEpochMilli(1000);
     HashSet<User> contributorList = new HashSet<>();
+    Conversation inputConversationOne = new Conversation(idOne, ownerOne, titleOne, contributorList, creationOne);
     
-    Conversation inputConversationOne = new Conversation(idOne, ownerOne, titleOne, HashSet<User> contributorList, creationOne);
-
+    
     UUID idTwo = UUID.fromString("10000002-2222-3333-4444-555555555555");
     UUID ownerTwo = UUID.fromString("10000003-2222-3333-4444-555555555555");
     String titleTwo = "Test_Title_Two";
     Instant creationTwo = Instant.ofEpochMilli(2000);
-     
-    Conversation inputConversationTwo = new Conversation(idTwo, ownerTwo, titleTwo, HashSet<User> contributorList, creationTwo);
+    HashSet<User> contributorList2 = new HashSet<>();
+    Conversation inputConversationTwo = new Conversation(idTwo, ownerTwo, titleTwo, contributorList2, creationTwo);
 
     // save
     persistentDataStore.writeThrough(inputConversationOne);
     persistentDataStore.writeThrough(inputConversationTwo);
 
     // load
+    
     List<Conversation> resultConversations = persistentDataStore.loadConversations();
 
     // confirm that what we saved matches what we loaded
@@ -103,13 +104,16 @@ public class PersistentDataStoreTest {
     Assert.assertEquals(idOne, resultConversationOne.getId());
     Assert.assertEquals(ownerOne, resultConversationOne.getOwnerId());
     Assert.assertEquals(titleOne, resultConversationOne.getTitle());
+    Assert.assertEquals(contributorList, resultConversationOne.getContributorList());
     Assert.assertEquals(creationOne, resultConversationOne.getCreationTime());
 
     Conversation resultConversationTwo = resultConversations.get(1);
     Assert.assertEquals(idTwo, resultConversationTwo.getId());
     Assert.assertEquals(ownerTwo, resultConversationTwo.getOwnerId());
     Assert.assertEquals(titleTwo, resultConversationTwo.getTitle());
+    Assert.assertEquals(contributorList2, resultConversationTwo.getContributorList());
     Assert.assertEquals(creationTwo, resultConversationTwo.getCreationTime());
+ 
   }
 
   @Test

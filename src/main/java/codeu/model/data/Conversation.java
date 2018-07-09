@@ -26,11 +26,11 @@ import java.util.UUID;
  * created by a User and contain Messages.
  */
 public class Conversation {
-  private final UUID id;
-  private final UUID owner;
-  private final Instant creation;
-  private final String title;
-  private final HashSet<User> contributorList;
+  public final UUID id;
+  public final UUID owner;
+  public final Instant creation;
+  public final String title;
+  public final HashSet<User> contributorList;
 
   /**
    * Constructs a new Conversation.
