@@ -127,14 +127,14 @@ public class ConversationServlet extends HttpServlet {
     User addedUser = userStore.getUser(user1);
     
     contributorList.add(addedUser);
-    System.out.println(contributorList + "contributorList after added user");
+    System.out.println(contributorList + "- contributorList after added user");
     System.out.println(contributorList.size());
     
     Conversation conversation = 
         new Conversation(UUID.randomUUID(), user.getId(), conversationTitle, contributorList, Instant.now());
     request.setAttribute("conversation", conversation);
     request.setAttribute("contributorList", contributorList);
-    
+    System.out.println(contributorList + "- contributorList after creation of conversation");
     conversationStore.addConversation(conversation);
     response.sendRedirect("/chat/" + conversationTitle);
   }

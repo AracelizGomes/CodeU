@@ -104,8 +104,8 @@ public class PersistentDataStore {
         UUID ownerUuid = UUID.fromString((String) entity.getProperty("owner_uuid"));
         String title = (String) entity.getProperty("title");
         Instant creationTime = Instant.parse((String) entity.getProperty("creation_time"));
-        //HashSet<User> contributorList = (HashSet) entity.getProperty("contributorList");
-        HashSet<User> contributorList = new HashSet<User>();
+        HashSet<User> contributorList = (HashSet) entity.getProperty("contributorList");
+        //HashSet<User> contributorList = new HashSet<User>();
         Conversation conversation = new Conversation(uuid, ownerUuid, title, contributorList, creationTime);
         conversations.add(conversation);
 
@@ -184,7 +184,7 @@ public class PersistentDataStore {
     conversationEntity.setProperty("owner_uuid", conversation.getOwnerId().toString());
     conversationEntity.setProperty("title", conversation.getTitle());
     conversationEntity.setProperty("creation_time", conversation.getCreationTime().toString());
-    conversationEntity.setProperty("contributorList", conversation.getContributorList().toString());
+    conversationEntity.setProperty("contributorList", conversation.getContributorList());
     datastore.put(conversationEntity);
   }
 }

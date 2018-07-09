@@ -96,8 +96,7 @@ public class PersistentDataStoreTest {
     persistentDataStore.writeThrough(inputConversationTwo);
 
     // load
-    
-    List<Conversation> resultConversations = persistentDataStore.loadConversations();
+    List<Conversation> resultConversations = persistentDat aStore.loadConversations();
 
     // confirm that what we saved matches what we loaded
     Conversation resultConversationOne = resultConversations.get(0);
@@ -113,7 +112,6 @@ public class PersistentDataStoreTest {
     Assert.assertEquals(titleTwo, resultConversationTwo.getTitle());
     Assert.assertEquals(contributorList2, resultConversationTwo.getContributorList());
     Assert.assertEquals(creationTwo, resultConversationTwo.getCreationTime());
- 
   }
 
   @Test
