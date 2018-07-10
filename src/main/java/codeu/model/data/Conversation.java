@@ -30,7 +30,7 @@ public class Conversation {
   private final UUID owner;
   private final Instant creation;
   private final String title;
-  private final HashSet<User> contributorList;
+  private final HashSet<UUID> contributorList;
 
   /**
    * Constructs a new Conversation.
@@ -41,7 +41,7 @@ public class Conversation {
    * @param creation the creation time of this Conversation
    * @param contributorList the contributorList of this Conversation
    */
-  public Conversation(UUID id, UUID owner, String title, HashSet<User> contributorList, Instant creation) {
+  public Conversation(UUID id, UUID owner, String title, HashSet<UUID> contributorList, Instant creation) {
     this.id = id;
     this.owner = owner;
     this.creation = creation;
@@ -65,7 +65,8 @@ public class Conversation {
   }
   
   public void addUser(User newUser) {
-    contributorList.add(newUser);
+    UUID newId = newUser.getId();
+    contributorList.add(newId);
   }
   
   public void deleteUser(User user) {
@@ -75,16 +76,17 @@ public class Conversation {
   }
   
   public boolean isContributor(User user1) {
-    for(User user : contributorList) {
+    UUID id1 = user1.getId();
+    for(UUID id : contributorList) {
       System.out.println(contributorList + " - contributorList");
-      System.out.println(user1 + " - user1");
-      if(user.equals(user1)) {
+      System.out.println(id1 + " - id1");
+      if(id.equals(id1)) {
         System.out.println("true");
         return true;
       }
     }
     System.out.println(contributorList + " - contributorList");
-    System.out.println(user1 + " - user1");
+    System.out.println(id1 + " - id1");
     System.out.println("false");
     return false;
   }

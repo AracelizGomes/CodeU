@@ -67,7 +67,7 @@ public class ConversationServletTest {
 
   @Test
   public void testDoGet() throws IOException, ServletException {
-    HashSet<User> contributorList = new HashSet<>();
+    HashSet<UUID> contributorList = new HashSet<>();
     
     List<Conversation> fakeConversationList = new ArrayList<>();
     fakeConversationList.add(

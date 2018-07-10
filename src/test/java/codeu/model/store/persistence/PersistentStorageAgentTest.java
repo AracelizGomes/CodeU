@@ -62,7 +62,7 @@ public class PersistentStorageAgentTest {
 
   @Test
   public void testWriteThroughConversation() {
-    HashSet<User> contributorList = new HashSet<User>();
+    HashSet<UUID> contributorList = new HashSet<>();
     Conversation conversation =
         new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", contributorList, Instant.now());
     persistentStorageAgent.writeThrough(conversation);

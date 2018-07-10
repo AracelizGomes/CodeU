@@ -19,7 +19,7 @@ public class ConversationStoreTest {
   private ConversationStore conversationStore;
   private PersistentStorageAgent mockPersistentStorageAgent;
   
-  HashSet<User> contributorList = new HashSet<>();
+  HashSet<UUID> contributorList = new HashSet<>();
   
   private final Conversation CONVERSATION_ONE =
       new Conversation(
@@ -66,7 +66,7 @@ public class ConversationStoreTest {
 
   @Test
   public void testAddConversation() {
-    HashSet<User> contributorList = new HashSet<>();
+    HashSet<UUID> contributorList = new HashSet<>();
     Conversation inputConversation =
         new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", contributorList, Instant.now());
 

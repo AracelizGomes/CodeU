@@ -78,8 +78,9 @@ public class ConversationStore {
   }
   
   public List<Conversation> getUserConversations(User user) {
+    UUID userId = user.getId();
     for (Conversation conversation : conversations) {
-      if (conversation.getContributorList().contains(user)) {
+      if (conversation.getContributorList().contains(userId)) {
         userconversations.add(conversation);
       }
     }

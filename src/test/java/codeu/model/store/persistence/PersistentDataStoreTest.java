@@ -80,7 +80,7 @@ public class PersistentDataStoreTest {
     UUID ownerOne = UUID.fromString("10000001-2222-3333-4444-555555555555");
     String titleOne = "Test_Title";
     Instant creationOne = Instant.ofEpochMilli(1000);
-    HashSet<User> contributorList = new HashSet<>();
+    HashSet<UUID> contributorList = new HashSet<>();
     Conversation inputConversationOne = new Conversation(idOne, ownerOne, titleOne, contributorList, creationOne);
     
     
@@ -88,7 +88,7 @@ public class PersistentDataStoreTest {
     UUID ownerTwo = UUID.fromString("10000003-2222-3333-4444-555555555555");
     String titleTwo = "Test_Title_Two";
     Instant creationTwo = Instant.ofEpochMilli(2000);
-    HashSet<User> contributorList2 = new HashSet<>();
+    HashSet<UUID> contributorList2 = new HashSet<>();
     Conversation inputConversationTwo = new Conversation(idTwo, ownerTwo, titleTwo, contributorList2, creationTwo);
 
     // save
@@ -96,7 +96,7 @@ public class PersistentDataStoreTest {
     persistentDataStore.writeThrough(inputConversationTwo);
 
     // load
-    List<Conversation> resultConversations = persistentDat aStore.loadConversations();
+    List<Conversation> resultConversations = persistentDataStore.loadConversations();
 
     // confirm that what we saved matches what we loaded
     Conversation resultConversationOne = resultConversations.get(0);

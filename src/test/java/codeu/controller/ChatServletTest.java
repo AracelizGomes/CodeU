@@ -75,7 +75,7 @@ public class ChatServletTest {
   public void testDoGet() throws IOException, ServletException {
     Mockito.when(mockRequest.getRequestURI()).thenReturn("/chat/test_conversation");
     
-    HashSet<User> contributorList = new HashSet<>();
+    HashSet<UUID> contributorList = new HashSet<>();
     
     UUID fakeConversationId = UUID.randomUUID();
     Conversation fakeConversation =
@@ -168,7 +168,7 @@ public class ChatServletTest {
             Instant.now());
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
     
-    HashSet<User> contributorList = new HashSet<>();
+    HashSet<UUID> contributorList = new HashSet<>();
     
     Conversation fakeConversation =
         new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", contributorList, Instant.now());
@@ -199,7 +199,7 @@ public class ChatServletTest {
             Instant.now());
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
-    HashSet<User> contributorList = new HashSet<>();
+    HashSet<UUID> contributorList = new HashSet<>();
     Conversation fakeConversation =
         new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", contributorList, Instant.now());
     Mockito.when(mockConversationStore.getConversationWithTitle("test_conversation"))

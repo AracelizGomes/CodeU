@@ -119,15 +119,17 @@ public class ConversationServlet extends HttpServlet {
     }
     
     
-    HashSet<User> contributorList = new HashSet<User>();
+    HashSet<UUID> contributorList = new HashSet<UUID>();
     
     System.out.println(contributorList.size());
     
-    String user1 = (String) request.getSession().getAttribute("user");
-    User addedUser = userStore.getUser(user1);
+    UUID userId = user.getId();
     
-    contributorList.add(addedUser);
-    System.out.println(contributorList + "- contributorList after added user");
+    //String user1 = (String) request.getSession().getAttribute("user");
+    //User addedUser = userStore.getUser(user1);
+    
+    contributorList.add(userId);
+    System.out.println(contributorList + "- contributorList after added uuid");
     System.out.println(contributorList.size());
     
     Conversation conversation = 
