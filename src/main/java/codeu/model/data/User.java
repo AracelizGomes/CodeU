@@ -78,9 +78,11 @@ public class User {
 
 
   public void setInterests(ArrayList<String> interestList) {
-    interests.clear();
-    for (String interest : interestList) {
-      interests.add(interest);
+    if (interestList != null) {
+      interests.clear();
+      for (String interest : interestList) {
+        interests.add(interest);
+      }
     }
   }
 
