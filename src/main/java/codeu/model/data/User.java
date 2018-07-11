@@ -18,6 +18,8 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.UUID;
+import java.util.List;
+import java.util.ArrayList;
 
 /** Class representing a registered user. */
 public class User {
@@ -26,6 +28,7 @@ public class User {
   private final String passwordHash;
   private final Instant creation;
   private String biography;
+  private ArrayList<String> interests;
 
   /**
    * Constructs a new User.
@@ -40,6 +43,7 @@ public class User {
     this.name = name;
     this.passwordHash = passwordHash;
     this.creation = creation;
+    this.interests = new ArrayList<>();
     setBiography(name + " " + "does not have a Biography");
   }
 
@@ -52,7 +56,7 @@ public class User {
   public String getName() {
     return name;
   }
-  
+
   /** Returns the password hash of this User. */
   public String getPasswordHash() {
     return passwordHash;
@@ -67,11 +71,24 @@ public class User {
   public void setBiography (String aboutMe) {
 	  biography = aboutMe;
   }
-  
+
   public String getBiography() {
 	  return biography;
   }
-  /** Time display */ 
+
+
+  public void setInterests(ArrayList<String> interestList) {
+    interests.clear();
+    for (String interest : interestList) {
+      interests.add(interest);
+    }
+  }
+
+  public ArrayList<String> getInterests() {
+    return interests;
+  }
+
+  /** Time display */
   public String getTime() {
     LocalDateTime localDate = LocalDateTime.ofInstant(creation, ZoneId.systemDefault());
     int hr = localDate.getHour();
@@ -83,7 +100,3 @@ public class User {
     return localDate.getMonth().toString() + " " + localDate.getDayOfMonth() + ", " + localDate.getYear() + " ~ " + hr + ":" + localDate.getMinute() + " " + (AM ? "AM" : "PM");
   }
 }
-
-
-
-

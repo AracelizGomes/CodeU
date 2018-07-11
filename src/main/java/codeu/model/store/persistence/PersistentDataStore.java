@@ -28,6 +28,7 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 import java.util.UUID;
 
 /**
@@ -70,9 +71,11 @@ public class PersistentDataStore {
         String userName = (String) entity.getProperty("username");
         String passwordHash = (String) entity.getProperty("password_hash");
         String bio = (String) entity.getProperty("biography");
+        ArrayList<String> interests = (ArrayList<String>) entity.getProperty("interests");
         Instant creationTime = Instant.parse((String) entity.getProperty("creation_time"));
         User user = new User(uuid, userName, passwordHash, creationTime);
         user.setBiography(bio);
+        user.setInterests(interests);
         users.add(user);
       } catch (Exception e) {
         // In a production environment, errors should be very rare. Errors which may
@@ -165,6 +168,7 @@ public class PersistentDataStore {
     userEntity.setProperty("password_hash", user.getPasswordHash());
     userEntity.setProperty("creation_time", user.getCreationTime().toString());
     userEntity.setProperty("biography", user.getBiography());
+    userEntity.setProperty("interests",  user.getInterests());
     datastore.put(userEntity);
   }
 

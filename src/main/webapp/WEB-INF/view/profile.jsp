@@ -24,6 +24,7 @@
 UserStore userStore = UserStore.getInstance();
 %>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,16 +48,16 @@ UserStore userStore = UserStore.getInstance();
   <div id="container">
   	<div
 			style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
-			
+
 			<%/** depending on who's page we are on we will see different name and content */ %>
 			<%
 			String sessionUser = (String) request.getSession().getAttribute("user");
 			String userProfile = (String) request.getAttribute("userProfile");
 			User currentUser = userStore.getUser(userProfile);
-			
+
 			if (userProfile.equals("")) { %>
 				<h1>Error This User Does Not Exist</h1>
-			
+
 			<% } else {
 					 if (sessionUser != null && sessionUser.equals(userProfile)){ %>
 						<h1 style="color:#3498DB"><strong>Welcome To Your Profile Page!</strong></h1>
@@ -65,14 +66,14 @@ UserStore userStore = UserStore.getInstance();
 						<h1><strong>Welcome to <%=userProfile %>'s Profile Page</strong></h1>
 						<hr class="section-heading-spacer">
 					<% } %>
-		
+
 			<%/** defult profile pic is a cute puppy */ %>
 			<div id="avatar">
 				<img alt="cute dog" src = "https://learnwebcode.com/images/lessons/insert-image-funny-dog.jpg" class="center">
 			</div>
 			<br/>
-			
-			
+
+
 			<%/** user's bio/aboutme section of profile */ %>
 			<% String profileBio = currentUser.getBiography(); %>
 			<h2 style="color:#083BF9">About <%=userProfile %> </h2>
@@ -80,9 +81,9 @@ UserStore userStore = UserStore.getInstance();
 			<a> <%= profileBio %></a>
 			<br/>
 			<br/>
-			
+
 			<%/** Edit profile bio aboutme */ %>
-			
+
 			<% if (sessionUser != null && sessionUser.equals(userProfile)) { %>
 				<a>Edit Your Bio Here <%=sessionUser %> (only you can see this)</a>
 				<form action="/users/<%=sessionUser %>" method="POST">
@@ -91,11 +92,52 @@ UserStore userStore = UserStore.getInstance();
 				<button type="Submit">Submit</button>
 				</form>
 			<% } %>
-			
+
+      <hr class="section-heading-spacer">
+			<h2 class="font-semibold mgbt-xs-5"> My Interests </h2>
+
+      <ol>
+    <%
+      if(!currentUser.getInterests().isEmpty()) {
+        for (String interest : currentUser.getInterests()) {
+      %>
+        <li> <%= interest %> </li>
+        <%
+        }
+      } else {
+        %>
+          <p> No Interests Selected </p>
+        <%
+      }
+      %>
+  </ol>
+
+      <form action="/users/<%=userProfile %>" method="POST">
+
+        <input type="checkbox" id="interest1" name="interest" value = "World Cup">
+          <label for="interest1">World Cup</label>
+          <br />
+        <input type="checkbox" id="interest2" name="interest" value = "Coding">
+          <label for="interest2">Coding</label>
+          <br />
+        <input type="checkbox" id="interest3" name="interest" value = "The Incredibles">
+          <label for="interest3">The Incredibles</label>
+          <br />
+        <input type="checkbox" id="interest4" name="interest" value = "idk">
+          <label for="interest4">idk</label>
+          <br />
+        <input type="checkbox" id="interest5" name="interest" value = "DOGS">
+          <label for="interest5">DOGS</label>
+          <br />
+
+        <input name="updateInterests" type="submit" value="Update Interests"></input>
+      </form>
+
+
 			<hr class="section-heading-spacer">
 			<h3 class="font-semibold mgbt-xs-5"> Google CodeU Summer 2018 Student </h3>
 			<hr class="section-heading-spacer">
-			
+
 			<h2 style="color:indigo"> <%= userProfile %>'s Sent Messages </h2>
 			<hr class="section-heading-spacer">
 			<% List<Message> messagesSent = (List) request.getAttribute("messages");
@@ -105,11 +147,9 @@ UserStore userStore = UserStore.getInstance();
 				<% } %>
 				<hr class="section-heading-spacer">
 			<% } %>
-			
+
 
 		</div>
 	</div>
 </body>
 </html>
-
-

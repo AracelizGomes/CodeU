@@ -16,15 +16,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 import org.mindrot.jbcrypt.BCrypt;
 /** Servlet class responsible for the Profile page. */
 public class ProfileServlet extends HttpServlet {
   private UserStore userStore;
-  private ConversationStore conversationStore;	
+  private ConversationStore conversationStore;
   private MessageStore messageStore;
-	
+
     @Override
     public void init() throws ServletException {
       super.init();
@@ -40,20 +42,20 @@ public class ProfileServlet extends HttpServlet {
     void setUserStore(UserStore userStore) {
       this.userStore = userStore;
 	  }
-	  
+
 	  void setConversationStore(ConversationStore conversationStore) {
 	    this.conversationStore = conversationStore;
 	  }
-	  
+
 	  void setMessageStore(MessageStore messageStore) {
 	    this.messageStore = messageStore;
 	  }
-	  
+
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 	  String requestUrl = request.getRequestURI();
 	  String userProfile = requestUrl.substring("/users/".length());
-				
+
 	  User user = userStore.getUser(userProfile); //no one logged in
 	  if (user == null) {
 	    System.out.println("Not logged in " + userProfile);
@@ -61,38 +63,45 @@ public class ProfileServlet extends HttpServlet {
 		  return;
 	  }
 	  //someone is logged in
-				
+
 	  UUID userid = user.getId();
 	  MessageStore message = MessageStore.getInstance();
 	  List<Message> messagesSent = message.getMessagesOfUser(userid); //get the users messages
-	  
+
 	  request.setAttribute("user", user);
 	  request.setAttribute("userProfile", userProfile);
-	  
+
 	  request.setAttribute("messages", messagesSent);
-	  
+
 	  //goes to profile page
 	  request.getRequestDispatcher("/WEB-INF/view/profile.jsp").forward(request, response);
-				
+
 	}
-	
+
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 	  String requestUrl = request.getRequestURI();
 	  String userProfile = requestUrl.substring("/users/".length());
-		
+
 	  User user = userStore.getUser(userProfile);
 	  String username = (String) request.getSession().getAttribute("user");
-	  
+
 	  String biography = request.getParameter("biography"); //get bio
-	  String cleanedBiography = Jsoup.clean(biography,Whitelist.none()); //removes html tags
-	  user.setBiography(cleanedBiography); //sets bio as instance var for user
-		
-	  userStore.updateUser(user);
+    if (biography != null) {
+      String cleanedBiography = Jsoup.clean(biography,Whitelist.none()); //removes html tags
+      user.setBiography(cleanedBiography); //sets bio as instance var for user
+    } else {
+      String[] interestArray = request.getParameterValues("interest");
+      ArrayList<String> interestList = new ArrayList<>();
+      if (interestArray != null) {
+        for (String interest : interestArray) {
+          interestList.add(interest);
+        }
+      }
+      user.setInterests(interestList);
+    }
+    userStore.updateUser(user);
 	  response.sendRedirect("/users/" + userProfile);
 	}
 
 }
-
-
-
