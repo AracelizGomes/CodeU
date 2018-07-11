@@ -124,7 +124,7 @@ public class ConversationServlet extends HttpServlet {
     System.out.println(contributorList.size());
     
     UUID userId = user.getId();
-    
+   
     //String user1 = (String) request.getSession().getAttribute("user");
     //User addedUser = userStore.getUser(user1);
     

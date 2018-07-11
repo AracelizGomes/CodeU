@@ -92,7 +92,7 @@ public class Conversation {
   }
   
   /** Returns the list of users that have access to this Conversation. */
-  public HashSet getContributorList() {
+  public HashSet<UUID> getContributorList() {
     return contributorList;
   }
 

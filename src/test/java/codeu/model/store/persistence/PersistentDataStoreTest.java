@@ -81,6 +81,7 @@ public class PersistentDataStoreTest {
     String titleOne = "Test_Title";
     Instant creationOne = Instant.ofEpochMilli(1000);
     HashSet<UUID> contributorList = new HashSet<>();
+    //contributorList.add(ownerOne);
     Conversation inputConversationOne = new Conversation(idOne, ownerOne, titleOne, contributorList, creationOne);
     
     
@@ -89,6 +90,7 @@ public class PersistentDataStoreTest {
     String titleTwo = "Test_Title_Two";
     Instant creationTwo = Instant.ofEpochMilli(2000);
     HashSet<UUID> contributorList2 = new HashSet<>();
+    //contributorList2.add(ownerTwo);
     Conversation inputConversationTwo = new Conversation(idTwo, ownerTwo, titleTwo, contributorList2, creationTwo);
 
     // save
