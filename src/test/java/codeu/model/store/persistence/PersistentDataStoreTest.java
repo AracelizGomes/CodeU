@@ -38,6 +38,8 @@ public class PersistentDataStoreTest {
   public void tearDown() {
     appEngineTestHelper.tearDown();
   }
+  
+
 
   @Test
   public void testSaveAndLoadUsers() throws PersistentDataStoreException {
@@ -73,15 +75,18 @@ public class PersistentDataStoreTest {
     Assert.assertEquals(passwordHashTwo, resultUserTwo.getPasswordHash());
     Assert.assertEquals(creationTwo, resultUserTwo.getCreationTime());
   }
+  
 
   @Test
   public void testSaveAndLoadConversations() throws PersistentDataStoreException {
     UUID idOne = UUID.fromString("10000000-2222-3333-4444-555555555555");
     UUID ownerOne = UUID.fromString("10000001-2222-3333-4444-555555555555");
+    System.out.println(ownerOne + "- ownerOne perstisitendedatastoretest");
     String titleOne = "Test_Title";
     Instant creationOne = Instant.ofEpochMilli(1000);
     HashSet<UUID> contributorList = new HashSet<>();
-    //contributorList.add(ownerOne);
+    contributorList.add(ownerOne);
+    System.out.println(contributorList + "- contributorList1 perstisitendedatastoretest");
     Conversation inputConversationOne = new Conversation(idOne, ownerOne, titleOne, contributorList, creationOne);
     
     
@@ -90,7 +95,8 @@ public class PersistentDataStoreTest {
     String titleTwo = "Test_Title_Two";
     Instant creationTwo = Instant.ofEpochMilli(2000);
     HashSet<UUID> contributorList2 = new HashSet<>();
-    //contributorList2.add(ownerTwo);
+    contributorList2.add(ownerTwo);
+    System.out.println(contributorList2 + "- contributorList2 perstisitendedatastoretest");
     Conversation inputConversationTwo = new Conversation(idTwo, ownerTwo, titleTwo, contributorList2, creationTwo);
 
     // save

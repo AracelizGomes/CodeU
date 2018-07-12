@@ -124,10 +124,6 @@ public class ConversationServlet extends HttpServlet {
     System.out.println(contributorList.size());
     
     UUID userId = user.getId();
-   
-    //String user1 = (String) request.getSession().getAttribute("user");
-    //User addedUser = userStore.getUser(user1);
-    
     contributorList.add(userId);
     System.out.println(contributorList + "- contributorList after added uuid");
     System.out.println(contributorList.size());
@@ -137,6 +133,7 @@ public class ConversationServlet extends HttpServlet {
     request.setAttribute("conversation", conversation);
     request.setAttribute("contributorList", contributorList);
     System.out.println(contributorList + "- contributorList after creation of conversation");
+    System.out.println(conversation.getContributorList() + "- contributorList using getContributorList");
     conversationStore.addConversation(conversation);
     response.sendRedirect("/chat/" + conversationTitle);
   }

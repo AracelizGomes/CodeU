@@ -106,15 +106,24 @@ public class PersistentDataStore {
         UUID ownerUuid = UUID.fromString((String) entity.getProperty("owner_uuid"));
         String title = (String) entity.getProperty("title");
         Instant creationTime = Instant.parse((String) entity.getProperty("creation_time"));
-      
-        String contributorListString = (String) entity.getProperty("contributorList");
-        UUID contributorListUUID = UUID.fromString(contributorListString);
+        
+        String contributorListString = (String) entity.getProperty("contributorList"); 
+        System.out.println(contributorListString + " - contributorListString");
+        List<String> contributorListOfStrings = new ArrayList<String>(Arrays.asList(contributorListString.split(",")));
+        System.out.println(contributorListOfStrings + " - contributorListOfStrings");
         HashSet<UUID> contributorList = new HashSet<UUID>();
-        contributorList.add(contributorListUUID);
+        for(String s : contributorListOfStrings) {
+         contributorList.add(UUID.fromString(s));
+        }
+        System.out.println(contributorList + " - contributorList");
+        
+        //UUID contributorListUUID = UUID.fromString(contributorListString);
+        //HashSet<UUID> contributorList = new HashSet<UUID>();
+        //contributorList.add(contributorListUUID);
             
         Conversation conversation = new Conversation(uuid, ownerUuid, title, contributorList, creationTime);
         conversations.add(conversation);
-
+        
       } catch (Exception e) {
         // In a production environment, errors should be very rare. Errors which may
         // occur include network errors, Datastore service errors, authorization errors,
@@ -190,7 +199,7 @@ public class PersistentDataStore {
     conversationEntity.setProperty("owner_uuid", conversation.getOwnerId().toString());
     conversationEntity.setProperty("title", conversation.getTitle());
     conversationEntity.setProperty("creation_time", conversation.getCreationTime().toString());
-    conversationEntity.setProperty("contributorList", conversation.getContributorList());
+    conversationEntity.setProperty("contributorList", conversation.getContributorList().toString());
     datastore.put(conversationEntity);
   }
 }
