@@ -31,6 +31,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
 import java.util.UUID;
+import java.lang.String;
+import java.util.AbstractCollection;
+
 
 /**
  * This class handles all interactions with Google App Engine's Datastore service. On startup it
@@ -84,7 +87,16 @@ public class PersistentDataStore {
 
     return users;
   }
+  public String HashSetToString(HashSet<UUID> hashSet) { 
+    String commaDelimitedString = "";
+    for(UUID id: hashSet) {
+      commaDelimitedString.add(hashSet[id].toString);
+      commaDelimitedString.add(",")
+    }
 
+    String commaDelimitedString = 
+    return commaDelimitedString;
+  }
   /**
    * Loads all Conversation objects from the Datastore service and returns them in a List, sorted in
    * ascending order by creation time.
@@ -199,7 +211,7 @@ public class PersistentDataStore {
     conversationEntity.setProperty("owner_uuid", conversation.getOwnerId().toString());
     conversationEntity.setProperty("title", conversation.getTitle());
     conversationEntity.setProperty("creation_time", conversation.getCreationTime().toString());
-    conversationEntity.setProperty("contributorList", conversation.getContributorList().toString());
+    conversationEntity.setProperty("contributorList", HashSetToString(conversation.getContributorList()));
     datastore.put(conversationEntity);
   }
 }
