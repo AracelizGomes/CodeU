@@ -87,14 +87,16 @@ public class PersistentDataStore {
 
     return users;
   }
-  public String HashSetToString(HashSet<UUID> hashSet) { 
-    String commaDelimitedString = "";
+  public String HashSetToString(HashSet<UUID> hashSet) {
+    HashSet<String> contributorListString = new HashSet<>();
     for(UUID id: hashSet) {
-      commaDelimitedString.add(hashSet[id].toString);
-      commaDelimitedString.add(",")
+      contributorListString.add(id.toString());
+      
     }
-
-    String commaDelimitedString = 
+    System.out.println(contributorListString + " - contributorListString2");
+    String commaDelimitedString = String.join(",", contributorListString);
+    
+    //String commaDelimitedString = 
     return commaDelimitedString;
   }
   /**
