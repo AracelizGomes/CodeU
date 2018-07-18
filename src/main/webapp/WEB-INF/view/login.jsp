@@ -24,13 +24,13 @@
   <nav>
     <a id="navTitle" href="/">CodeU Chat App Team 34</a>
     <a href="/conversations">Conversations</a>
-    <% if(request.getSession().getAttribute("user") != null){ %>
-     <a href="/users/<%= request.getSession().getAttribute("user") %>" > <%= request.getSession().getAttribute("user") %>'s Profile</a>
-    <% } else{ %>
-      <a href="/login">Login</a>
+    <% if (request.getSession().getAttribute("user") != null) { %>
+    	 <a href="/users/<%= request.getSession().getAttribute("user") %>" > <%= request.getSession().getAttribute("user") %>'s Profile</a>
+    <% } else { %>
+      	<a href="/login">Login</a>
     <% } %>
+    <a href="/activityfeed">Activity Feed</a>
     <a href="/about.jsp">About</a>
-	<a href="/users/<%= request.getSession().getAttribute("user") %>">Profile</a>
   </nav>
 
   <div id="container">

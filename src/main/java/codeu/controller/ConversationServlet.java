@@ -117,7 +117,8 @@ public class ConversationServlet extends HttpServlet {
       response.sendRedirect("/chat/" + conversationTitle);
       return;
     }
-    
+    String contributorListString = request.getParameter("contributorList");
+    System.out.println(contributorListString + "- contributorList from jsp");
     
     HashSet<UUID> contributorList = new HashSet<UUID>();
     

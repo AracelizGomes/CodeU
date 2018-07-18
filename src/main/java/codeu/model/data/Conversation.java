@@ -77,13 +77,12 @@ public class Conversation {
   
   public boolean isContributor(User user1) {
     UUID id1 = user1.getId();
-    for(UUID id : contributorList) {
-      System.out.println(contributorList + " - contributorList");
-      System.out.println(id1 + " - id1");
-      if(id.equals(id1)) {
-        System.out.println("true");
-        return true;
-      }
+    
+    System.out.println(contributorList + " - contributorList");
+    System.out.println(id1 + " - id1");
+    if(contributorList.contains(id1)) {
+      System.out.println("true");
+      return true;
     }
     System.out.println(contributorList + " - contributorList");
     System.out.println(id1 + " - id1");
