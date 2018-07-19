@@ -87,6 +87,20 @@ public class ConversationStore {
     return userconversations;
   }
   
+  public Boolean userHasConversations(UUID userId) {
+    for (Conversation conversation : conversations) {
+      if (conversation.getContributorList().contains(userId)) {
+        userconversations.add(conversation);
+      }
+    }
+    if (userconversations != null) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  
   /** Add a new conversation to the current set of conversations known to the application. */
   public void addConversation(Conversation conversation) {
     conversations.add(conversation);

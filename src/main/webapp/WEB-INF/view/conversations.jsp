@@ -25,6 +25,7 @@
 <%
 /** Gets the UserStore instance to access all users. */
 UserStore userStore = UserStore.getInstance();
+ConversationStore conversationStore = ConversationStore.getInstance();
 %>
 
 <!DOCTYPE html>
@@ -73,18 +74,16 @@ UserStore userStore = UserStore.getInstance();
     <%
     String username = (String) request.getSession().getAttribute("user");
     User user = userStore.getUser(username);
+    UUID id = (UUID) request.getSession().getAttribute("uuid");
+    
     List<Conversation> conversations =
       (List<Conversation>) request.getAttribute("conversations");
-    if(getUserConversations(user) == null || getUserConversations(user).isEmpty()){
+    if(conversationStore.userHasConversations(id) == false){
     %>
       <p>Create a conversation to get started.</p>
     <%
     }
     else{
-      //UUID id = (UUID) request.getSession().getAttribute("uuid");
-      String username = (String) request.getSession().getAttribute("user");
-      User user = userStore.getUser(username);
-      
     %>
       <p>Your Conversations Are Here</p>
       <ul class="mdl-list">
