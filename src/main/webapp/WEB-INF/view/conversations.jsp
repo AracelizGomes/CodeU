@@ -60,9 +60,6 @@ UserStore userStore = UserStore.getInstance();
           <div class="form-group">
             <label class="form-control-label">Title:</label>
           <input type="text" name="conversationTitle">
-          	<label class="form-control-label">Contributors:</label>
-          <input type="text" name="contributorList">
-          
         </div>
 
         <button type="submit">Create</button>
@@ -74,9 +71,11 @@ UserStore userStore = UserStore.getInstance();
     <h1><%= request.getSession().getAttribute("user") %>'s Conversations</h1>
 
     <%
+    String username = (String) request.getSession().getAttribute("user");
+    User user = userStore.getUser(username);
     List<Conversation> conversations =
       (List<Conversation>) request.getAttribute("conversations");
-    if(conversations == null || conversations.isEmpty()){
+    if(getUserConversations(user) == null || getUserConversations(user).isEmpty()){
     %>
       <p>Create a conversation to get started.</p>
     <%

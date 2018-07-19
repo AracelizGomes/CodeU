@@ -13,8 +13,12 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 --%>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.HashSet" %>
+<%@ page import="java.util.UUID" %>
 <%@ page import="codeu.model.data.Conversation" %>
+<%@ page import="codeu.model.data.User" %>
 <%@ page import="codeu.model.data.Message" %>
 <%@ page import="codeu.model.store.basic.UserStore" %>
 <%
@@ -47,15 +51,15 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
 <body onload="scrollChat()">
 
   <nav>
-    <a id="navTitle" href="/">CodeU Chat App</a>
+    <a id="navTitle" href="/">CodeU Chat App Team 34</a>
     <a href="/conversations">Conversations</a>
-      <% if (request.getSession().getAttribute("user") != null) { %>
-    <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
+    <% if (request.getSession().getAttribute("user") != null) { %>
+    	 <a href="/users/<%= request.getSession().getAttribute("user") %>" > <%= request.getSession().getAttribute("user") %>'s Profile</a>
     <% } else { %>
-      <a href="/login">Login</a>
+      	<a href="/login">Login</a>
     <% } %>
+    <a href="/activityfeed">Activity Feed</a>
     <a href="/about.jsp">About</a>
- 		<a href="/users/">Profile</a>
   </nav>
 
   <div id="container">
@@ -64,6 +68,52 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
       <a href="" style="float: right">&#8635;</a></h1>
 
     <hr/>
+		<form>
+		<h1>Add users To Conversation</h1>
+		<div id="addContributor">
+			<% List<User> users = UserStore.getInstance().getAllUsers();
+				 int counter; 
+			%>
+			
+			<ul class="mdl-list"> 
+				<% for(User user: users){
+				  
+				  	if (!conversation.isContributor(user)){
+				  	  String newContributor = user.getName(); %>
+				  	 	
+				  	 <li class="mdl-list__item"> 
+				  	 		<span class="mdl-list__item-primary-content">
+				  	 			<i class="material-icons mdl-list__item-avatar">person</i>
+				  	 			<a class="mdl-color-text--blue-grey-300" href="/user/<%=newContributor%>"><%= newContributor %></a>
+				  			</span>
+				  			<span class="mdl-list__item-secondary-action">
+				  				<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="addContributor">
+				  					<input type="checkbox" name="<%=counter%>" value="<%=newContributor%>" id="addContributor"/>
+				  				</label>
+				  			</span>
+				  	</li>
+				  	<%request.getSession().setAttribute("counter", counter); 
+				  		counter++;%>
+				  	
+				  	<% } %>
+				  	
+				  	
+				<% } %>
+			</ul>
+		<hr/>
+				<input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" name="addUsers" value="Add Contributor">
+				<input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" name="removeUsers" value="Remove Contributor">
+		
+		</form>
+				</div>
+		 </div>
+		<hr/>
+
+
+
+
+
+
 
     <div id="chat">
       <ul>
