@@ -45,7 +45,9 @@ public class PersistentDataStore {
 
   // Handle to Google AppEngine's Datastore service.
   private DatastoreService datastore;
+  private ArrayList<Key> conversationKeys;
   private ArrayList<Key> messageKeys;
+
 
   /**
    * Constructs a new PersistentDataStore and sets up its state to begin loading objects from the
@@ -53,6 +55,7 @@ public class PersistentDataStore {
    */
   public PersistentDataStore() {
     datastore = DatastoreServiceFactory.getDatastoreService();
+    conversationKeys = new ArrayList<>();
     messageKeys = new ArrayList<>();
   }
 
@@ -119,6 +122,7 @@ public class PersistentDataStore {
 
     for (Entity entity : results.asIterable()) {
       try {
+    	conversationKeys.add(entity.getKey());
         UUID uuid = UUID.fromString((String) entity.getProperty("uuid"));
         UUID ownerUuid = UUID.fromString((String) entity.getProperty("owner_uuid"));
         String title = (String) entity.getProperty("title");
@@ -223,6 +227,12 @@ public class PersistentDataStore {
     conversationEntity.setProperty("contributorList", HashSetToString(conversation.getContributorList()));
     datastore.put(conversationEntity);
   }
+  
+  /** Delete conversation from Datastore service. */
+  public void deleteConversation(int conversationIndex) {
+      datastore.delete(conversationKeys.get(conversationIndex));
+    }
+}
 
   /** Delete message from Datastore service. */
   public void deleteMessage(int messageIndex) {

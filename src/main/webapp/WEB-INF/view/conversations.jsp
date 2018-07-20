@@ -37,7 +37,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
 <body>
 
   <nav>
-    <a id="navTitle" href="/">CodeU Chat App Team 34</a>
+    <a id="navTitle" href="/">CodeU Chat App - Team 34</a>
     <a href="/conversations">Conversations</a>
     <% if (request.getSession().getAttribute("user") != null) { %>
     	 <a href="/users/<%= request.getSession().getAttribute("user") %>" > <%= request.getSession().getAttribute("user") %>'s Profile</a>
@@ -46,6 +46,8 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     <% } %>
     <a href="/activityfeed">Activity Feed</a>
     <a href="/about.jsp">About</a>
+    <a href="/users/<%= request.getSession().getAttribute("user") %>">Profile</a>
+    <a href="/interest">Interest Chats</a>
   </nav>
 
 
@@ -62,11 +64,10 @@ ConversationStore conversationStore = ConversationStore.getInstance();
             <label class="form-control-label">Title:</label>
           <input type="text" name="conversationTitle">
         </div>
-
-        <button type="submit">Create</button>
+        <button name="send" type="submit" value="Send">Create</button>
       </form>
 
-      <hr/>
+      <hr>
     <% } %>
 
     <h1><%= request.getSession().getAttribute("user") %>'s Conversations</h1>
@@ -89,6 +90,19 @@ ConversationStore conversationStore = ConversationStore.getInstance();
       <p>Your Conversations Are Here</p>
       <ul class="mdl-list">
     <%
+      int conversationIndex = 0;
+      for(Conversation conversation : conversations){
+    %>
+      <li><a href="/chat/<%= conversation.getTitle() %>">
+        <%= conversation.getTitle() %></a></li>
+        
+        <form action="/conversations" method="POST">
+          <button name="delete" value="<%= conversationIndex %>" type="submit">Delete</button>
+        </form>
+    <%
+      conversationIndex ++;
+      }
+    %>
       
       for(Conversation conversation : conversations){ %>
 		
@@ -103,6 +117,9 @@ ConversationStore conversationStore = ConversationStore.getInstance();
       
     <%
     }
+    %>
+   
+    <hr/>
     %>    <hr/>
   </div>
 </body>

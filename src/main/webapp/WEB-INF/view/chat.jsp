@@ -54,6 +54,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
 <body onload="scrollChat()">
 
   <nav>
+    <a id="navTitle" href="/">CodeU Chat App - Team 34</a>
     <a id="navTitle" href="/">CodeU Chat App Team 34</a>
     <a href="/conversations">Conversations</a>
     <% if (request.getSession().getAttribute("user") != null) { %>
@@ -63,6 +64,8 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     <% } %>
     <a href="/activityfeed">Activity Feed</a>
     <a href="/about.jsp">About</a>
+ 		<a href="/users/">Profile</a>
+ 		<a href="/interest">Interest Chats</a>
   </nav>
 
   <div id="container">

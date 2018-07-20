@@ -89,7 +89,6 @@ public class MessageStore {
     this.messages = messages;
   }
 
-
   public void deleteMessage(int messageIndex) {
     persistentStorageAgent.deleteMessage(messageIndex);
     messages.remove(messageIndex);
@@ -107,6 +106,11 @@ public class MessageStore {
 	 }
 	 return sentMessages;
   }
+  
+  public void deleteLastMessage(List<Message> messages) {
+    System.out.println("he there");
+    messages.remove(messages.size()-1);
+  }
+}
 
 }  
-
