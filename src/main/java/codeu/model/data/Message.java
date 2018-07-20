@@ -20,6 +20,11 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
+
 
 /** Class representing a message. Messages are sent by a User in a Conversation. */
 public class Message {

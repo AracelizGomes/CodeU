@@ -31,6 +31,8 @@
     <% } %>
     <a href="/about.jsp">About</a>
     <a href="/interest">Interest Chats</a>
+    <a href="/activityfeed">Activity Feed</a>
+    <a href="/profile">Profile</a>
   </nav>
 
   <div id="container">

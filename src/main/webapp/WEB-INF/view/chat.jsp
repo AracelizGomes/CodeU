@@ -13,13 +13,20 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 --%>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.HashSet" %>
+<%@ page import="java.util.UUID" %>
 <%@ page import="codeu.model.data.Conversation" %>
+<%@ page import="codeu.model.data.User" %>
 <%@ page import="codeu.model.data.Message" %>
 <%@ page import="codeu.model.store.basic.UserStore" %>
+<%@ page import="codeu.model.store.basic.ConversationStore" %>
 <%
 Conversation conversation = (Conversation) request.getAttribute("conversation");
 List<Message> messages = (List<Message>) request.getAttribute("messages");
+UserStore userStore = UserStore.getInstance();
+ConversationStore conversationStore = ConversationStore.getInstance();
 %>
 
 <!DOCTYPE html>
@@ -27,7 +34,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
 <head>
   <title><%= conversation.getTitle() %></title>
   <link rel="stylesheet" href="/css/main.css" type="text/css">
-  <script src="http://cdn.ckeditor.com/4.7.2/basic/ckeditor.js"></script>
+  <script src="https://cdn.ckeditor.com/4.7.2/basic/ckeditor.js"></script>
   <style>
     #chat {
       background-color: white;
@@ -48,35 +55,37 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
 
   <nav>
     <a id="navTitle" href="/">CodeU Chat App - Team 34</a>
+    <a id="navTitle" href="/">CodeU Chat App Team 34</a>
     <a href="/conversations">Conversations</a>
-      <% if (request.getSession().getAttribute("user") != null) { %>
-    <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
+    <% if (request.getSession().getAttribute("user") != null) { %>
+    	 <a href="/users/<%= request.getSession().getAttribute("user") %>" > <%= request.getSession().getAttribute("user") %>'s Profile</a>
     <% } else { %>
-      <a href="/login">Login</a>
+      	<a href="/login">Login</a>
     <% } %>
+    <a href="/activityfeed">Activity Feed</a>
     <a href="/about.jsp">About</a>
  		<a href="/users/">Profile</a>
  		<a href="/interest">Interest Chats</a>
   </nav>
 
   <div id="container">
-
     <h1><%= conversation.getTitle() %>
       <a href="" style="float: right">&#8635;</a></h1>
-
-    <hr/>
+    
 
     <div id="chat">
       <ul>
     <%
+      int messageIndex = 0;
       for (Message message : messages) {
         String author = UserStore.getInstance()
           .getUser(message.getAuthorId()).getName();
     %>
       <li><strong><%= author %>:</strong> <%= message.getContentWithHtml() %> </li>
-    <%
-      }
-    %>
+      <form action="/chat/<%= conversation.getTitle() %>" method="POST">
+          <button name="delete" value="<%= messageIndex %>" type="submit">Delete</button>
+      </form>
+    <% messageIndex ++; } %>
       </ul>
     </div>
 
@@ -86,7 +95,6 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
         <textarea name="message"></textarea>
         <br/>
         <input name="send" type="submit" value="Send"></input>
-        <input name="delete" type="submit" value="Delete Last Message"></input>
     </form>
 
     <script>

@@ -27,8 +27,14 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.List;
 import java.util.UUID;
+import java.lang.String;
+import java.util.AbstractCollection;
+
 
 /**
  * This class handles all interactions with Google App Engine's Datastore service. On startup it
@@ -40,6 +46,8 @@ public class PersistentDataStore {
   // Handle to Google AppEngine's Datastore service.
   private DatastoreService datastore;
   private ArrayList<Key> conversationKeys;
+  private ArrayList<Key> messageKeys;
+
 
   /**
    * Constructs a new PersistentDataStore and sets up its state to begin loading objects from the
@@ -48,6 +56,7 @@ public class PersistentDataStore {
   public PersistentDataStore() {
     datastore = DatastoreServiceFactory.getDatastoreService();
     conversationKeys = new ArrayList<>();
+    messageKeys = new ArrayList<>();
   }
 
   /**
@@ -84,7 +93,18 @@ public class PersistentDataStore {
 
     return users;
   }
-
+  public String HashSetToString(HashSet<UUID> hashSet) {
+    HashSet<String> contributorListString = new HashSet<>();
+    for(UUID id: hashSet) {
+      contributorListString.add(id.toString());
+      
+    }
+    System.out.println(contributorListString + " - contributorListString2");
+    String commaDelimitedString = String.join(",", contributorListString);
+    
+    //String commaDelimitedString = 
+    return commaDelimitedString;
+  }
   /**
    * Loads all Conversation objects from the Datastore service and returns them in a List, sorted in
    * ascending order by creation time.
@@ -107,8 +127,24 @@ public class PersistentDataStore {
         UUID ownerUuid = UUID.fromString((String) entity.getProperty("owner_uuid"));
         String title = (String) entity.getProperty("title");
         Instant creationTime = Instant.parse((String) entity.getProperty("creation_time"));
-        Conversation conversation = new Conversation(uuid, ownerUuid, title, creationTime);
+        
+        String contributorListString = (String) entity.getProperty("contributorList"); 
+        System.out.println(contributorListString + " - contributorListString");
+        List<String> contributorListOfStrings = new ArrayList<String>(Arrays.asList(contributorListString.split(",")));
+        System.out.println(contributorListOfStrings + " - contributorListOfStrings");
+        HashSet<UUID> contributorList = new HashSet<UUID>();
+        for(String s : contributorListOfStrings) {
+         contributorList.add(UUID.fromString(s));
+        }
+        System.out.println(contributorList + " - contributorList");
+        
+        //UUID contributorListUUID = UUID.fromString(contributorListString);
+        //HashSet<UUID> contributorList = new HashSet<UUID>();
+        //contributorList.add(contributorListUUID);
+            
+        Conversation conversation = new Conversation(uuid, ownerUuid, title, contributorList, creationTime);
         conversations.add(conversation);
+        
       } catch (Exception e) {
         // In a production environment, errors should be very rare. Errors which may
         // occur include network errors, Datastore service errors, authorization errors,
@@ -131,12 +167,14 @@ public class PersistentDataStore {
 
     List<Message> messages = new ArrayList<>();
 
+
     // Retrieve all messages from the datastore.
     Query query = new Query("chat-messages").addSort("creation_time", SortDirection.ASCENDING);
     PreparedQuery results = datastore.prepare(query);
 
     for (Entity entity : results.asIterable()) {
       try {
+        messageKeys.add(entity.getKey());
         UUID uuid = UUID.fromString((String) entity.getProperty("uuid"));
         UUID conversationUuid = UUID.fromString((String) entity.getProperty("conv_uuid"));
         UUID authorUuid = UUID.fromString((String) entity.getProperty("author_uuid"));
@@ -155,6 +193,7 @@ public class PersistentDataStore {
     return messages;
   }
 
+
   /** Write a User object to the Datastore service. */
   public void writeThrough(User user) {
     Entity userEntity = new Entity("chat-users", user.getId().toString());
@@ -169,6 +208,7 @@ public class PersistentDataStore {
   /** Write a Message object to the Datastore service. */
   public void writeThrough(Message message) {
     Entity messageEntity = new Entity("chat-messages", message.getId().toString());
+    System.out.println(message.getId().toString());
     messageEntity.setProperty("uuid", message.getId().toString());
     messageEntity.setProperty("conv_uuid", message.getConversationId().toString());
     messageEntity.setProperty("author_uuid", message.getAuthorId().toString());
@@ -184,6 +224,7 @@ public class PersistentDataStore {
     conversationEntity.setProperty("owner_uuid", conversation.getOwnerId().toString());
     conversationEntity.setProperty("title", conversation.getTitle());
     conversationEntity.setProperty("creation_time", conversation.getCreationTime().toString());
+    conversationEntity.setProperty("contributorList", HashSetToString(conversation.getContributorList()));
     datastore.put(conversationEntity);
   }
   
@@ -193,3 +234,8 @@ public class PersistentDataStore {
     }
 }
 
+  /** Delete message from Datastore service. */
+  public void deleteMessage(int messageIndex) {
+    datastore.delete(messageKeys.get(messageIndex));
+  }
+}

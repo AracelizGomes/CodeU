@@ -21,6 +21,8 @@ import codeu.model.store.basic.UserStore;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -60,7 +62,7 @@ public class ConversationServlet extends HttpServlet {
    * for use by the test framework or the servlet's init() function.
    */
   void setConversationStore(ConversationStore conversationStore) {
-    this.conversationStore = conversationStore;
+    this.conversationStore = conversationStore; 
   }
 
   /**
@@ -69,10 +71,13 @@ public class ConversationServlet extends HttpServlet {
    */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws IOException, ServletException {
+      throws IOException, ServletException {  
+    String username = (String) request.getSession().getAttribute("user");
+    User user = userStore.getUser(username);
     List<Conversation> conversations = conversationStore.getAllConversations();
     request.setAttribute("conversations", conversations);
     request.getRequestDispatcher("/WEB-INF/view/conversations.jsp").forward(request, response);
+    
   }
 
   /**
@@ -113,7 +118,7 @@ public class ConversationServlet extends HttpServlet {
       return;
     }
     
-    
+   
     
     String action = request.getParameter("send");
     String deleteAction = request.getParameter("delete");
@@ -133,6 +138,26 @@ public class ConversationServlet extends HttpServlet {
     }
     
     
+    String contributorListString = request.getParameter("contributorList");
+    System.out.println(contributorListString + "- contributorList from jsp");
+  
+  
+    HashSet<UUID> contributorList = new HashSet<UUID>();
     
+    System.out.println(contributorList.size());
+    
+    UUID userId = user.getId();
+    contributorList.add(userId);
+    System.out.println(contributorList + "- contributorList after added uuid");
+    System.out.println(contributorList.size());
+    
+    Conversation conversation = 
+        new Conversation(UUID.randomUUID(), user.getId(), conversationTitle, contributorList, Instant.now());
+    request.setAttribute("conversation", conversation);
+    request.setAttribute("contributorList", contributorList);
+    System.out.println(contributorList + "- contributorList after creation of conversation");
+    System.out.println(conversation.getContributorList() + "- contributorList using getContributorList");
+    conversationStore.addConversation(conversation);
+    response.sendRedirect("/chat/" + conversationTitle);
   }
 }

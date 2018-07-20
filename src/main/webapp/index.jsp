@@ -25,11 +25,12 @@
   <nav>
     <a id="navTitle" href="/">CodeU Chat App - Team 34</a>
     <a href="/conversations">Conversations</a>
-    <% if(request.getSession().getAttribute("user") != null){ %>
-      <a href="/users/<%= request.getSession().getAttribute("user") %>" > <%= request.getSession().getAttribute("user") %>'s Profile</a>
-    <% } else{ %>
-      <a href="/login">Login</a>
+    <% if (request.getSession().getAttribute("user") != null) { %>
+    	 <a href="/users/<%= request.getSession().getAttribute("user") %>" > <%= request.getSession().getAttribute("user") %>'s Profile</a>
+    <% } else { %>
+      	<a href="/login">Login</a>
     <% } %>
+    <a href="/activityfeed">Activity Feed</a>
     <a href="/about.jsp">About</a>
 	<a href="/users/<%= request.getSession().getAttribute("user") %>">Profile</a>
 	<a href="/interest">Interest Chats</a>
@@ -49,7 +50,8 @@
             create or join a conversation.</li>
         <li>View the <a href="/about.jsp">about</a> page to learn more about the
             project.</li>
-				<li>View the <a href="/users/">Profile</a></li>
+		    <li>View the <a href="/users/">Profile</a></li>
+		    <li>See what everyone is up to in the <a href="/activityfeed">Activity Feed</a></li>
       </ul>
     </div>
   </div>

@@ -15,9 +15,16 @@
 package codeu.model.store.basic;
 
 import codeu.model.data.Conversation;
+import codeu.model.data.User;
+import codeu.model.store.basic.ConversationStore;
+import codeu.model.store.basic.UserStore;
+import codeu.model.data.Message;
 import codeu.model.store.persistence.PersistentStorageAgent;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.time.Instant;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Store class that uses in-memory data structures to hold values and automatically loads from and
@@ -57,30 +64,63 @@ public class ConversationStore {
 
   /** The in-memory list of Conversations. */
   private List<Conversation> conversations;
+  private List<Conversation> userconversations;
 
   /** This class is a singleton, so its constructor is private. Call getInstance() instead. */
   private ConversationStore(PersistentStorageAgent persistentStorageAgent) {
     this.persistentStorageAgent = persistentStorageAgent;
     conversations = new ArrayList<>();
+    userconversations = new ArrayList<>();
   }
 
-/** Access the current set of conversations known to the application. */
+  /** Access the current set of conversations known to the application. */
   public List<Conversation> getAllConversations() {
     return conversations;
   }
-
+  
+  public List<Conversation> getUserConversations(User user) {
+    UUID userId = user.getId();
+    for (Conversation conversation : conversations) {
+      if (conversation.getContributorList().contains(userId)) {
+        userconversations.add(conversation);
+      }
+    }
+    return userconversations;
+  }
+  
+  public Boolean userHasConversations(UUID userId) {
+    for (Conversation conversation : conversations) {
+      if (conversation.getContributorList().contains(userId)) {
+        userconversations.add(conversation);
+      }
+    }
+    if (userconversations != null) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  
   /** Add a new conversation to the current set of conversations known to the application. */
   public void addConversation(Conversation conversation) {
     conversations.add(conversation);
     persistentStorageAgent.writeThrough(conversation);
   }
   
+
   /** Delete a conversation from the current set of conversations known to the application. */
   public void deleteConversation(int conversationIndex) {
 	     persistentStorageAgent.deleteConversation(conversationIndex);
 	     conversations.remove(conversationIndex); 
   }
 
+
+  public void addUserConversation(Conversation conversation) {
+    userconversations.add(conversation);
+    persistentStorageAgent.writeThrough(conversation);    
+  }
+  
   /** Check whether a Conversation title is already known to the application. */
   public boolean isTitleTaken(String title) {
     // This approach will be pretty slow if we have many Conversations.
@@ -105,5 +145,21 @@ public class ConversationStore {
   /** Sets the List of Conversations stored by this ConversationStore. */
   public void setConversations(List<Conversation> conversations) {
     this.conversations = conversations;
+  }
+
+  
+  public void setUserConversations(List<Conversation> userconversations) {
+    this.userconversations = userconversations;
+  }
+  //list of conversations created by user
+  public List<Conversation> getConversationsOfUser(UUID owner) {
+    List<Conversation> conversations = new ArrayList<>();
+
+    for (Conversation conversation : conversations) {
+      if (conversation.getOwnerId().equals(owner)) {
+        conversations.add(conversation);
+      }
+    }
+    return conversations;
   }
 }
