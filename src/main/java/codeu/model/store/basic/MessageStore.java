@@ -112,5 +112,3 @@ public class MessageStore {
     messages.remove(messages.size()-1);
   }
 }
-
-}  

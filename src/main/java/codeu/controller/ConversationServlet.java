@@ -124,12 +124,15 @@ public class ConversationServlet extends HttpServlet {
     String deleteAction = request.getParameter("delete");
 
     if (action != null) { //if the create button was pressed
-      Conversation conversation =
-    	        new Conversation(UUID.randomUUID(), user.getId(), conversationTitle, Instant.now());
-
+      HashSet<UUID> contributorList = new HashSet<UUID>();
+      UUID userId = user.getId();
+      contributorList.add(userId);
+      Conversation conversation = 
+          new Conversation(UUID.randomUUID(), user.getId(), conversationTitle, contributorList, Instant.now());
+      request.setAttribute("conversation", conversation);
+      request.setAttribute("contributorList", contributorList);
       conversationStore.addConversation(conversation);
-      
-      response.sendRedirect("/conversations");
+
       
     } else{
     		if (deleteAction != null) //the delete button was pressed	
@@ -139,25 +142,7 @@ public class ConversationServlet extends HttpServlet {
     
     
     String contributorListString = request.getParameter("contributorList");
-    System.out.println(contributorListString + "- contributorList from jsp");
-  
-  
-    HashSet<UUID> contributorList = new HashSet<UUID>();
     
-    System.out.println(contributorList.size());
-    
-    UUID userId = user.getId();
-    contributorList.add(userId);
-    System.out.println(contributorList + "- contributorList after added uuid");
-    System.out.println(contributorList.size());
-    
-    Conversation conversation = 
-        new Conversation(UUID.randomUUID(), user.getId(), conversationTitle, contributorList, Instant.now());
-    request.setAttribute("conversation", conversation);
-    request.setAttribute("contributorList", contributorList);
-    System.out.println(contributorList + "- contributorList after creation of conversation");
-    System.out.println(conversation.getContributorList() + "- contributorList using getContributorList");
-    conversationStore.addConversation(conversation);
     response.sendRedirect("/chat/" + conversationTitle);
   }
 }

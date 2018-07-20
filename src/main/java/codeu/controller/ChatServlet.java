@@ -139,7 +139,7 @@ public class ChatServlet extends HttpServlet {
       return;
     }
     
-
+    String sendAction = (String) request.getParameter("send");
     if (sendAction != null) { //if the send button was pressed
       String messageContent = request.getParameter("message");
       Whitelist wl = Whitelist.basicWithImages();

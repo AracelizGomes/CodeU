@@ -99,7 +99,6 @@ public class PersistentDataStore {
       contributorListString.add(id.toString());
       
     }
-    System.out.println(contributorListString + " - contributorListString2");
     String commaDelimitedString = String.join(",", contributorListString);
     
     //String commaDelimitedString = 
@@ -129,19 +128,13 @@ public class PersistentDataStore {
         Instant creationTime = Instant.parse((String) entity.getProperty("creation_time"));
         
         String contributorListString = (String) entity.getProperty("contributorList"); 
-        System.out.println(contributorListString + " - contributorListString");
         List<String> contributorListOfStrings = new ArrayList<String>(Arrays.asList(contributorListString.split(",")));
-        System.out.println(contributorListOfStrings + " - contributorListOfStrings");
         HashSet<UUID> contributorList = new HashSet<UUID>();
         for(String s : contributorListOfStrings) {
          contributorList.add(UUID.fromString(s));
         }
-        System.out.println(contributorList + " - contributorList");
         
-        //UUID contributorListUUID = UUID.fromString(contributorListString);
-        //HashSet<UUID> contributorList = new HashSet<UUID>();
-        //contributorList.add(contributorListUUID);
-            
+   
         Conversation conversation = new Conversation(uuid, ownerUuid, title, contributorList, creationTime);
         conversations.add(conversation);
         
@@ -232,7 +225,6 @@ public class PersistentDataStore {
   public void deleteConversation(int conversationIndex) {
       datastore.delete(conversationKeys.get(conversationIndex));
     }
-}
 
   /** Delete message from Datastore service. */
   public void deleteMessage(int messageIndex) {
