@@ -18,7 +18,9 @@ import codeu.model.data.Conversation;
 import codeu.model.data.Message;
 import codeu.model.data.User;
 import codeu.model.store.persistence.PersistentDataStore;
+import codeu.model.store.persistence.PersistentDataStoreException;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * This class is the interface between the application and PersistentDataStore, which handles
@@ -105,8 +107,8 @@ public class PersistentStorageAgent {
   }
 
   /** Delete a message from the PersistentDataStore. */
-  public void deleteMessage(int messageIndex) {
-    persistentDataStore.deleteMessage(messageIndex);
+  public void deleteMessage(UUID id) {
+    persistentDataStore.deleteMessage(id);
   }
 
 

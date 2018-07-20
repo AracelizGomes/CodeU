@@ -195,7 +195,15 @@ public class PersistentDataStore {
   }
 
   /** Delete message from Datastore service. */
-  public void deleteMessage(int messageIndex) {
-    datastore.delete(messageKeys.get(messageIndex));
+  public void deleteMessage(UUID id) {
+      // try {
+      //   List<Message> messages = loadMessages();
+      // } catch (Exception e){
+      //   System.out.println(e);
+      // }
+
+    datastore.delete(messageKeys.get(0));
   }
+
+
 }
