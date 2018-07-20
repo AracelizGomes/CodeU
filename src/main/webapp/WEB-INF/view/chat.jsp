@@ -63,16 +63,37 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
   </nav>
 
   <div id="container">
-
     <h1><%= conversation.getTitle() %>
       <a href="" style="float: right">&#8635;</a></h1>
-
+    
+    <div id="removeContributor"> 
+	  <%List<User> Users = UserStore.getInstance().getAllUsers();
+	  	int counter_remove=0;%>
+	  <ul class="mdl-list">
+		  <% for(User user: Users){
+		  	String removeContributor = user.getName();
+		  }
+	   	  %>
+	   	  <li class="mdl-list__item"> 
+				  	 		<span class="mdl-list__item-primary-content">
+				  	 			<i class="material-icons mdl-list__item-avatar">person_remove</i>
+				  	 			<a class="mdl-color-text--blue-grey-300" href="/user/<%=removeContributor%>"><%= removeContributor %></a>
+				  			</span>
+				  			<span class="mdl-list__item-secondary-action">
+				  				<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="removeContributor">
+				  					<input type="checkbox" name="<%=counter_remove%>" value="<%=removeContributor%>" id="addContributor"/>
+				  				</label>
+				  			</span>
+				  	</li>
+				  	<%request.getSession().setAttribute("counter_remove", counter_remove); 
+				  		counter_remove++;%>
+	</ul>
     <hr/>
 		<form>
 		<h1>Add users To Conversation</h1>
 		<div id="addContributor">
 			<% List<User> users = UserStore.getInstance().getAllUsers();
-				 int counter=0; 
+				 int counter_new=0; 
 			%>
 			
 			<ul class="mdl-list"> 
@@ -88,12 +109,12 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
 				  			</span>
 				  			<span class="mdl-list__item-secondary-action">
 				  				<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="addContributor">
-				  					<input type="checkbox" name="<%=counter%>" value="<%=newContributor%>" id="addContributor"/>
+				  					<input type="checkbox" name="<%=counter_new%>" value="<%=newContributor%>" id="addContributor"/>
 				  				</label>
 				  			</span>
 				  	</li>
-				  	<%request.getSession().setAttribute("counter", counter); 
-				  		counter++;%>
+				  	<%request.getSession().setAttribute("counter_add", counter_new); 
+				  		counter_new++;%>
 				  	
 				  	<% } %>
 				  	

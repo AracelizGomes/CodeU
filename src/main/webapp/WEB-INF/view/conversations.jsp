@@ -76,8 +76,9 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     User user = userStore.getUser(username);
     UUID id = (UUID) request.getSession().getAttribute("uuid");
     
-    List<Conversation> conversations =
-      (List<Conversation>) request.getAttribute("conversations");
+    List<Conversation> conversations = (List<Conversation>) request.getAttribute("conversations");
+    %>
+    <%
     if(conversationStore.userHasConversations(id) == false){
     %>
       <p>Create a conversation to get started.</p>
@@ -91,7 +92,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
       
       for(Conversation conversation : conversations){ %>
 		
-        <%if(conversation.isContributor(user)) {
+        <%if(conversation.isContributor(id)) {
     	%>
       		<li><a href="/chat/<%= conversation.getTitle() %>">
         	<%= conversation.getTitle() %></a></li>
