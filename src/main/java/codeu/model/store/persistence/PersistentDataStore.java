@@ -23,6 +23,7 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class PersistentDataStore {
 
   // Handle to Google AppEngine's Datastore service.
   private DatastoreService datastore;
+  private ArrayList<Key> conversationKeys;
 
   /**
    * Constructs a new PersistentDataStore and sets up its state to begin loading objects from the
@@ -45,6 +47,7 @@ public class PersistentDataStore {
    */
   public PersistentDataStore() {
     datastore = DatastoreServiceFactory.getDatastoreService();
+    conversationKeys = new ArrayList<>();
   }
 
   /**
@@ -99,6 +102,7 @@ public class PersistentDataStore {
 
     for (Entity entity : results.asIterable()) {
       try {
+    	conversationKeys.add(entity.getKey());
         UUID uuid = UUID.fromString((String) entity.getProperty("uuid"));
         UUID ownerUuid = UUID.fromString((String) entity.getProperty("owner_uuid"));
         String title = (String) entity.getProperty("title");
@@ -182,5 +186,10 @@ public class PersistentDataStore {
     conversationEntity.setProperty("creation_time", conversation.getCreationTime().toString());
     datastore.put(conversationEntity);
   }
+  
+  /** Delete conversation from Datastore service. */
+  public void deleteConversation(int conversationIndex) {
+      datastore.delete(conversationKeys.get(conversationIndex));
+    }
 }
 

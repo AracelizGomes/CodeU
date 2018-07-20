@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /** Servlet class responsible for the conversations page. */
-public class ConversationServlet extends HttpServlet {
+public class InterestPageServlet extends HttpServlet {
 
   /** Store class that gives access to Users. */
   private UserStore userStore;
@@ -72,7 +72,9 @@ public class ConversationServlet extends HttpServlet {
       throws IOException, ServletException {
     List<Conversation> conversations = conversationStore.getAllConversations();
     request.setAttribute("conversations", conversations);
-    request.getRequestDispatcher("/WEB-INF/view/conversations.jsp").forward(request, response);
+    
+ 
+    request.getRequestDispatcher("/WEB-INF/view/InterestPage.jsp").forward(request, response);
   }
 
   /**
@@ -87,7 +89,7 @@ public class ConversationServlet extends HttpServlet {
     String username = (String) request.getSession().getAttribute("user");
     if (username == null) {
       // user is not logged in, don't let them create a conversation
-      response.sendRedirect("/conversations");
+      response.sendRedirect("/interest");
       return;
     }
 
@@ -95,14 +97,14 @@ public class ConversationServlet extends HttpServlet {
     if (user == null) {
       // user was not found, don't let them create a conversation
       System.out.println("User not found: " + username);
-      response.sendRedirect("/conversations");
+      response.sendRedirect("/interest");
       return;
     }
 
-    String conversationTitle = request.getParameter("conversationTitle");
+    String conversationTitle = request.getParameter("interestChoice");
     if (!conversationTitle.matches("[\\w*]*")) {
       request.setAttribute("error", "Please enter only letters and numbers.");
-      request.getRequestDispatcher("/WEB-INF/view/conversations.jsp").forward(request, response);
+      request.getRequestDispatcher("/WEB-INF/view/InterestPage.jsp").forward(request, response);
       return;
     }
 
@@ -114,24 +116,13 @@ public class ConversationServlet extends HttpServlet {
     }
     
     
-    
-    String action = request.getParameter("send");
-    String deleteAction = request.getParameter("delete");
-
-    if (action != null) { //if the create button was pressed
       Conversation conversation =
     	        new Conversation(UUID.randomUUID(), user.getId(), conversationTitle, Instant.now());
 
       conversationStore.addConversation(conversation);
       
-      response.sendRedirect("/conversations");
-      
-    } else{
-    		if (deleteAction != null) //the delete button was pressed	
-    			conversationStore.deleteConversation(Integer.parseInt(request.getParameter("delete")));
-    		response.sendRedirect("/conversations");
-    }
-    
+      response.sendRedirect("/chat/" + conversationTitle);
+   
     
     
   }

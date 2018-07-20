@@ -138,7 +138,7 @@ public class ChatServlet extends HttpServlet {
       response.sendRedirect("/conversations");
       return;
     }
-    String sendAction = request.getParameter("send");
+    
 
     String messageContent = request.getParameter("message");
     String processedMessageContent = Jsoup.clean(messageContent, Whitelist.basicWithImages());

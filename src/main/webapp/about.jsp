@@ -31,6 +31,7 @@
     <% } %>
     <a href="/about.jsp">About</a>
 	<a href="/users/<%= request.getSession().getAttribute("user") %>">Profile</a>
+	<a href="/interest">Interest Chats</a>
   </nav>
 
   <div id="container">

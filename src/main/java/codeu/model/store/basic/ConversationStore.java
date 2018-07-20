@@ -74,6 +74,12 @@ public class ConversationStore {
     conversations.add(conversation);
     persistentStorageAgent.writeThrough(conversation);
   }
+  
+  /** Delete a conversation from the current set of conversations known to the application. */
+  public void deleteConversation(int conversationIndex) {
+	     persistentStorageAgent.deleteConversation(conversationIndex);
+	     conversations.remove(conversationIndex); 
+  }
 
   /** Check whether a Conversation title is already known to the application. */
   public boolean isTitleTaken(String title) {

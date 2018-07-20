@@ -34,6 +34,7 @@
     <% } %>
     <a href="/about.jsp">About</a>
     <a href="/users/<%= request.getSession().getAttribute("user") %>">Profile</a>
+    <a href="/interest">Interest Chats</a>
   </nav>
 
 
@@ -50,11 +51,10 @@
             <label class="form-control-label">Title:</label>
           <input type="text" name="conversationTitle">
         </div>
-
-        <button type="submit">Create</button>
+        <button name="send" type="submit" value="Send">Create</button>
       </form>
 
-      <hr/>
+      <hr>
     <% } %>
 
     <h1>Conversations</h1>
@@ -71,17 +71,24 @@
     %>
       <ul class="mdl-list">
     <%
+      int conversationIndex = 0;
       for(Conversation conversation : conversations){
     %>
       <li><a href="/chat/<%= conversation.getTitle() %>">
         <%= conversation.getTitle() %></a></li>
+        
+        <form action="/conversations" method="POST">
+          <button name="delete" value="<%= conversationIndex %>" type="submit">Delete</button>
+        </form>
     <%
+      conversationIndex ++;
       }
     %>
       </ul>
     <%
     }
     %>
+   
     <hr/>
   </div>
 </body>

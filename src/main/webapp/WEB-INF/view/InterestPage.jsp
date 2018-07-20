@@ -13,15 +13,17 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 --%>
+<%@ page import="java.util.List" %>
+<%@ page import="codeu.model.data.Conversation" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CodeU Chat App Team 34</title>
+  <title>Interest Page</title>
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-	<%@ page import="codeu.model.store.basic.UserStore" %>
-	<%@ page import="codeu.model.data.User" %>
+
   <nav>
     <a id="navTitle" href="/">CodeU Chat App - Team 34</a>
     <a href="/conversations">Conversations</a>
@@ -31,27 +33,45 @@
       <a href="/login">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
-	<a href="/users/<%= request.getSession().getAttribute("user") %>">Profile</a>
-	<a href="/interest">Interest Chats</a>
+    <a href="/users/<%= request.getSession().getAttribute("user") %>">Profile</a>
+    <a href="/interest">Interest Chats</a>
   </nav>
 
+
   <div id="container">
-    <div
-      style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
 
+    <% if(request.getAttribute("error") != null){ %>
+        <h2 style="color:red"><%= request.getAttribute("error") %></h2>
+    <% } %>
 
-      <h1>CodeU Chat App Team 34</h1>
-      <h2>Welcome!</h2>
+    <% if(request.getSession().getAttribute("user") != null){ %>
+      <h1>Pick Interest Conversation</h1>
+      
+      
+      <p>Select interest from drop-down list:</p>
 
-      <ul>
-        <li><a href="/login">Login</a> to get started.</li>
-        <li>Go to the <a href="/conversations">conversations</a> page to
-            create or join a conversation.</li>
-        <li>View the <a href="/about.jsp">about</a> page to learn more about the
-            project.</li>
-				<li>View the <a href="/users/">Profile</a></li>
-      </ul>
-    </div>
+<form action="/interest" method="POST">
+  <select name="interestChoice">
+    <option value="Movies">Movies</option>
+    <option value="Sports">Sports</option>
+    <option value="Readings">Readings</option>
+    <option value="Fitness">Fitness</option>
+    <option value="Traveling">Traveling</option>
+  </select>
+  <br><br>
+  <input type="submit">
+</form>
+      
+      <hr>
+    <% } %>
+
+    <h1>Interest Conversations</h1>
+	
+	
+   
+    <hr/>
+   
+    <hr/>
   </div>
 </body>
 </html>

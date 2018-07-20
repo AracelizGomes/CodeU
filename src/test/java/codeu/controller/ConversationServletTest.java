@@ -147,6 +147,7 @@ public class ConversationServletTest {
   public void testDoPost_NewConversation() throws IOException, ServletException {
     Mockito.when(mockRequest.getParameter("conversationTitle")).thenReturn("test_conversation");
     Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username");
+    Mockito.when(mockRequest.getParameter("send")).thenReturn("Send");
 
     User fakeUser =
       new User(
@@ -158,6 +159,9 @@ public class ConversationServletTest {
 
     Mockito.when(mockConversationStore.isTitleTaken("test_conversation")).thenReturn(false);
 
+    
+    Mockito.when(mockRequest.getParameter("send"))
+           .thenReturn("Send");
     conversationServlet.doPost(mockRequest, mockResponse);
 
     ArgumentCaptor<Conversation> conversationArgumentCaptor =
