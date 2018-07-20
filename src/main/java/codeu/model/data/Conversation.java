@@ -18,6 +18,8 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.UUID;
 
 
@@ -98,5 +100,16 @@ public class Conversation {
   /** Returns the creation time of this Conversation. */
   public Instant getCreationTime() {
     return creation;
+  }
+  /** Time display */ 
+  public String getTime() {
+    LocalDateTime localDate = LocalDateTime.ofInstant(creation, ZoneId.systemDefault());
+    int hr = localDate.getHour();
+    Boolean AM = true;
+    if (hr > 12) {
+      hr = hr % 12;
+      AM = false;
+    }
+    return localDate.getMonth().toString() + " " + localDate.getDayOfMonth() + ", " + localDate.getYear() + " ~ " + hr + ":" + localDate.getMinute() + " " + (AM ? "AM" : "PM");
   }
 }

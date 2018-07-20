@@ -103,8 +103,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
       
     <%
     }
-    %>
-    <hr/>
+    %>    <hr/>
   </div>
 </body>
 </html>

@@ -14,6 +14,7 @@
 
 package codeu.model.store.basic;
 
+import codeu.model.data.Conversation;
 import codeu.model.data.User;
 import codeu.model.store.persistence.PersistentStorageAgent;
 import java.util.ArrayList;
@@ -62,6 +63,11 @@ public class UserStore {
   private UserStore(PersistentStorageAgent persistentStorageAgent) {
     this.persistentStorageAgent = persistentStorageAgent;
     users = new ArrayList<>();
+  }
+  
+  /** Access the current set of users known to the application. */
+  public List<User> getAllUsers() {
+    return users;
   }
 
   /**
@@ -128,6 +134,21 @@ public class UserStore {
    */
   public void setUsers(List<User> users) {
     this.users = users;
+  }
+  
+  //list of users
+  public List<User> getUsers() {
+    List<User> users = new ArrayList<>();
+
+    for (User user : users) {
+      users.add(user);
+    }
+    return users;
+  }
+  
+  /** Returns number of users. */
+  public int getNumUsers(){
+	  return users.size();
   }
 }
 

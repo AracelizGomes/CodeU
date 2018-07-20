@@ -159,6 +159,7 @@ public class ChatServletTest {
   public void testDoPost_StoresMessage() throws IOException, ServletException {
     Mockito.when(mockRequest.getRequestURI()).thenReturn("/chat/test_conversation");
     Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username");
+    Mockito.when(mockRequest.getParameter("send")).thenReturn("Send");
 
     User fakeUser =
         new User(
@@ -207,6 +208,8 @@ public class ChatServletTest {
 
     Mockito.when(mockRequest.getParameter("message"))
         .thenReturn("Contains <b>html</b> and <script>JavaScript</script> content.");
+    Mockito.when(mockRequest.getParameter("send"))
+        .thenReturn("Send");
 
     chatServlet.doPost(mockRequest, mockResponse);
 

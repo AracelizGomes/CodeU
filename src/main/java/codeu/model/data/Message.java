@@ -20,10 +20,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
-
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 

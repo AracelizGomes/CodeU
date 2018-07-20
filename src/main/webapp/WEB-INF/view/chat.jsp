@@ -34,7 +34,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
 <head>
   <title><%= conversation.getTitle() %></title>
   <link rel="stylesheet" href="/css/main.css" type="text/css">
-  <script src="http://cdn.ckeditor.com/4.7.2/basic/ckeditor.js"></script>
+  <script src="https://cdn.ckeditor.com/4.7.2/basic/ckeditor.js"></script>
   <style>
     #chat {
       background-color: white;
@@ -73,14 +73,16 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     <div id="chat">
       <ul>
     <%
+      int messageIndex = 0;
       for (Message message : messages) {
         String author = UserStore.getInstance()
           .getUser(message.getAuthorId()).getName();
     %>
       <li><strong><%= author %>:</strong> <%= message.getContentWithHtml() %> </li>
-    <%
-      }
-    %>
+      <form action="/chat/<%= conversation.getTitle() %>" method="POST">
+          <button name="delete" value="<%= messageIndex %>" type="submit">Delete</button>
+      </form>
+    <% messageIndex ++; } %>
       </ul>
     </div>
 
@@ -90,7 +92,6 @@ ConversationStore conversationStore = ConversationStore.getInstance();
         <textarea name="message"></textarea>
         <br/>
         <input name="send" type="submit" value="Send"></input>
-        <input name="delete" type="submit" value="Delete Last Message"></input>
     </form>
 
     <script>

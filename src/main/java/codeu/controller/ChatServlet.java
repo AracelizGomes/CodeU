@@ -140,18 +140,24 @@ public class ChatServlet extends HttpServlet {
     }
     String sendAction = request.getParameter("send");
 
-    String messageContent = request.getParameter("message");
-    String processedMessageContent = Jsoup.clean(messageContent, Whitelist.basicWithImages());
+    if (sendAction != null) { //if the send button was pressed
+      String messageContent = request.getParameter("message");
+      Whitelist wl = Whitelist.basicWithImages();
+      wl.removeTags("p");
+      String processedMessageContent = Jsoup.clean(messageContent, wl);
 
-    Message message =
-        new Message(
+      Message message =
+          new Message(
             UUID.randomUUID(),
             conversation.getId(),
             user.getId(),
             processedMessageContent,
             Instant.now());
 
-    messageStore.addMessage(message);
+      messageStore.addMessage(message);
+    } else { //the delete button was pressed
+      messageStore.deleteMessage(Integer.parseInt(request.getParameter("delete")));
+    }
 
     // redirect to a GET request
     response.sendRedirect("/chat/" + conversationTitle);

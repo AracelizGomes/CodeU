@@ -15,14 +15,21 @@
 package codeu.model.store.basic;
 
 import codeu.model.data.Conversation;
+<<<<<<< HEAD
 import codeu.model.data.User;
 import codeu.model.store.basic.ConversationStore;
 import codeu.model.store.basic.UserStore;
+=======
+import codeu.model.data.Message;
+>>>>>>> eda7348f07a071c025b828f30ccb295c8d515d14
 import codeu.model.store.persistence.PersistentStorageAgent;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+>>>>>>> eda7348f07a071c025b828f30ccb295c8d515d14
 import java.util.UUID;
 
 /**
@@ -72,7 +79,7 @@ public class ConversationStore {
     userconversations = new ArrayList<>();
   }
 
-/** Access the current set of conversations known to the application. */
+  /** Access the current set of conversations known to the application. */
   public List<Conversation> getAllConversations() {
     return conversations;
   }
@@ -137,8 +144,20 @@ public class ConversationStore {
   public void setConversations(List<Conversation> conversations) {
     this.conversations = conversations;
   }
+
   
   public void setUserConversations(List<Conversation> userconversations) {
     this.userconversations = userconversations;
+  }
+  //list of conversations created by user
+  public List<Conversation> getConversationsOfUser(UUID owner) {
+    List<Conversation> conversations = new ArrayList<>();
+
+    for (Conversation conversation : conversations) {
+      if (conversation.getOwnerId().equals(owner)) {
+        conversations.add(conversation);
+      }
+    }
+    return conversations;
   }
 }
