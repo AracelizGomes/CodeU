@@ -89,13 +89,11 @@ public class MessageStore {
     this.messages = messages;
   }
 
-
   public void deleteMessage(int messageIndex) {
     persistentStorageAgent.deleteMessage(messageIndex);
     messages.remove(messageIndex);
   }
   
-
   //list of messages sent by user
   public List<Message> getMessagesOfUser(UUID author) {
 	 List<Message> sentMessages = new ArrayList<>();
@@ -108,5 +106,4 @@ public class MessageStore {
 	 return sentMessages;
   }
 
-}  
-
+}

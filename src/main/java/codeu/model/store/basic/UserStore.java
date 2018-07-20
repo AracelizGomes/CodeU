@@ -57,7 +57,7 @@ public class UserStore {
   private PersistentStorageAgent persistentStorageAgent;
 
   /** The in-memory list of Users. */
-  public List<User> users;
+  private List<User> users;
 
   /** This class is a singleton, so its constructor is private. Call getInstance() instead. */
   private UserStore(PersistentStorageAgent persistentStorageAgent) {
@@ -98,10 +98,7 @@ public class UserStore {
     }
     return null;
   }
-  
-  public List<User> getAllUsers() {
-    return users;
-  }
+
   /**
    * Add a new user to the current set of users known to the application. This should only be called
    * to add a new user, not to update an existing user.

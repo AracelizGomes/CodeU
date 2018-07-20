@@ -8,9 +8,6 @@ import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -38,8 +35,6 @@ public class PersistentDataStoreTest {
   public void tearDown() {
     appEngineTestHelper.tearDown();
   }
-  
-
 
   @Test
   public void testSaveAndLoadUsers() throws PersistentDataStoreException {
@@ -75,29 +70,20 @@ public class PersistentDataStoreTest {
     Assert.assertEquals(passwordHashTwo, resultUserTwo.getPasswordHash());
     Assert.assertEquals(creationTwo, resultUserTwo.getCreationTime());
   }
-  
 
   @Test
   public void testSaveAndLoadConversations() throws PersistentDataStoreException {
     UUID idOne = UUID.fromString("10000000-2222-3333-4444-555555555555");
     UUID ownerOne = UUID.fromString("10000001-2222-3333-4444-555555555555");
-    System.out.println(ownerOne + "- ownerOne perstisitendedatastoretest");
     String titleOne = "Test_Title";
     Instant creationOne = Instant.ofEpochMilli(1000);
-    HashSet<UUID> contributorList = new HashSet<>();
-    contributorList.add(ownerOne);
-    System.out.println(contributorList + "- contributorList1 perstisitendedatastoretest");
-    Conversation inputConversationOne = new Conversation(idOne, ownerOne, titleOne, contributorList, creationOne);
-    
-    
+    Conversation inputConversationOne = new Conversation(idOne, ownerOne, titleOne, creationOne);
+
     UUID idTwo = UUID.fromString("10000002-2222-3333-4444-555555555555");
     UUID ownerTwo = UUID.fromString("10000003-2222-3333-4444-555555555555");
     String titleTwo = "Test_Title_Two";
     Instant creationTwo = Instant.ofEpochMilli(2000);
-    HashSet<UUID> contributorList2 = new HashSet<>();
-    contributorList2.add(ownerTwo);
-    System.out.println(contributorList2 + "- contributorList2 perstisitendedatastoretest");
-    Conversation inputConversationTwo = new Conversation(idTwo, ownerTwo, titleTwo, contributorList2, creationTwo);
+    Conversation inputConversationTwo = new Conversation(idTwo, ownerTwo, titleTwo, creationTwo);
 
     // save
     persistentDataStore.writeThrough(inputConversationOne);
@@ -111,14 +97,12 @@ public class PersistentDataStoreTest {
     Assert.assertEquals(idOne, resultConversationOne.getId());
     Assert.assertEquals(ownerOne, resultConversationOne.getOwnerId());
     Assert.assertEquals(titleOne, resultConversationOne.getTitle());
-    Assert.assertEquals(contributorList, resultConversationOne.getContributorList());
     Assert.assertEquals(creationOne, resultConversationOne.getCreationTime());
 
     Conversation resultConversationTwo = resultConversations.get(1);
     Assert.assertEquals(idTwo, resultConversationTwo.getId());
     Assert.assertEquals(ownerTwo, resultConversationTwo.getOwnerId());
     Assert.assertEquals(titleTwo, resultConversationTwo.getTitle());
-    Assert.assertEquals(contributorList2, resultConversationTwo.getContributorList());
     Assert.assertEquals(creationTwo, resultConversationTwo.getCreationTime());
   }
 

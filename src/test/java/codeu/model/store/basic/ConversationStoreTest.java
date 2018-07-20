@@ -1,29 +1,24 @@
 package codeu.model.store.basic;
 
 import codeu.model.data.Conversation;
-import codeu.model.data.User;
-import codeu.model.store.basic.ConversationStore;
 import codeu.model.store.persistence.PersistentStorageAgent;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.HashSet;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 public class ConversationStoreTest {
-  
+
   private ConversationStore conversationStore;
   private PersistentStorageAgent mockPersistentStorageAgent;
-  
-  HashSet<UUID> contributorList = new HashSet<>();
-  
+
   private final Conversation CONVERSATION_ONE =
       new Conversation(
-          UUID.randomUUID(), UUID.randomUUID(), "conversation_one", contributorList, Instant.ofEpochMilli(1000));
+          UUID.randomUUID(), UUID.randomUUID(), "conversation_one", Instant.ofEpochMilli(1000));
 
   @Before
   public void setup() {
@@ -66,9 +61,8 @@ public class ConversationStoreTest {
 
   @Test
   public void testAddConversation() {
-    HashSet<UUID> contributorList = new HashSet<>();
     Conversation inputConversation =
-        new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", contributorList, Instant.now());
+        new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", Instant.now());
 
     conversationStore.addConversation(inputConversation);
     Conversation resultConversation =
