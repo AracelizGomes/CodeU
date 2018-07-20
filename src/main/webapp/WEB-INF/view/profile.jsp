@@ -42,7 +42,6 @@ UserStore userStore = UserStore.getInstance();
     <% } %>
     <a href="/activityfeed">Activity Feed</a>
     <a href="/about.jsp">About</a>
-    <a href="/activityfeed">Activity Feed</a>
   </nav>
 
   <div id="container">
