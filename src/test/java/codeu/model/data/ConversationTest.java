@@ -15,6 +15,10 @@
 package codeu.model.data;
 
 import java.time.Instant;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.UUID;
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,12 +31,15 @@ public class ConversationTest {
     UUID owner = UUID.randomUUID();
     String title = "Test_Title";
     Instant creation = Instant.now();
+    HashSet<UUID> contributorList = new HashSet<>();
+    
 
-    Conversation conversation = new Conversation(id, owner, title, creation);
+    Conversation conversation = new Conversation(id, owner, title, contributorList, creation);
 
     Assert.assertEquals(id, conversation.getId());
     Assert.assertEquals(owner, conversation.getOwnerId());
     Assert.assertEquals(title, conversation.getTitle());
+    Assert.assertEquals(contributorList, conversation.getContributorList());
     Assert.assertEquals(creation, conversation.getCreationTime());
   }
 }

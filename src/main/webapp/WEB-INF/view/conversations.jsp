@@ -14,7 +14,19 @@
   limitations under the License.
 --%>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.UUID" %>
 <%@ page import="codeu.model.data.Conversation" %>
+<%@ page import="codeu.model.data.User" %>
+<%@ page import="codeu.model.store.basic.UserStore" %>
+<%@ page import="codeu.model.store.basic.ConversationStore" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="java.time.Instant" %>
+<%
+/** Gets the UserStore instance to access all users. */
+UserStore userStore = UserStore.getInstance();
+ConversationStore conversationStore = ConversationStore.getInstance();
+%>
 
 <!DOCTYPE html>
 <html>
@@ -32,8 +44,8 @@
     <% } else { %>
       	<a href="/login">Login</a>
     <% } %>
-    <a href="/about.jsp">About</a>
     <a href="/activityfeed">Activity Feed</a>
+    <a href="/about.jsp">About</a>
   </nav>
 
 
@@ -57,25 +69,41 @@
       <hr/>
     <% } %>
 
-    <h1>Conversations</h1>
+    <h1><%= request.getSession().getAttribute("user") %>'s Conversations</h1>
 
     <%
-    List<Conversation> conversations =
-      (List<Conversation>) request.getAttribute("conversations");
-    if(conversations == null || conversations.isEmpty()){
+    String username = (String) request.getSession().getAttribute("user");
+    User user = userStore.getUser(username);
+    UUID id = (UUID) request.getSession().getAttribute("uuid");
+    
+    List<Conversation> conversations = (List<Conversation>) request.getAttribute("conversations");
+    %>
+    <%
+    if(conversationStore.userHasConversations(id) == false || user == null){
     %>
       <p>Create a conversation to get started.</p>
-    <% } else { %>
+    <%
+    }
+    else{
+    %>
+      <p>Your Conversations Are Here</p>
       <ul class="mdl-list">
     <%
-      for(Conversation conversation : conversations){
-    %>
-      <li><a href="/chat/<%= conversation.getTitle() %>">
-        <%= conversation.getTitle() %></a></li>
-    <% } %>
+      
+      for(Conversation conversation : conversations){ %>
+		
+        <%if(conversation.isContributor(user)) {
+    	%>
+      		<li><a href="/chat/<%= conversation.getTitle() %>">
+        	<%= conversation.getTitle() %></a></li>
+        <% } %>
+        <% } %> 
       </ul>
-    <% } %>
-    <hr/>
+      
+      
+    <%
+    }
+    %>    <hr/>
   </div>
 </body>
 </html>
