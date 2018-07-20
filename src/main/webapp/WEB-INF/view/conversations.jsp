@@ -79,7 +79,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     List<Conversation> conversations = (List<Conversation>) request.getAttribute("conversations");
     %>
     <%
-    if(conversationStore.userHasConversations(id) == false || id==null){
+    if(conversationStore.userHasConversations(id) == false || user == null){
     %>
       <p>Create a conversation to get started.</p>
     <%

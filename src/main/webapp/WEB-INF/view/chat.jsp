@@ -21,9 +21,12 @@
 <%@ page import="codeu.model.data.User" %>
 <%@ page import="codeu.model.data.Message" %>
 <%@ page import="codeu.model.store.basic.UserStore" %>
+<%@ page import="codeu.model.store.basic.ConversationStore" %>
 <%
 Conversation conversation = (Conversation) request.getAttribute("conversation");
 List<Message> messages = (List<Message>) request.getAttribute("messages");
+UserStore userStore = UserStore.getInstance();
+ConversationStore conversationStore = ConversationStore.getInstance();
 %>
 
 <!DOCTYPE html>
@@ -67,57 +70,59 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
       <a href="" style="float: right">&#8635;</a></h1>
     
     <div id="removeContributor"> 
-	  <%List<User> Users = UserStore.getInstance().getAllUsers();
+	  <%List<User> Users = userStore.getInstance().getAllUsers();
 	  	int counter_remove=0;%>
 	  <ul class="mdl-list">
 		  <% for(User user: Users){
 		  	String removeContributor = user.getName();
-		  }
+		  
 	   	  %>
 	   	  <li class="mdl-list__item"> 
 				  	 		<span class="mdl-list__item-primary-content">
-				  	 			<i class="material-icons mdl-list__item-avatar">person_remove</i>
+				  	 			<i class="material-icons mdl-list__item-avatar">Remove User</i>
 				  	 			<a class="mdl-color-text--blue-grey-300" href="/user/<%=removeContributor%>"><%= removeContributor %></a>
 				  			</span>
 				  			<span class="mdl-list__item-secondary-action">
 				  				<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="removeContributor">
-				  					<input type="checkbox" name="<%=counter_remove%>" value="<%=removeContributor%>" id="addContributor"/>
+				  					<input type="checkbox" name="<%=counter_remove%>" value="<%=removeContributor%>" id="removeContributor"/>
 				  				</label>
 				  			</span>
 				  	</li>
 				  	<%request.getSession().setAttribute("counter_remove", counter_remove); 
 				  		counter_remove++;%>
-	</ul>
+			<% } %>
+	  </ul>
     <hr/>
+    </div>
+    
 		<form>
-		<h1>Add users To Conversation</h1>
+		<h1>Add/Remove Users</h1>
 		<div id="addContributor">
 			<% List<User> users = UserStore.getInstance().getAllUsers();
-				 int counter_new=0; 
+				 int counter_add=0; 
 			%>
 			
 			<ul class="mdl-list"> 
 				<% for(User user: users){
 				  
-				  	if (!conversation.isContributor(user)){
-				  	  String newContributor = user.getName(); %>
+				  	if (!(conversation.isContributor(user))){
+				  	  String addContributor = user.getName(); %>
 				  	 	
 				  	 <li class="mdl-list__item"> 
 				  	 		<span class="mdl-list__item-primary-content">
-				  	 			<i class="material-icons mdl-list__item-avatar">person</i>
-				  	 			<a class="mdl-color-text--blue-grey-300" href="/user/<%=newContributor%>"><%= newContributor %></a>
+				  	 			<i class="material-icons mdl-list__item-avatar">Add User</i>
+				  	 			<a class="mdl-color-text--blue-grey-300" href="/user/<%=addContributor%>"><%= addContributor %></a>
 				  			</span>
 				  			<span class="mdl-list__item-secondary-action">
 				  				<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="addContributor">
-				  					<input type="checkbox" name="<%=counter_new%>" value="<%=newContributor%>" id="addContributor"/>
+				  					<input type="checkbox" name="<%=counter_add%>" value="<%=addContributor%>" id="addContributor"/>
 				  				</label>
 				  			</span>
 				  	</li>
-				  	<%request.getSession().setAttribute("counter_add", counter_new); 
-				  		counter_new++;%>
+				  	<%request.getSession().setAttribute("counter_add", counter_add); 
+				  		counter_add++;%>
 				  	
 				  	<% } %>
-				  	
 				  	
 				<% } %>
 			</ul>
