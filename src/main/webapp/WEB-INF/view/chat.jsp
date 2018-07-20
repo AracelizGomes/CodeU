@@ -72,7 +72,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
 		<h1>Add users To Conversation</h1>
 		<div id="addContributor">
 			<% List<User> users = UserStore.getInstance().getAllUsers();
-				 int counter; 
+				 int counter=0; 
 			%>
 			
 			<ul class="mdl-list"> 
