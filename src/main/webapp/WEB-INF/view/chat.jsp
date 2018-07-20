@@ -13,13 +13,20 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 --%>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.HashSet" %>
+<%@ page import="java.util.UUID" %>
 <%@ page import="codeu.model.data.Conversation" %>
+<%@ page import="codeu.model.data.User" %>
 <%@ page import="codeu.model.data.Message" %>
 <%@ page import="codeu.model.store.basic.UserStore" %>
+<%@ page import="codeu.model.store.basic.ConversationStore" %>
 <%
 Conversation conversation = (Conversation) request.getAttribute("conversation");
 List<Message> messages = (List<Message>) request.getAttribute("messages");
+UserStore userStore = UserStore.getInstance();
+ConversationStore conversationStore = ConversationStore.getInstance();
 %>
 
 <!DOCTYPE html>
@@ -47,6 +54,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
 <body onload="scrollChat()">
 
   <nav>
+    <a id="navTitle" href="/">CodeU Chat App - Team 34</a>
     <a id="navTitle" href="/">CodeU Chat App Team 34</a>
     <a href="/conversations">Conversations</a>
     <% if (request.getSession().getAttribute("user") != null) { %>
@@ -54,16 +62,16 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
     <% } else { %>
       	<a href="/login">Login</a>
     <% } %>
-    <a href="/about.jsp">About</a>
     <a href="/activityfeed">Activity Feed</a>
+    <a href="/about.jsp">About</a>
+ 		<a href="/users/">Profile</a>
+ 		<a href="/interest">Interest Chats</a>
   </nav>
 
   <div id="container">
-
     <h1><%= conversation.getTitle() %>
       <a href="" style="float: right">&#8635;</a></h1>
-
-    <hr/>
+    
 
     <div id="chat">
       <ul>

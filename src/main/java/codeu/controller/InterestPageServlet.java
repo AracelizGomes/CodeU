@@ -21,8 +21,6 @@ import codeu.model.store.basic.UserStore;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,7 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /** Servlet class responsible for the conversations page. */
-public class ConversationServlet extends HttpServlet {
+public class InterestPageServlet extends HttpServlet {
 
   /** Store class that gives access to Users. */
   private UserStore userStore;
@@ -62,7 +60,7 @@ public class ConversationServlet extends HttpServlet {
    * for use by the test framework or the servlet's init() function.
    */
   void setConversationStore(ConversationStore conversationStore) {
-    this.conversationStore = conversationStore; 
+    this.conversationStore = conversationStore;
   }
 
   /**
@@ -71,13 +69,12 @@ public class ConversationServlet extends HttpServlet {
    */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws IOException, ServletException {  
-    String username = (String) request.getSession().getAttribute("user");
-    User user = userStore.getUser(username);
+      throws IOException, ServletException {
     List<Conversation> conversations = conversationStore.getAllConversations();
     request.setAttribute("conversations", conversations);
-    request.getRequestDispatcher("/WEB-INF/view/conversations.jsp").forward(request, response);
     
+ 
+    request.getRequestDispatcher("/WEB-INF/view/InterestPage.jsp").forward(request, response);
   }
 
   /**
@@ -92,7 +89,7 @@ public class ConversationServlet extends HttpServlet {
     String username = (String) request.getSession().getAttribute("user");
     if (username == null) {
       // user is not logged in, don't let them create a conversation
-      response.sendRedirect("/conversations");
+      response.sendRedirect("/interest");
       return;
     }
 
@@ -100,14 +97,14 @@ public class ConversationServlet extends HttpServlet {
     if (user == null) {
       // user was not found, don't let them create a conversation
       System.out.println("User not found: " + username);
-      response.sendRedirect("/conversations");
+      response.sendRedirect("/interest");
       return;
     }
 
-    String conversationTitle = request.getParameter("conversationTitle");
+    String conversationTitle = request.getParameter("interestChoice");
     if (!conversationTitle.matches("[\\w*]*")) {
       request.setAttribute("error", "Please enter only letters and numbers.");
-      request.getRequestDispatcher("/WEB-INF/view/conversations.jsp").forward(request, response);
+      request.getRequestDispatcher("/WEB-INF/view/InterestPage.jsp").forward(request, response);
       return;
     }
 
@@ -118,46 +115,15 @@ public class ConversationServlet extends HttpServlet {
       return;
     }
     
-   
     
-    String action = request.getParameter("send");
-    String deleteAction = request.getParameter("delete");
-
-    if (action != null) { //if the create button was pressed
       Conversation conversation =
     	        new Conversation(UUID.randomUUID(), user.getId(), conversationTitle, Instant.now());
 
       conversationStore.addConversation(conversation);
       
-      response.sendRedirect("/conversations");
-      
-    } else{
-    		if (deleteAction != null) //the delete button was pressed	
-    			conversationStore.deleteConversation(Integer.parseInt(request.getParameter("delete")));
-    		response.sendRedirect("/conversations");
-    }
+      response.sendRedirect("/chat/" + conversationTitle);
+   
     
     
-    String contributorListString = request.getParameter("contributorList");
-    System.out.println(contributorListString + "- contributorList from jsp");
-  
-  
-    HashSet<UUID> contributorList = new HashSet<UUID>();
-    
-    System.out.println(contributorList.size());
-    
-    UUID userId = user.getId();
-    contributorList.add(userId);
-    System.out.println(contributorList + "- contributorList after added uuid");
-    System.out.println(contributorList.size());
-    
-    Conversation conversation = 
-        new Conversation(UUID.randomUUID(), user.getId(), conversationTitle, contributorList, Instant.now());
-    request.setAttribute("conversation", conversation);
-    request.setAttribute("contributorList", contributorList);
-    System.out.println(contributorList + "- contributorList after creation of conversation");
-    System.out.println(conversation.getContributorList() + "- contributorList using getContributorList");
-    conversationStore.addConversation(conversation);
-    response.sendRedirect("/chat/" + conversationTitle);
   }
 }

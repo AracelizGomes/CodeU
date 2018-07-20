@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashSet;
 import java.util.UUID;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -66,9 +67,11 @@ public class ConversationServletTest {
 
   @Test
   public void testDoGet() throws IOException, ServletException {
+    HashSet<UUID> contributorList = new HashSet<>();
+    UUID ownerId = (UUID) UUID.randomUUID();
     List<Conversation> fakeConversationList = new ArrayList<>();
-    fakeConversationList.add(
-      new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", Instant.now()));
+    contributorList.add(ownerId);
+      new Conversation(UUID.randomUUID(), ownerId, "test_conversation", contributorList, Instant.now());
     Mockito.when(mockConversationStore.getAllConversations()).thenReturn(fakeConversationList);
 
     conversationServlet.doGet(mockRequest, mockResponse);
@@ -147,6 +150,7 @@ public class ConversationServletTest {
   public void testDoPost_NewConversation() throws IOException, ServletException {
     Mockito.when(mockRequest.getParameter("conversationTitle")).thenReturn("test_conversation");
     Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username");
+    Mockito.when(mockRequest.getParameter("send")).thenReturn("Send");
 
     User fakeUser =
       new User(
@@ -158,8 +162,11 @@ public class ConversationServletTest {
 
     Mockito.when(mockConversationStore.isTitleTaken("test_conversation")).thenReturn(false);
 
+    
+    Mockito.when(mockRequest.getParameter("send"))
+           .thenReturn("Send");
     conversationServlet.doPost(mockRequest, mockResponse);
-
+    
     ArgumentCaptor<Conversation> conversationArgumentCaptor =
       ArgumentCaptor.forClass(Conversation.class);
     Mockito.verify(mockConversationStore).addConversation(conversationArgumentCaptor.capture());
