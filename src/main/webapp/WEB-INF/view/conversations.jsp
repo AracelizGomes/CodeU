@@ -79,7 +79,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     List<Conversation> conversations = (List<Conversation>) request.getAttribute("conversations");
     %>
     <%
-    if(conversationStore.userHasConversations(id) == false){
+    if(conversationStore.userHasConversations(id) == false || id==null){
     %>
       <p>Create a conversation to get started.</p>
     <%
@@ -92,7 +92,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
       
       for(Conversation conversation : conversations){ %>
 		
-        <%if(conversation.isContributor(id)) {
+        <%if(conversation.isContributor(user)) {
     	%>
       		<li><a href="/chat/<%= conversation.getTitle() %>">
         	<%= conversation.getTitle() %></a></li>

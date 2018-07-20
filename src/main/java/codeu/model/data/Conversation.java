@@ -75,7 +75,9 @@ public class Conversation {
     System.out.println("User was removed from conversation");
   }
   
-  public boolean isContributor(UUID id1) {
+  public boolean isContributor(User user1) {
+    UUID id1 = user1.getId();
+    
     System.out.println(contributorList + " - contributorList");
     System.out.println(id1 + " - id1");
     if(contributorList.contains(id1)) {
