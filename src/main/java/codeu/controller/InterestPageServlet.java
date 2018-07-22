@@ -20,6 +20,7 @@ import codeu.model.store.basic.ConversationStore;
 import codeu.model.store.basic.UserStore;
 import java.io.IOException;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 import javax.servlet.ServletException;
@@ -115,9 +116,12 @@ public class InterestPageServlet extends HttpServlet {
       return;
     }
     
+    HashSet<UUID> contributorList = new HashSet<UUID>();
+    UUID userId = user.getId();
+    contributorList.add(userId);
     
       Conversation conversation =
-    	        new Conversation(UUID.randomUUID(), user.getId(), conversationTitle, Instant.now());
+    	        new Conversation(UUID.randomUUID(), user.getId(), conversationTitle, contributorList, Instant.now());
 
       conversationStore.addConversation(conversation);
       

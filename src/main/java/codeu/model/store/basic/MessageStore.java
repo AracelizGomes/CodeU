@@ -110,5 +110,3 @@ public class MessageStore {
 	 }
 	 return sentMessages;
   }
-
-}

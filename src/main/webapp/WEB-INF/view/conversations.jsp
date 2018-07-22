@@ -46,7 +46,6 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     <% } %>
     <a href="/activityfeed">Activity Feed</a>
     <a href="/about.jsp">About</a>
-    <a href="/users/<%= request.getSession().getAttribute("user") %>">Profile</a>
     <a href="/interest">Interest Chats</a>
   </nav>
 
@@ -103,24 +102,10 @@ ConversationStore conversationStore = ConversationStore.getInstance();
       conversationIndex ++;
       }
     %>
-      
-      for(Conversation conversation : conversations){ %>
-		
-        <%if(conversation.isContributor(user)) {
-    	%>
-      		<li><a href="/chat/<%= conversation.getTitle() %>">
-        	<%= conversation.getTitle() %></a></li>
-        <% } %>
-        <% } %> 
-      </ul>
-      
-      
-    <%
-    }
-    %>
-   
+	<% } %>
+   	
     <hr/>
-    %>    <hr/>
+    <hr/>
   </div>
 </body>
 </html>
