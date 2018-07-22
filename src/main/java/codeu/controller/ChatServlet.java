@@ -138,7 +138,9 @@ public class ChatServlet extends HttpServlet {
       response.sendRedirect("/conversations");
       return;
     }
-    
+
+
+    String sendAction = request.getParameter("send");
 
     if (sendAction != null) { //if the send button was pressed
       String messageContent = request.getParameter("message");
