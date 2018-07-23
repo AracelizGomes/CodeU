@@ -90,14 +90,17 @@ public class MessageStore {
   }
 
   public void deleteMessage(UUID id) {
-    persistentStorageAgent.deleteMessage(id);
+    persistentStorageAgent.deleteMessage();
     for (Message message : messages) {
       if (message.getId().equals(id)) {
         messages.remove(message);
         break;
       }
  	  }
-  }
+    for (Message message : messages) {
+      persistentStorageAgent.writeThrough(message);
+      }
+ 	  }
 
   //list of messages sent by user
   public List<Message> getMessagesOfUser(UUID author) {
@@ -110,3 +113,4 @@ public class MessageStore {
 	 }
 	 return sentMessages;
   }
+}

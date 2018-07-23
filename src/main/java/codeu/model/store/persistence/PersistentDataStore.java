@@ -80,11 +80,11 @@ public class PersistentDataStore {
         String userName = (String) entity.getProperty("username");
         String passwordHash = (String) entity.getProperty("password_hash");
         String bio = (String) entity.getProperty("biography");
-        ArrayList<String> interests = (ArrayList<String>) entity.getProperty("interests");
+        //ArrayList<String> interests = (ArrayList<String>) entity.getProperty("interests");
         Instant creationTime = Instant.parse((String) entity.getProperty("creation_time"));
         User user = new User(uuid, userName, passwordHash, creationTime);
         user.setBiography(bio);
-        user.setInterests(interests);
+        //user.setInterests(interests);
         users.add(user);
       } catch (Exception e) {
         // In a production environment, errors should be very rare. Errors which may
@@ -131,14 +131,16 @@ public class PersistentDataStore {
         Instant creationTime = Instant.parse((String) entity.getProperty("creation_time"));
 
         String contributorListString = (String) entity.getProperty("contributorList");
-        System.out.println(contributorListString + " - contributorListString");
+        if (contributorListString == null) {
+          System.out.println("ITS NULLLLLLLL");
+        }
         List<String> contributorListOfStrings = new ArrayList<String>(Arrays.asList(contributorListString.split(",")));
         HashSet<UUID> contributorList = new HashSet<UUID>();
         for(String s : contributorListOfStrings) {
          contributorList.add(UUID.fromString(s));
         }
 
-   
+
         Conversation conversation = new Conversation(uuid, ownerUuid, title, contributorList, creationTime);
         conversations.add(conversation);
 
@@ -232,13 +234,9 @@ public class PersistentDataStore {
     }
 
   /** Delete message from Datastore service. */
-  public void deleteMessage(UUID id) {
-        // try {
-        //   List<Message> messages = loadMessages();
-        // } catch (Exception e){
-        //   System.out.println(e);
-        // }
-
-    datastore.delete(messageKeys.get(0));
+  public void deleteMessage() {
+    for (Key key : messageKeys) {
+      datastore.delete(key);
+    }
   }
 }
