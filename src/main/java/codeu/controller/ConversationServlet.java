@@ -62,7 +62,7 @@ public class ConversationServlet extends HttpServlet {
    * for use by the test framework or the servlet's init() function.
    */
   void setConversationStore(ConversationStore conversationStore) {
-    this.conversationStore = conversationStore; 
+    this.conversationStore = conversationStore;
   }
 
   /**
@@ -71,13 +71,13 @@ public class ConversationServlet extends HttpServlet {
    */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws IOException, ServletException {  
+      throws IOException, ServletException {
     String username = (String) request.getSession().getAttribute("user");
     User user = userStore.getUser(username);
     List<Conversation> conversations = conversationStore.getAllConversations();
     request.setAttribute("conversations", conversations);
     request.getRequestDispatcher("/WEB-INF/view/conversations.jsp").forward(request, response);
-    
+
   }
 
   /**
@@ -105,21 +105,23 @@ public class ConversationServlet extends HttpServlet {
     }
 
     String conversationTitle = request.getParameter("conversationTitle");
-    if (!conversationTitle.matches("[\\w*]*")) {
-      request.setAttribute("error", "Please enter only letters and numbers.");
-      request.getRequestDispatcher("/WEB-INF/view/conversations.jsp").forward(request, response);
-      return;
+    if (conversationTitle != null) {
+      if (!conversationTitle.matches("[\\w*]*")) {
+        request.setAttribute("error", "Please enter only letters and numbers.");
+        request.getRequestDispatcher("/WEB-INF/view/conversations.jsp").forward(request, response);
+        return;
+      }
+
+      if (conversationStore.isTitleTaken(conversationTitle)) {
+        // conversation title is already taken, just go into that conversation instead of creating a
+        // new one
+        response.sendRedirect("/chat/" + conversationTitle);
+        return;
+      }
     }
 
-    if (conversationStore.isTitleTaken(conversationTitle)) {
-      // conversation title is already taken, just go into that conversation instead of creating a
-      // new one
-      response.sendRedirect("/chat/" + conversationTitle);
-      return;
-    }
-    
-   
-    
+
+
     String action = request.getParameter("send");
     String deleteAction = request.getParameter("delete");
 
@@ -127,22 +129,22 @@ public class ConversationServlet extends HttpServlet {
       HashSet<UUID> contributorList = new HashSet<UUID>();
       UUID userId = user.getId();
       contributorList.add(userId);
-      Conversation conversation = 
+      Conversation conversation =
           new Conversation(UUID.randomUUID(), user.getId(), conversationTitle, contributorList, Instant.now());
       request.setAttribute("conversation", conversation);
       request.setAttribute("contributorList", contributorList);
       conversationStore.addConversation(conversation);
 
-      
+
     } else{
-    		if (deleteAction != null) //the delete button was pressed	
+    		if (deleteAction != null) //the delete button was pressed
     			conversationStore.deleteConversation(Integer.parseInt(request.getParameter("delete")));
     		response.sendRedirect("/conversations");
     }
-    
-    
+
+
     String contributorListString = request.getParameter("contributorList");
-    
+
     response.sendRedirect("/chat/" + conversationTitle);
   }
 }

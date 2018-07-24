@@ -238,5 +238,6 @@ public class PersistentDataStore {
     for (Key key : messageKeys) {
       datastore.delete(key);
     }
+    messageKeys.clear();
   }
 }
