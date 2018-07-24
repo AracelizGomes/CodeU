@@ -69,7 +69,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
   <div id="container">
     <h1><%= conversation.getTitle() %>
       <a href="" style="float: right">&#8635;</a></h1>
-    
+
 
     <div id="chat">
       <ul>
@@ -83,6 +83,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
           <button name="delete" value="<%= message.getId() %>" type="submit">Delete</button>
       </form>
       </ul>
+      <% } %>
     </div>
 
     <hr/>

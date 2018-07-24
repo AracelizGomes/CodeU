@@ -46,8 +46,8 @@
 
     <% if(request.getSession().getAttribute("user") != null){ %>
       <h1>Pick Interest Conversation</h1>
-      
-      
+
+
       <p>Select interest from drop-down list:</p>
 
 <form action="/interest" method="POST">
@@ -61,16 +61,16 @@
   <br><br>
   <input type="submit">
 </form>
-      
+
       <hr>
     <% } %>
 
     <h1>Interest Conversations</h1>
-	
-	
-   
+
+
+
     <hr/>
-   
+
     <hr/>
   </div>
 </body>
