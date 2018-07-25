@@ -26,6 +26,7 @@
 Conversation conversation = (Conversation) request.getAttribute("conversation");
 List<Message> messages = (List<Message>) request.getAttribute("messages");
 UserStore userStore = UserStore.getInstance();
+List<User> users = (List<User>) userStore.getAllUsers();
 ConversationStore conversationStore = ConversationStore.getInstance();
 %>
 
@@ -70,7 +71,41 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     <h1><%= conversation.getTitle() %>
       <a href="" style="float: right">&#8635;</a></h1>
     
-
+    <div id="addContributor">
+    	<h3>Add User To Conversation</h3>
+    	<% 
+    	System.out.println(users + "- users");
+    	%>
+    	  <form action="/chat/<%= conversation.getTitle() %>" method="POST"> 
+    	  	<select name="addContributor">
+    	  	<% for (User user: users){ %>
+    	  		<li> <option value="<%= user.getName() %>"><%= user.getName() %></option></li>
+    	  	<% } %>
+    	  	</select>
+    	  	<br><br>
+    	  	<input type="submit">
+    	  </form>
+    	<% conversationStore.updateConversation(conversation); %>
+    </div>
+    
+    <div id="deleteContributor">
+    	<h3>Delete User From Conversation</h3>
+    	<% 
+    	HashSet<UUID> contributorList = (HashSet<UUID>) conversation.getContributorList(); 
+      %>
+    	  <form action="/chat/<%= conversation.getTitle() %>" method="POST"> 
+    	  	<select name="deleteContributor">
+    	  	<% for (UUID id: contributorList){ %>
+    	  		<li><option value="<%= (userStore.getUser(id)).getName() %>"><%= (userStore.getUser(id)).getName() %></option></li>
+    	  		<% } %>
+    	  	</select>
+    	  	<br><br>
+    	  	<input type="submit">
+    	  	<br><br>
+    	  </form>
+    	<% conversationStore.updateConversation(conversation); %>
+    </div>
+		
     <div id="chat">
       <ul>
     <%

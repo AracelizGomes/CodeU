@@ -77,6 +77,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     UUID id = (UUID) request.getSession().getAttribute("uuid");
     
     List<Conversation> conversations = (List<Conversation>) request.getAttribute("conversations");
+   
     %>
     <%
     if(conversationStore.userHasConversations(id) == false || user == null){
@@ -89,17 +90,17 @@ ConversationStore conversationStore = ConversationStore.getInstance();
       <p>Your Conversations Are Here</p>
       <ul class="mdl-list">
     <%
-      int conversationIndex = 0;
-      for(Conversation conversation : conversations){
-    %>
-      <li><a href="/chat/<%= conversation.getTitle() %>">
-        <%= conversation.getTitle() %></a></li>
-        
-        <form action="/conversations" method="POST">
-          <button name="delete" value="<%= conversationIndex %>" type="submit">Delete</button>
-        </form>
+    	int conversationIndex = 0;
+    	for(Conversation conversation : conversations){ %>
+    		<%if(conversation.isContributor(user)) { %>
+  				<li><a href="/chat/<%= conversation.getTitle() %>">
+    			<%= conversation.getTitle() %></a></li>
+    			<form action="/conversations" method="POST">
+         		<button name="delete" value="<%= conversationIndex %>" type="submit">Delete</button>
+        	</form>
+    <% conversationIndex ++; } %>
     <%
-      conversationIndex ++;
+      
       }
     %>
 	<% } %>

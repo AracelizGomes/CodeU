@@ -131,7 +131,7 @@ public class ChatServlet extends HttpServlet {
 
     String requestUrl = request.getRequestURI();
     String conversationTitle = requestUrl.substring("/chat/".length());
-
+    
     Conversation conversation = conversationStore.getConversationWithTitle(conversationTitle);
     if (conversation == null) {
       // couldn't find conversation, redirect to conversation list
@@ -139,7 +139,34 @@ public class ChatServlet extends HttpServlet {
       return;
     }
     
+    String addContributorString = (String) request.getParameter("addContributor");
+    User addContributor = (User) userStore.getUser(addContributorString);
+    System.out.println(addContributorString + " - addContributorString");
+    System.out.println(addContributor + " - addContributor");
+    if(addContributor != null) {
+      try {
+        conversation.addUser(addContributor);
+      }
+      catch (NumberFormatException e) {
+        e.printStackTrace();
+      }
+    }
+    
+    String deleteContributorString = (String) request.getParameter("deleteContributor");
+    User deleteContributor = (User) userStore.getUser(deleteContributorString);
+    System.out.println(deleteContributorString + " - deleteContributorString");
+    System.out.println(deleteContributor + " - deleteContributor");
+    if(deleteContributor != null) {
+      try {
+        conversation.deleteUser(deleteContributor);
+      }
+      catch (NumberFormatException e) {
+        e.printStackTrace();
+      }
+    }
+    
     String sendAction = (String) request.getParameter("send");
+    String deleteAction = (String) request.getParameter("delete");
     if (sendAction != null) { //if the send button was pressed
       String messageContent = request.getParameter("message");
       Whitelist wl = Whitelist.basicWithImages();
@@ -156,7 +183,9 @@ public class ChatServlet extends HttpServlet {
 
       messageStore.addMessage(message);
     } else { //the delete button was pressed
-      messageStore.deleteMessage(Integer.parseInt(request.getParameter("delete")));
+        if (deleteAction != null) {
+          messageStore.deleteMessage(Integer.parseInt(request.getParameter("delete")));
+        }
     }
 
     // redirect to a GET request
