@@ -69,12 +69,12 @@ public class Conversation {
   public void addUser(User newUser) {
     UUID newId = newUser.getId();
     contributorList.add(newId);
+    
   }
   
   public void deleteUser(User user) {
-    boolean deleted = contributorList.remove(user);
-    System.out.println(deleted);
-    System.out.println("User was removed from conversation");
+    UUID deleteId = user.getId();
+    contributorList.remove(deleteId);
   }
   
   public boolean isContributor(User user1) {

@@ -74,41 +74,36 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     <div id="addContributor">
     	<h3>Add User To Conversation</h3>
     	<% 
-    	int addCount = 0;
     	System.out.println(users + "- users");
     	%>
     	  <form action="/chat/<%= conversation.getTitle() %>" method="POST"> 
-    	  	<select name="addContributor" multiple>
+    	  	<select name="addContributor">
     	  	<% for (User user: users){ %>
-    	  		<li> <option value="<%= addCount %>"><%= user.getName() %></option></li>
+    	  		<li> <option value="<%= user.getName() %>"><%= user.getName() %></option></li>
     	  	<% } %>
     	  	</select>
     	  	<br><br>
-    	  	<input type="submit" name="add">
+    	  	<input type="submit">
     	  </form>
-    	  
-    	<% addCount++; %>
-    	
+    	<% conversationStore.updateConversation(conversation); %>
     </div>
     
     <div id="deleteContributor">
     	<h3>Delete User From Conversation</h3>
     	<% 
-    	int deleteCount = 0;
     	HashSet<UUID> contributorList = (HashSet<UUID>) conversation.getContributorList(); 
       %>
     	  <form action="/chat/<%= conversation.getTitle() %>" method="POST"> 
-    	  	<select name="deleteContributor" multiple>
+    	  	<select name="deleteContributor">
     	  	<% for (UUID id: contributorList){ %>
-    	  		<li><option value="<%= deleteCount %>">><%= userStore.getUser(id) %></option></li>
+    	  		<li><option value="<%= (userStore.getUser(id)).getName() %>"><%= (userStore.getUser(id)).getName() %></option></li>
     	  		<% } %>
     	  	</select>
     	  	<br><br>
-    	  	<input type="submit" name="delete">
+    	  	<input type="submit">
+    	  	<br><br>
     	  </form>
-    	 
-    	<% deleteCount++;  %>
-    	
+    	<% conversationStore.updateConversation(conversation); %>
     </div>
 		
     <div id="chat">

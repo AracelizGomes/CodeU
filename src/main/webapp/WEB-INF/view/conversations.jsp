@@ -93,14 +93,14 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     	int conversationIndex = 0;
     	for(Conversation conversation : conversations){ %>
     		<%if(conversation.isContributor(user)) { %>
-  			<li><a href="/chat/<%= conversation.getTitle() %>">
-    		<%= conversation.getTitle() %></a></li>
-    <% } %>
-        <form action="/conversations" method="POST">
-          <button name="delete" value="<%= conversationIndex %>" type="submit">Delete</button>
-        </form>
+  				<li><a href="/chat/<%= conversation.getTitle() %>">
+    			<%= conversation.getTitle() %></a></li>
+    			<form action="/conversations" method="POST">
+         		<button name="delete" value="<%= conversationIndex %>" type="submit">Delete</button>
+        	</form>
+    <% conversationIndex ++; } %>
     <%
-      conversationIndex ++;
+      
       }
     %>
 	<% } %>
