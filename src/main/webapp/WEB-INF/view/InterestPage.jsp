@@ -15,6 +15,7 @@
 --%>
 <%@ page import="java.util.List" %>
 <%@ page import="codeu.model.data.Conversation" %>
+<%@ page import="codeu.model.store.basic.ConversationStore" %>
 
 <!DOCTYPE html>
 <html>
@@ -66,7 +67,18 @@
     <% } %>
 
     <h1>Interest Conversations</h1>
-	
+		<% List<Conversation> conversations = (List<Conversation>) request.getAttribute("conversations"); 
+				for(Conversation conversation: conversations){
+				  if(conversation.getTitle().equals("Movies") || 
+				      conversation.getTitle().equals("Sports") || 
+				      conversation.getTitle().equals("Readings") || 
+				      conversation.getTitle().equals("Fitness") || 
+				      conversation.getTitle().equals("Traveling")){ %>
+				    <li><a href="/chat/<%= conversation.getTitle() %>">
+	    			<%= conversation.getTitle() %></a></li>
+				  <% }
+				}
+		%>
 	
    
     <hr/>
