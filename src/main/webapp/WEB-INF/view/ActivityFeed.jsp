@@ -98,7 +98,7 @@ List<User> users = (List<User>) request.getAttribute("users");
 	  	  .getUser(user.getId()).getName();
 	  	String creation = user.getTime();
 	%>
-	<li>class="w3-xlarge"<strong><a href="/users/<%=name%>"><%=name%></a></strong> joined CodeU Chat App Team 34 on <font style="color:blue"> <%=creation%> </font></li>
+	<li class="w3-xlarge"><strong><a href="/users/<%=name%>"><%=name%></a></strong> joined CodeU Chat App Team 34 on <font style="color:blue"> <%=creation%> </font></li>
 	<% } %>
 	</ul>
   </div>
