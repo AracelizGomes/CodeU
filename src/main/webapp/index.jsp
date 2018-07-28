@@ -97,7 +97,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <body>
 
-  <form method="post" action="mailto:agomes@codeustudents.com" class="w3-container w3-card-4 w3-light-grey w3-text-red w3-margin">
+  <form method="post" action="mailto:agomes@codeustudents.com" class="w3-container w3-card-4 w3-light-grey w3-text-red w3-margin" enctype="multipart/form-data" name="EmailForm">
   <h2 class="w3-center">Contact Us</h2>
  
   <div class="w3-row w3-section">
