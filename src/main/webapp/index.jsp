@@ -27,6 +27,11 @@
 	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 	.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 	.fa-anchor,.fa-coffee {font-size:200px}
+	
+	header {
+     width:100%;
+     background-image:url("http://www.isgoodstuff.com/wp-content/uploads/2014/08/IMG_0406-1300x866.jpg");
+	}
 </style>
 
 <body>
@@ -66,13 +71,13 @@
   </div>
   </nav>
 
-  <header class="w3-container w3-dark-grey w3-center" style="padding:128px 16px">
+  <header class="w3-container w3-center" style="padding:128px 16px">
   <div id="container">
     <div>
-      <h1 style="color:tomato;"><strong>CodeU Chat App Team 34</strong></h1>
-      <h2 style="color:tomato;"><strong>Welcome!</strong></h2>
+      <h1 style="color:tomato;" style="text-shadow:1px 1px 0 #444"><strong>CodeU Chat App Team 34</strong></h1>
+      <h2 style="color:tomato;" style="text-shadow:1px 1px 0 #444"><strong>Welcome!</strong></h2>
 
-      <ul class="w3-ul w3-large">
+      <ul class="w3-ul w3-large w3-text-white" style="text-shadow:1px 1px 0 #444">
         <li><a href="/login">Login</a> to get started.</li>
         <li>Go to the <a href="/conversations">conversations</a> page to
             create or join a conversation.</li>

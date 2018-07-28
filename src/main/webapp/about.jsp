@@ -203,7 +203,7 @@ body {
       <h1>About the Team 34 Chat App</h1>
       <p class="w3-xlarge">
         Hello! We are Team 34 and this is our Chat App. On our Chat App, you can connect with others through common
-        interests, creating private and group messages, create and customize your own profile page and monio
+        interests, creating private and group messages, create and customize your own profile page and monitor your activity!
       </p>
 
       <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -221,7 +221,7 @@ body {
                         <div class="col-md-4 col-sm-4">
                             <div class="team-member">
                                 <div class="team-img">
-                                    <img src="https://i.ytimg.com/vi/3ggIHfwkIWM/maxresdefault.jpg" alt="team member" class="img-responsive">
+                                    <img src="celi.JPG" alt="team member" class="img-responsive">
                                 </div>
                                 <div class="team-hover">
                                     <div class="desk">
