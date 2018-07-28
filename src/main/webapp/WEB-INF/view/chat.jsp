@@ -95,11 +95,11 @@ ConversationStore conversationStore = ConversationStore.getInstance();
       <a href="" style="float: right">&#8635;</a></h1>
     
     <div id="addContributor">
-    	<h3>Add User To Conversation</h3>
+    	<h3 class="w3-xlarge">Add User To Conversation</h3>
     	<% 
     	System.out.println(users + "- users");
     	%>
-    	  <form action="/chat/<%= conversation.getTitle() %>" method="POST"> 
+    	  <form action="/chat/<%= conversation.getTitle() %>" class="w3-large" method="POST"> 
     	  	<select name="addContributor">
     	  	<% for (User user: users){ %>
     	  		<li> <option value="<%= user.getName() %>"><%= user.getName() %></option></li>
@@ -112,11 +112,11 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     </div>
     
     <div id="deleteContributor">
-    	<h3>Delete User From Conversation</h3>
+    	<h3 class="w3-xlarge">Delete User From Conversation</h3>
     	<% 
     	HashSet<UUID> contributorList = (HashSet<UUID>) conversation.getContributorList(); 
       %>
-    	  <form action="/chat/<%= conversation.getTitle() %>" method="POST"> 
+    	  <form action="/chat/<%= conversation.getTitle() %>" class="w3-large" method="POST"> 
     	  	<select name="deleteContributor">
     	  	<% for (UUID id: contributorList){ %>
     	  		<li><option value="<%= (userStore.getUser(id)).getName() %>"><%= (userStore.getUser(id)).getName() %></option></li>
@@ -129,16 +129,16 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     	<% conversationStore.updateConversation(conversation); %>
     </div>
 		
-    <div id="chat">
-      <ul>
+    <div id="chat" style="background-color:white">
+      <ul class="w3-xxlarge">
     <%
       int messageIndex = 0;
       for (Message message : messages) {
         String author = UserStore.getInstance()
           .getUser(message.getAuthorId()).getName();
     %>
-      <li><strong><%= author %>:</strong> <%= message.getContentWithHtml() %> </li>
-      <form action="/chat/<%= conversation.getTitle() %>" method="POST">
+      <li class="w3-large"><strong><%= author %>:</strong> <%= message.getContentWithHtml() %> </li>
+      <form class="w3-xlarge" action="/chat/<%= conversation.getTitle() %>" method="POST">
           <button name="delete" value="<%= messageIndex %>" type="submit">Delete</button>
       </form>
     <% messageIndex ++; } %>
@@ -148,9 +148,9 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     <hr/>
     <% if (request.getSession().getAttribute("user") != null) { %>
     <form action="/chat/<%= conversation.getTitle() %>" method="POST">
-        <textarea name="message"></textarea>
+        <textarea name="message" class="w3-xxlarge"></textarea>
         <br/>
-        <input name="send" type="submit" value="Send"></input>
+        <input class="w3-xlarge" name="send" type="submit" value="Send"></input>
     </form>
 
     <script>

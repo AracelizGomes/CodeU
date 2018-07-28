@@ -29,6 +29,7 @@ List<User> users = (List<User>) request.getAttribute("users");
 <head>
 <title>ActivityFeed</title>
 <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -77,18 +78,18 @@ List<User> users = (List<User>) request.getAttribute("users");
 
   <div id="container">
 
-	<h1>Activity Feed</h1>
+	<h1 class="w3-xxlarge">Activity Feed</h1>
 
-	<h2>This where you see what the world is up to!</h2>
+	<h2 class="w3-xxlarge">This where you see what the world is up to!</h2>
 
-	<ul class="mdl-list">
+	<ul class="mdl-list w3-large">
 	<%
 	  for (Conversation conversation : conversations) {
 	  	String owner = UserStore.getInstance()
 	  	  .getUser(conversation.getOwnerId()).getName();
 	  	String creation = conversation.getTime();
 	%>
-	<li><strong><a href="/users/<%=owner%>"><%=owner%></a></strong> created the conversation <a href="/chat/<%=conversation.getTitle()%>"> <%=conversation.getTitle()%></a> on <font style="color:blue"> <%=creation%> </font></li>
+	<li class="w3-xlarge"><strong><a href="/users/<%=owner%>"><%=owner%></a></strong> created the conversation <a href="/chat/<%=conversation.getTitle()%>"> <%=conversation.getTitle()%></a> on <font style="color:blue"> <%=creation%> </font></li>
 	<% } %>
 	
 	<%
@@ -97,7 +98,7 @@ List<User> users = (List<User>) request.getAttribute("users");
 	  	  .getUser(user.getId()).getName();
 	  	String creation = user.getTime();
 	%>
-	<li><strong><a href="/users/<%=name%>"><%=name%></a></strong> joined CodeU Chat App Team 34 on <font style="color:blue"> <%=creation%> </font></li>
+	<li>class="w3-xlarge"<strong><a href="/users/<%=name%>"><%=name%></a></strong> joined CodeU Chat App Team 34 on <font style="color:blue"> <%=creation%> </font></li>
 	<% } %>
 	</ul>
   </div>

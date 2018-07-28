@@ -29,6 +29,7 @@ UserStore userStore = UserStore.getInstance();
 <head>
   <title>Profile</title>
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
@@ -84,52 +85,52 @@ UserStore userStore = UserStore.getInstance();
 			User currentUser = userStore.getUser(userProfile);
 			
 			if (userProfile.equals("")) { %>
-				<h1>Error This User Does Not Exist</h1>
+				<h1 class="w3-xxlarge">Error This User Does Not Exist</h1>
 			
 			<% } else {
 					 if (sessionUser != null && sessionUser.equals(userProfile)){ %>
-						<h1 style="color:#3498DB"><strong>Welcome To Your Profile Page!</strong></h1>
+						<h1 style="color:#3498DB" class="w3-xxlarge"><strong>Welcome To Your Profile Page!</strong></h1>
 						<hr class="section-heading-spacer">
 					<% } else { %>
-						<h1><strong>Welcome to <%=userProfile %>'s Profile Page</strong></h1>
+						<h1 class="w3-xxlarge"><strong>Welcome to <%=userProfile %>'s Profile Page</strong></h1>
 						<hr class="section-heading-spacer">
 					<% } %>
 		
 			<%/** defult profile pic is a cute puppy */ %>
 			<div id="avatar">
-				<img alt="cute dog" src = "https://learnwebcode.com/images/lessons/insert-image-funny-dog.jpg" class="center">
+				<img alt="cute dog" src = "https://learnwebcode.com/images/lessons/insert-image-funny-dog.jpg" class="center w3-circle w3-center" style="height:400px; width:650px">
 			</div>
 			<br/>
 			
 			
 			<%/** user's bio/aboutme section of profile */ %>
 			<% String profileBio = currentUser.getBiography(); %>
-			<h2 style="color:#083BF9">About <%=userProfile %> </h2>
+			<h2 class="w3-xxlarge" style="color:#083BF9">About <%=userProfile %> </h2>
 			<hr class="section-heading-spacer">
-			<a> <%= profileBio %></a>
+			<a class="w3-xlarge"> <%= profileBio %></a>
 			<br/>
 			<br/>
 			
 			<%/** Edit profile bio aboutme */ %>
 			
 			<% if (sessionUser != null && sessionUser.equals(userProfile)) { %>
-				<a>Edit Your Bio Here <%=sessionUser %> (only you can see this)</a>
-				<form action="/users/<%=sessionUser %>" method="POST">
-					<input type="text" name="biography" value="<%= currentUser.getBiography() %>" >
+				<a class="w3-xlarge">Edit Your Bio Here <%=sessionUser %> (only you can see this)</a>
+				<form class="w3-xlarge" action="/users/<%=sessionUser %>" method="POST">
+					<input class="w3-xlarge" type="text" name="biography" value="<%= currentUser.getBiography() %>" >
 					<br/>
 				<button type="Submit">Submit</button>
 				</form>
 			<% } %>
 			
 			<hr class="section-heading-spacer">
-			<h3 class="font-semibold mgbt-xs-5"> Google CodeU Summer 2018 Student </h3>
+			<h3 class="font-semibold mgbt-xs-5 w3-xlarge"> Google CodeU Summer 2018 Student </h3>
 			<hr class="section-heading-spacer">
 			
 			<h2 style="color:indigo"> <%= userProfile %>'s Sent Messages </h2>
 			<hr class="section-heading-spacer">
 			<% List<Message> messagesSent = (List) request.getAttribute("messages");
 				for (Message message: messagesSent) { %>
-					<a><strong> <%=message.getTime() %> </strong> : <%= message.getContent() %></a>
+					<a class="w3-xlarge"><strong> <%=message.getTime() %> </strong> : <%= message.getContent() %></a>
 					<br/>
 				<% } %>
 				<hr class="section-heading-spacer">

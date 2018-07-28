@@ -72,18 +72,18 @@
   <div id="container">
 
     <% if(request.getAttribute("error") != null){ %>
-        <h2 style="color:red"><%= request.getAttribute("error") %></h2>
+        <h2 style="color:red" class="w3-xxlarge"><%= request.getAttribute("error")%></h2>
     <% } %>
 
     <% if(request.getSession().getAttribute("user") != null){ %>
-      <h1>Pick Interest Conversation</h1>
+      <h1 class="w3-xxlarge">Pick Interest Conversation</h1>
       
       
       <p>Select interest from drop-down list:</p>
 
-<form action="/interest" method="POST">
-  <select name="interestChoice">
-    <option value="Movies">Movies</option>
+<form action="/interest" method="POST" class="w3-xlarge"> 
+  <select name="interestChoice" class="w3-xlarge">
+    <option value="Movies" >Movies</option>
     <option value="Sports">Sports</option>
     <option value="Readings">Readings</option>
     <option value="Fitness">Fitness</option>
@@ -96,7 +96,7 @@
       <hr>
     <% } %>
 
-    <h1>Interest Conversations</h1>
+    <h1 class="w3-xxlarge">Interest Conversations</h1>
 		<% List<Conversation> conversations = (List<Conversation>) request.getAttribute("conversations"); 
 				for(Conversation conversation: conversations){
 				  if(conversation.getTitle().equals("Movies") || 
@@ -104,7 +104,7 @@
 				      conversation.getTitle().equals("Readings") || 
 				      conversation.getTitle().equals("Fitness") || 
 				      conversation.getTitle().equals("Traveling")){ %>
-				    <li><a href="/chat/<%= conversation.getTitle() %>">
+				    <li class="w3-xxlarge"><a href="/chat/<%= conversation.getTitle() %>">
 	    			<%= conversation.getTitle() %></a></li>
 				  <% }
 				}

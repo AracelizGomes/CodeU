@@ -33,6 +33,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
 <head>
   <title>Conversations</title>
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -82,23 +83,23 @@ ConversationStore conversationStore = ConversationStore.getInstance();
   <div id="container">
 
     <% if(request.getAttribute("error") != null){ %>
-        <h2 style="color:red"><%= request.getAttribute("error") %></h2>
+        <h2 class="w3-xlarge" style="color:red" ><%= request.getAttribute("error") %></h2>
     <% } %>
 
     <% if(request.getSession().getAttribute("user") != null){ %>
-      <h1>New Conversation</h1>
+      <h1 class="w3-xxlarge">New Conversation</h1>
       <form action="/conversations" method="POST">
           <div class="form-group">
-            <label class="form-control-label">Title:</label>
-          <input type="text" name="conversationTitle">
+            <label class="form-control-label w3-xlarge">Title:</label>
+          <input type="text" name="conversationTitle" class="w3-xxlarge">
         </div>
-        <button name="send" type="submit" value="Send">Create</button>
+        <button name="send" type="submit" value="Send" class="w3-xlarge">Create</button>
       </form>
 
       <hr>
     <% } %>
 
-    <h1><%= request.getSession().getAttribute("user") %>'s Conversations</h1>
+    <h1 class="w3-xxlarge"><%= request.getSession().getAttribute("user") %>'s Conversations</h1>
 
     <%
     String username = (String) request.getSession().getAttribute("user");
@@ -111,18 +112,18 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     <%
     if(conversationStore.userHasConversations(id) == false || user == null){
     %>
-      <p>Create a conversation to get started.</p>
+      <p class="w3-xxlarge">Create a conversation to get started.</p>
     <%
     }
     else{
     %>
-      <p>Your Conversations Are Here</p>
-      <ul class="mdl-list">
+      <p class="w3-xxlarge">Your Conversations Are Here</p>
+      <ul class="mdl-list w3-xlarge">
     <%
     	int conversationIndex = 0;
     	for(Conversation conversation : conversations){ %>
     		<%if(conversation.isContributor(user)) { %>
-  				<li><a href="/chat/<%= conversation.getTitle() %>">
+  				<li class="w3-xlarge"><a href="/chat/<%= conversation.getTitle() %>">
     			<%= conversation.getTitle() %></a></li>
     			<form action="/conversations" method="POST">
          		<button name="delete" value="<%= conversationIndex %>" type="submit">Delete</button>

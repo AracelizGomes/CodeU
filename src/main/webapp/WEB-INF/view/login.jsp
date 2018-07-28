@@ -18,6 +18,7 @@
 <head>
   <title>Login</title>
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -64,25 +65,25 @@
   <br><br><br><br><br>
 
   <div id="container">
-    <h1>Login</h1>
+    <h1 class="w3-xxlarge">Login</h1>
 
     <% if(request.getAttribute("error") != null){ %>
-        <h2 style="color:red"><%= request.getAttribute("error") %></h2>
+        <h2 style="color:red" class="w3-xxlarge"><%= request.getAttribute("error") %></h2>
     <% } %>
 
-    <form action="/login" method="POST">
-      <label for="username">Username: </label>
+    <form action="/login" method="POST" class="w3-xlarge">
+      <label for="username" class="w3-xlarge">Username: </label>
       <br/>
-      <input type="text" name="username" id="username">
+      <input type="text" name="username" id="username" class="w3-xlarge">
       <br/>
-      <label for="password">Password: </label>
+      <label for="password" class="w3-xlarge">Password: </label>
       <br/>
-      <input type="password" name="password" id="password">
+      <input type="password" name="password" id="password" class="w3-xlarge">
       <br/><br/>
-      <button type="submit">Login</button>
+      <button type="submit" class="w3-xlarge">Login</button>
     </form>
 
-    <p>New users can register <a href="/register">here</a>.</p>
+    <p class="w3-xlarge">New users can register <a href="/register">here</a>.</p>
   </div>
 </body>
 </html>
