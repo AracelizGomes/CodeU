@@ -33,13 +33,25 @@ UserStore userStore = UserStore.getInstance();
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <style>
 	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 	.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 	.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+<style>
+    #activityfeed {
+      background: linear-gradient( #FFA07A, white, turquoise);
+      height: 500px;
+      overflow-y: scroll;
+    }
+    html {
+      zoom:80%;
+    }
+    .texts {
+      font-size:20px;
+    }
 </style>
 <body>
 
@@ -48,7 +60,7 @@ UserStore userStore = UserStore.getInstance();
   <div class="w3-top">
  	  <div class="w3-bar w3-red w3-card w3-left-align w3-large">
     	<a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    	<a href="/" class="w3-bar-item w3-button w3-padding-large w3-white">Team 34 Chat App <i class="fa fa-space-shuttle" style="font-size:36px;color:black"></i></a>
+    	<a href="/" class="w3-bar-item w3-button w3-padding-large w3-white">Team 34 Chat App</a>
     	<a href="/conversations" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Conversations</a>
    		<% if (request.getSession().getAttribute("user") != null) { %>
     		<a href="/users/<%= request.getSession().getAttribute("user") %>" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"> <%= request.getSession().getAttribute("user") %>'s Profile</a>
@@ -76,7 +88,7 @@ UserStore userStore = UserStore.getInstance();
   </div>
   </nav>
   <br><br><br><br><br><br>
-  <div id="container">
+  <div id="w3-container" style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
   	<div
 			style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
 			
@@ -128,34 +140,25 @@ UserStore userStore = UserStore.getInstance();
 			<h3 class="font-semibold mgbt-xs-5 w3-xlarge"> Google CodeU Summer 2018 Student </h3>
 			<hr class="section-heading-spacer">
 			
-			<h2 style="color:indigo"> <%= userProfile %>'s Sent Messages </h2>
+			
+			<h2 style="color:blue" class="w3-xxlarge"> <%= userProfile %>'s Most Recent Activity</h2>
 			<hr class="section-heading-spacer">
-			<% List<Message> messagesSent = (List) request.getAttribute("messages");
+			<div id="activityfeed">
+				<% List<Message> messagesSent = (List) request.getAttribute("messages");
 				for (Message message: messagesSent) { %>
-					<a class="w3-xlarge"><strong> <%=message.getTime() %> </strong> : <%= message.getContent() %></a>
+					<a class="w3-xlarge"><strong>   <%=   message.getTime() %> </strong> : <%= message.getContent() %></a>
+						<hr class="section-heading-spacer">
 					<br/>
 				<% } %>
 				<hr class="section-heading-spacer">
 			<% } %>
-			
+			</div>
+			<hr class="section-heading-spacer">
+			<hr class="section-heading-spacer">
 
 		</div>
 	</div>
 </body>
-
-<style>
-    #activityfeed {
-      background-color: #f5eff4;
-      height: 500px;
-      overflow-y: scroll
-    }
-    html {
-      zoom:80%;
-    }
-    .texts {
-      font-size:20px;
-    }
-  </style>
 </html>
 
 
