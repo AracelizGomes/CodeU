@@ -37,12 +37,14 @@ ConversationStore conversationStore = ConversationStore.getInstance();
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <style>
 	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 	.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 	.fa-anchor,.fa-coffee {font-size:200px}
 </style>
+
 <body>
 
   <!-- Navbar -->
@@ -93,7 +95,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
             <label class="form-control-label w3-xlarge">Title:</label>
           <input type="text" name="conversationTitle" class="w3-xxlarge">
         </div>
-        <button name="send" type="submit" value="Send" class="w3-xlarge">Create</button>
+        <button name="send" type="submit" value="Send" class="w3-xlarge btn btn-primary mb-2 w3-hover-white">Create</button>
       </form>
 
       <hr>
@@ -123,11 +125,16 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     	int conversationIndex = 0;
     	for(Conversation conversation : conversations){ %>
     		<%if(conversation.isContributor(user)) { %>
-  				<li class="w3-xlarge"><a href="/chat/<%= conversation.getTitle() %>">
-    			<%= conversation.getTitle() %></a></li>
-    			<form action="/conversations" method="POST">
-         		<button name="delete" value="<%= conversationIndex %>" type="submit">Delete</button>
-        	</form>
+  				<div class="card" style="width: 18rem;">
+  					<ul class="list-group list-group-flush">
+  						<li class="list-group-item w3-xlarge"><a href="/chat/<%= conversation.getTitle() %>"><%= conversation.getTitle() %>
+  						<div class="input-group-append">
+    						<button name="delete" value="<%= conversationIndex %>" class="btn btn-primary mb-2 w3-hover-white" type="submit">Delete</button>
+ 						</div>
+ 						</a>
+ 						</li>
+ 					</ul>
+				</div>
     <% conversationIndex ++; } %>
     <%
       

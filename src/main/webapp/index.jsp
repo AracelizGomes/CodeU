@@ -30,7 +30,7 @@
 	
 	header {
      width:100%;
-     background-image:url("http://www.isgoodstuff.com/wp-content/uploads/2014/08/IMG_0406-1300x866.jpg");
+     background-image:url("https://ak8.picdn.net/shutterstock/videos/7020988/thumb/1.jpg");
 	}
 </style>
 
@@ -74,8 +74,8 @@
   <header class="w3-container w3-center" style="padding:128px 16px">
   <div id="container">
     <div>
-      <h1 style="color:tomato;" style="text-shadow:1px 1px 0 #444"><strong>CodeU Chat App Team 34</strong></h1>
-      <h2 style="color:tomato;" style="text-shadow:1px 1px 0 #444"><strong>Welcome!</strong></h2>
+      <h1 style="color:tomato; text-shadow:1px 1px 0 #444"><strong>CodeU Chat App Team 34</strong></h1>
+      <h2 style="color:tomato; text-shadow:1px 1px 0 #444"><strong>Welcome!</strong></h2>
 
       <ul class="w3-ul w3-large w3-text-white" style="text-shadow:1px 1px 0 #444">
         <li><a href="/login">Login</a> to get started.</li>
@@ -135,7 +135,7 @@
       </div>
   </div>
 
-  <button  type="submit" class="w3-button w3-block w3-section w3-red w3-ripple w3-padding" >Send</button>
+  <button  type="submit" class="w3-button w3-block w3-section w3-red w3-ripple w3-padding w3-hover-white" >Send</button>
   </form>
   </body>
 

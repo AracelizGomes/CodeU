@@ -24,10 +24,16 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <style>
 	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 	.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 	.fa-anchor,.fa-coffee {font-size:200px}
+	
+	header {
+     width:100%;
+     background-image:url("https://ak8.picdn.net/shutterstock/videos/7020988/thumb/1.jpg");
+	}
 </style>
 <style>
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic);
@@ -194,25 +200,25 @@ body {
     
   </div>
   </nav>
-  <br><br><br><br><br>
 
   <div id="w3-container">
     <div
-      style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
-
-      <h1>About the Team 34 Chat App</h1>
-      <p class="w3-xlarge">
+      style="margin-top: 50px;">
+	  <header class="w3-container w3-center" style="padding:128px 16px">
+      <h1 class="w3-ul w3-xxlarge w3-text-red" style="text-shadow:1px 1px 0 #444">About the Team 34 Chat App</h1>
+      <p class="w3-xlarge w3-ul w3-text-white" style="text-shadow:1px 1px 0 #444">
         Hello! We are Team 34 and this is our Chat App. On our Chat App, you can connect with others through common
         interests, creating private and group messages, create and customize your own profile page and monitor your activity!
       </p>
+      </header>
 
       <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+	  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	  <!------ Include the above in your HEAD tag ---------->
 
-<div class="container">
-                    <div class="row">
+	  <div class="container">
+                    <div class="row w3-container w3-center" >
                         <div class="heading-title text-center">
                             <h3 class="text-uppercase">Meet The Team</h3>
                             <p class="p-top-30 half-txt">Our team worked together to create this Chat App! </p>

@@ -39,11 +39,89 @@ ConversationStore conversationStore = ConversationStore.getInstance();
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="https://cdn.ckeditor.com/4.7.2/basic/ckeditor.js"></script>
+  <!-- First include jquery js -->
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<!-- Then include bootstrap js -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <style>
 	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 	.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 	.fa-anchor,.fa-coffee {font-size:200px}
+	
+	.chat
+	{	
+    list-style: none;
+    margin: 0;
+    padding: 0;
+	}
+
+	.chat li
+	{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+	}
+
+	.chat li.left .chat-body
+	{
+    margin-left: 60px;
+	}
+
+	.chat li.right .chat-body
+	{
+    margin-right: 60px;
+	}
+	
+
+	.chat li.right .chat-body
+	{
+    margin-right: 60px;
+	}
+
+
+	.chat li .chat-body p
+	{
+    margin: 0;
+    color: #777777;
+	}
+
+	.panel .slidedown .glyphicon, .chat .glyphicon
+	{
+    margin-right: 5px;
+	}
+
+	.panel-body
+	{
+    overflow-y: scroll;
+    height: 250px;
+	}
+
+	::-webkit-scrollbar-track
+	{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+	}
+
+	::-webkit-scrollbar
+	{
+    width: 12px;
+    background-color: #F5F5F5;
+	}
+
+	::-webkit-scrollbar-thumb
+	{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+	}
+	
+	
   </style>
 
   <script>
@@ -53,6 +131,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
       chatDiv.scrollTop = chatDiv.scrollHeight;
     };
   </script>
+  
 </head>
 <body onload="scrollChat()">
 
@@ -60,7 +139,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
   <nav>
   <div class="w3-top">
  	  <div class="w3-bar w3-red w3-card w3-left-align w3-large">
-    	<a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    	<a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="conversation.myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     	<a href="/" class="w3-bar-item w3-button w3-padding-large w3-white">Team 34 Chat App</a>
     	<a href="/conversations" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Conversations</a>
    		<% if (request.getSession().getAttribute("user") != null) { %>
@@ -88,9 +167,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     
   </div>
   </nav>
-  <br><br><br><br><br>
-
-  <div id="container">
+  <div id="container" style="margin-top: 50px;">
     <h1><%= conversation.getTitle() %>
       <a href="" style="float: right">&#8635;</a></h1>
     
@@ -106,7 +183,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     	  	<% } %>
     	  	</select>
     	  	<br><br>
-    	  	<input type="submit">
+    	  	<input class="btn btn-primary mb-2 w3-hover-white" type="submit">
     	  </form>
     	<% conversationStore.updateConversation(conversation); %>
     </div>
@@ -123,35 +200,69 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     	  		<% } %>
     	  	</select>
     	  	<br><br>
-    	  	<input type="submit">
+    	  	<input class="btn btn-primary mb-2 w3-hover-white" type="submit">
     	  	<br><br>
     	  </form>
     	<% conversationStore.updateConversation(conversation); %>
     </div>
 		
-    <div id="chat" style="background-color:white">
-      <ul class="w3-xxlarge">
-    <%
-      int messageIndex = 0;
-      for (Message message : messages) {
-        String author = UserStore.getInstance()
-          .getUser(message.getAuthorId()).getName();
-    %>
-      <li class="w3-large"><strong><%= author %>:</strong> <%= message.getContentWithHtml() %> </li>
-      <form class="w3-xlarge" action="/chat/<%= conversation.getTitle() %>" method="POST">
-          <button name="delete" value="<%= messageIndex %>" type="submit">Delete</button>
-      </form>
-    <% messageIndex ++; } %>
-      </ul>
-    </div>
-
-    <hr/>
-    <% if (request.getSession().getAttribute("user") != null) { %>
-    <form action="/chat/<%= conversation.getTitle() %>" method="POST">
-        <textarea name="message" class="w3-xxlarge"></textarea>
-        <br/>
-        <input class="w3-xlarge" name="send" type="submit" value="Send"></input>
-    </form>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="panel panel-primary">
+                <div class="panel-heading" id="accordion">
+                    <span class="glyphicon glyphicon-comment"></span> Chat
+                    <div class="btn-group pull-right">
+                        <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                    </div>
+                </div>
+            <div class="panel-collapse collapse" id="collapseOne">
+                <div class="panel-body">
+                    <ul class="chat">
+                        <li class="left clearfix"><span class="chat-img pull-left">
+                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font"></strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>July 2018</small>
+                                </div>
+                                <ul class="w3-xxlarge">
+                                <%
+                                int messageIndex = 0;
+                                for (Message message : messages) {
+                                    String author = UserStore.getInstance()
+                                    .getUser(message.getAuthorId()).getName(); %>
+                                    <a class="btn-xs"><strong> <%=message.getTime() %> </strong></a>
+                  									
+                                
+                                <li class="w3-large"><strong><%= author %>:</strong> <%= message.getContentWithHtml() %> </li>
+                   	            
+                                <form class="w3-xlarge" action="/chat/<%= conversation.getTitle() %>" method="POST">
+                                     <button name="delete" value="<%= messageIndex %>" class="btn btn-primary mb-2 w3-hover-white" type="submit">Delete</button>
+                                </form>
+                            <% messageIndex ++; } %>
+                            </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <% if (request.getSession().getAttribute("user") != null) { %>
+                                <form action="/chat/<%= conversation.getTitle() %>" method="POST">
+                                    <textarea name="message" class="w3-xxlarge"></textarea>
+                                    <br/>
+                                    <input class="w3-xlarge btn btn-warning" name="send" type="submit" value="Send"></input>
+                                 </form>
+                        </span>
+                    </div>
+                </div>
+            </div>
 
     <script>
       CKEDITOR.replace('message');

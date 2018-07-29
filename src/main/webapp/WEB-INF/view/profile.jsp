@@ -33,6 +33,7 @@ UserStore userStore = UserStore.getInstance();
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <style>
 	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
@@ -73,7 +74,7 @@ UserStore userStore = UserStore.getInstance();
     
   </div>
   </nav>
-  <br><br><br><br><br>
+  <br><br><br><br><br><br>
   <div id="container">
   	<div
 			style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
@@ -118,7 +119,7 @@ UserStore userStore = UserStore.getInstance();
 				<form class="w3-xlarge" action="/users/<%=sessionUser %>" method="POST">
 					<input class="w3-xlarge" type="text" name="biography" value="<%= currentUser.getBiography() %>" >
 					<br/>
-				<button type="Submit">Submit</button>
+				<button type="Submit" class="btn btn-primary mb-2 w3-hover-white">Submit</button>
 				</form>
 			<% } %>
 			

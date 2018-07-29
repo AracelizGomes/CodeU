@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <style>
 	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
@@ -80,10 +81,10 @@
       <br/>
       <input type="password" name="password" id="password" class="w3-xlarge">
       <br/><br/>
-      <button type="submit" class="w3-xlarge">Login</button>
+      <button type="submit" class="w3-xlarge btn btn-primary mb-2 w3-hover-white">Login</button>
     </form>
 
-    <p class="w3-xlarge">New users can register <a href="/register">here</a>.</p>
+    <a class="w3-xlarge w3-xlarge btn btn-primary mb-2 w3-hover-white" href="/register">Register Here</a>
   </div>
 </body>
 </html>
