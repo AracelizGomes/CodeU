@@ -187,7 +187,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     	  </form>
     	<% conversationStore.updateConversation(conversation); %>
     </div>
-    
+    <hr class="section-heading-spacer">
     <div id="deleteContributor">
     	<h3 class="w3-xlarge">Delete User From Conversation</h3>
     	<% 
@@ -205,7 +205,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     	  </form>
     	<% conversationStore.updateConversation(conversation); %>
     </div>
-		
+	<hr class="section-heading-spacer">
     <div class="container">
     <div class="row">
         <div class="col-md-5">
@@ -267,7 +267,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
     <script>
       CKEDITOR.replace('message');
     </script>
-
+	<hr class="section-heading-spacer">
     <% } else { %>
       <p><a href="/login">Login</a> to send a message.</p>
     <% } %>

@@ -220,8 +220,9 @@ body {
 	  <div class="container">
                     <div class="row w3-container w3-center" >
                         <div class="heading-title text-center">
-                            <h3 class="text-uppercase">Meet The Team</h3>
+                            <h2 class="text-uppercase">Meet The Team</h3>
                             <p class="p-top-30 half-txt">Our team worked together to create this Chat App! </p>
+                            <hr class="section-heading-spacer">
                         </div>
 
                         <div class="col-md-4 col-sm-4">

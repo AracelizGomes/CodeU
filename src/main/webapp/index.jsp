@@ -72,7 +72,7 @@
   </nav>
 
   <header class="w3-container w3-center" style="padding:128px 16px">
-  <div id="container">
+  <div id="w3-container" style="margin-top: 50px;">
     <div>
       <h1 style="color:tomato; text-shadow:1px 1px 0 #444"><strong>CodeU Chat App Team 34</strong></h1>
       <h2 style="color:tomato; text-shadow:1px 1px 0 #444"><strong>Welcome!</strong></h2>
