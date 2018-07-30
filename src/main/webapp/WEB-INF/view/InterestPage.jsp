@@ -20,23 +20,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="icon" 
-      type="image/png" 
-      href="https://images.vexels.com/media/users/3/145824/isolated/preview/3fe096b55537e8c0dd845224b3254d11-rocket-silhouette-by-vexels.png">
   <title>Interest Page</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="https://images.vexels.com/media/users/3/145824/isolated/preview/3fe096b55537e8c0dd845224b3254d11-rocket-silhouette-by-vexels.png">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<style>
-	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-	.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
-	.fa-anchor,.fa-coffee {font-size:200px}
-</style>
 <body>
 
   <!-- Navbar -->
@@ -86,17 +78,17 @@
       
       <p>Select interest from drop-down list:</p>
 
-<form action="/interest" method="POST" class="w3-xlarge"> 
-  <select name="interestChoice" class="w3-xlarge">
-    <option value="Movies" >Movies</option>
-    <option value="Sports">Sports</option>
-    <option value="Readings">Readings</option>
-    <option value="Fitness">Fitness</option>
-    <option value="Traveling">Traveling</option>
-  </select>
-  <br><br>
-  <input type="submit" class="btn btn-primary mb-2">
-</form>
+	<form action="/interest" method="POST" class="w3-xlarge"> 
+	  <select name="interestChoice" class="w3-xlarge">
+	    <option value="Movies" >Movies</option>
+	    <option value="Sports">Sports</option>
+	    <option value="Readings">Readings</option>
+	    <option value="Fitness">Fitness</option>
+	    <option value="Traveling">Traveling</option>
+	  </select>
+	  <br><br>
+	  <input type="submit" class="btn btn-primary mb-2">
+	</form>
       
       <hr>
     <% } %>
@@ -129,4 +121,9 @@
     <hr/>
   </div>
 </body>
+<style>
+	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+	.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+	.fa-anchor,.fa-coffee {font-size:200px}
+</style>
 </html>

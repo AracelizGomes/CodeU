@@ -17,159 +17,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="icon" 
-      type="image/png" 
-      href="https://images.vexels.com/media/users/3/145824/isolated/preview/3fe096b55537e8c0dd845224b3254d11-rocket-silhouette-by-vexels.png">
   <title>CodeU Chat App</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="https://images.vexels.com/media/users/3/145824/isolated/preview/3fe096b55537e8c0dd845224b3254d11-rocket-silhouette-by-vexels.png">
 </head>
-
-<style>
-	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-	.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
-	.fa-anchor,.fa-coffee {font-size:200px}
-	
-	header {
-     width:100%;
-     background-image:url("https://ak8.picdn.net/shutterstock/videos/7020988/thumb/1.jpg");
-	}
-</style>
-<style>
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic);
-
-body {
-    font-family: 'Source Sans Pro', sans-serif;
-    line-height: 1.5;
-    color: #323232;
-    font-size: 15px;
-    font-weight: 400;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-font-smoothing: antialiased;
-}
-.heading-title {
-    margin-bottom: 100px;
-}
-.text-center {
-    text-align: center;
-}
-.heading-title h3 {
-    margin-bottom: 0;
-    letter-spacing: 2px;
-    font-weight: normal;
-}
-.p-top-30 {
-    padding-top: 30px;
-}
-.half-txt {
-    width: 60%;
-    margin: 0 auto;
-    display: inline-block;
-    line-height: 25px;
-    color: #7e7e7e;
-}
-.text-uppercase {
-    text-transform: uppercase;
-}
-
-.team-member, .team-member .team-img {
-    position: relative;
-}
-.team-member {
-    overflow: hidden;
-}
-.team-member, .team-member .team-img {
-    position: relative;
-}
-
-.team-hover {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    margin: 0;
-    border: 20px solid rgba(0, 0, 0, 0.1);
-    background-color: rgba(255, 255, 255, 0.90);
-    opacity: 0;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-}
-.team-member:hover .team-hover .desk {
-    top: 35%;
-}
-.team-member:hover .team-hover, .team-member:hover .team-hover .desk, .team-member:hover .team-hover .s-link {
-    opacity: 1;
-}
-.team-hover .desk {
-    position: absolute;
-    top: 0%;
-    width: 100%;
-    opacity: 0;
-    -webkit-transform: translateY(-55%);
-    -ms-transform: translateY(-55%);
-    transform: translateY(-55%);
-    -webkit-transition: all 0.3s 0.2s;
-    transition: all 0.3s 0.2s;
-    padding: 0 20px;
-}
-.desk, .desk h4, .team-hover .s-link a {
-    text-align: center;
-    color: #222;
-}
-.team-member:hover .team-hover .s-link {
-    bottom: 10%;
-}
-.team-member:hover .team-hover, .team-member:hover .team-hover .desk, .team-member:hover .team-hover .s-link {
-    opacity: 1;
-}
-.team-hover .s-link {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    opacity: 0;
-    text-align: center;
-    -webkit-transform: translateY(45%);
-    -ms-transform: translateY(45%);
-    transform: translateY(45%);
-    -webkit-transition: all 0.3s 0.2s;
-    transition: all 0.3s 0.2s;
-    font-size: 35px;
-}
-.desk, .desk h4, .team-hover .s-link a {
-    text-align: center;
-    color: #222;
-}
-.team-member .s-link a {
-    margin: 0 10px;
-    color: #333;
-    font-size: 16px;
-}
-.team-title {
-    position: static;
-    padding: 20px 0;
-    display: inline-block;
-    letter-spacing: 2px;
-    width: 100%;
-}
-.team-title h5 {
-    margin-bottom: 0px;
-    display: block;
-    text-transform: uppercase;
-}
-.team-title span {
-    font-size: 12px;
-    text-transform: uppercase;
-    color: #a5a5a5;
-    letter-spacing: 1px;
-}
-
-</style>
 <body>
 
   <!-- Navbar -->
@@ -348,4 +203,147 @@ body {
     </div>
   </div>
 </body>
+
+<style>
+	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+	.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+	.fa-anchor,.fa-coffee {font-size:200px}
+	
+	header {
+     width:100%;
+     background-image:url("https://ak8.picdn.net/shutterstock/videos/7020988/thumb/1.jpg");
+	}
+</style>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic);
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    line-height: 1.5;
+    color: #323232;
+    font-size: 15px;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+}
+.heading-title {
+    margin-bottom: 100px;
+}
+.text-center {
+    text-align: center;
+}
+.heading-title h3 {
+    margin-bottom: 0;
+    letter-spacing: 2px;
+    font-weight: normal;
+}
+.p-top-30 {
+    padding-top: 30px;
+}
+.half-txt {
+    width: 60%;
+    margin: 0 auto;
+    display: inline-block;
+    line-height: 25px;
+    color: #7e7e7e;
+}
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.team-member, .team-member .team-img {
+    position: relative;
+}
+.team-member {
+    overflow: hidden;
+}
+.team-member, .team-member .team-img {
+    position: relative;
+}
+
+.team-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    border: 20px solid rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.90);
+    opacity: 0;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.team-member:hover .team-hover .desk {
+    top: 35%;
+}
+.team-member:hover .team-hover, .team-member:hover .team-hover .desk, .team-member:hover .team-hover .s-link {
+    opacity: 1;
+}
+.team-hover .desk {
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    opacity: 0;
+    -webkit-transform: translateY(-55%);
+    -ms-transform: translateY(-55%);
+    transform: translateY(-55%);
+    -webkit-transition: all 0.3s 0.2s;
+    transition: all 0.3s 0.2s;
+    padding: 0 20px;
+}
+.desk, .desk h4, .team-hover .s-link a {
+    text-align: center;
+    color: #222;
+}
+.team-member:hover .team-hover .s-link {
+    bottom: 10%;
+}
+.team-member:hover .team-hover, .team-member:hover .team-hover .desk, .team-member:hover .team-hover .s-link {
+    opacity: 1;
+}
+.team-hover .s-link {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    opacity: 0;
+    text-align: center;
+    -webkit-transform: translateY(45%);
+    -ms-transform: translateY(45%);
+    transform: translateY(45%);
+    -webkit-transition: all 0.3s 0.2s;
+    transition: all 0.3s 0.2s;
+    font-size: 35px;
+}
+.desk, .desk h4, .team-hover .s-link a {
+    text-align: center;
+    color: #222;
+}
+.team-member .s-link a {
+    margin: 0 10px;
+    color: #333;
+    font-size: 16px;
+}
+.team-title {
+    position: static;
+    padding: 20px 0;
+    display: inline-block;
+    letter-spacing: 2px;
+    width: 100%;
+}
+.team-title h5 {
+    margin-bottom: 0px;
+    display: block;
+    text-transform: uppercase;
+}
+.team-title span {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #a5a5a5;
+    letter-spacing: 1px;
+}
+
+</style>
+
 </html>

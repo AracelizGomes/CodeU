@@ -33,9 +33,6 @@ ConversationStore conversationStore = ConversationStore.getInstance();
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="icon" 
-      type="image/png" 
-      href="https://images.vexels.com/media/users/3/145824/isolated/preview/3fe096b55537e8c0dd845224b3254d11-rocket-silhouette-by-vexels.png">
   <title><%= conversation.getTitle() %></title>
   <link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -44,90 +41,16 @@ ConversationStore conversationStore = ConversationStore.getInstance();
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="https://images.vexels.com/media/users/3/145824/isolated/preview/3fe096b55537e8c0dd845224b3254d11-rocket-silhouette-by-vexels.png">
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="https://cdn.ckeditor.com/4.7.2/basic/ckeditor.js"></script>
   <!-- First include jquery js -->
-<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
-<!-- Then include bootstrap js -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-  <style>
-	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-	.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
-	.fa-anchor,.fa-coffee {font-size:200px}
-	
-	.chat
-	{	
-    list-style: none;
-    margin: 0;
-    padding: 0;
-	}
-
-	.chat li
-	{
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px dotted #B3A9A9;
-	}
-
-	.chat li.left .chat-body
-	{
-    margin-left: 60px;
-	}
-
-	.chat li.right .chat-body
-	{
-    margin-right: 60px;
-	}
-	
-
-	.chat li.right .chat-body
-	{
-    margin-right: 60px;
-	}
-
-
-	.chat li .chat-body p
-	{
-    margin: 0;
-    color: #777777;
-	}
-
-	.panel .slidedown .glyphicon, .chat .glyphicon
-	{
-    margin-right: 5px;
-	}
-
-	.panel-body
-	{
-    overflow-y: scroll;
-    height: 250px;
-	}
-
-	::-webkit-scrollbar-track
-	{
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    background-color: #F5F5F5;
-	}
-
-	::-webkit-scrollbar
-	{
-    width: 12px;
-    background-color: #F5F5F5;
-	}
-
-	::-webkit-scrollbar-thumb
-	{
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #555;
-	}
-	
-	
-  </style>
-
+  <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <!-- Then include bootstrap js -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  
   <script>
     // scroll the chat div to the bottom
     function scrollChat() {
@@ -135,7 +58,6 @@ ConversationStore conversationStore = ConversationStore.getInstance();
       chatDiv.scrollTop = chatDiv.scrollHeight;
     };
   </script>
-  
 </head>
 <body onload="scrollChat()">
 
@@ -281,4 +203,78 @@ ConversationStore conversationStore = ConversationStore.getInstance();
   </div>
 
 </body>
+<style>
+	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+	.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+	.fa-anchor,.fa-coffee {font-size:200px}
+	
+	.chat
+	{	
+    list-style: none;
+    margin: 0;
+    padding: 0;
+	}
+
+	.chat li
+	{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+	}
+
+	.chat li.left .chat-body
+	{
+    margin-left: 60px;
+	}
+
+	.chat li.right .chat-body
+	{
+    margin-right: 60px;
+	}
+	
+
+	.chat li.right .chat-body
+	{
+    margin-right: 60px;
+	}
+
+
+	.chat li .chat-body p
+	{
+    margin: 0;
+    color: #777777;
+	}
+
+	.panel .slidedown .glyphicon, .chat .glyphicon
+	{
+    margin-right: 5px;
+	}
+
+	.panel-body
+	{
+    overflow-y: scroll;
+    height: 250px;
+	}
+
+	::-webkit-scrollbar-track
+	{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+	}
+
+	::-webkit-scrollbar
+	{
+    width: 12px;
+    background-color: #F5F5F5;
+	}
+
+	::-webkit-scrollbar-thumb
+	{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+	}
+	
+	
+</style>
+  
 </html>

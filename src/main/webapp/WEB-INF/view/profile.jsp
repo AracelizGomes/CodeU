@@ -27,35 +27,16 @@ UserStore userStore = UserStore.getInstance();
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="icon" 
-      type="image/png" 
-      href="https://images.vexels.com/media/users/3/145824/isolated/preview/3fe096b55537e8c0dd845224b3254d11-rocket-silhouette-by-vexels.png">
   <title>Profile</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  <link rel="icon" type="image/png" href="https://images.vexels.com/media/users/3/145824/isolated/preview/3fe096b55537e8c0dd845224b3254d11-rocket-silhouette-by-vexels.png">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<style>
-	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-	.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
-	.fa-anchor,.fa-coffee {font-size:200px}
-</style>
-<style>
-    #activityfeed {
-      background: linear-gradient( #FFA07A, white, turquoise);
-      height: 500px;
-      overflow-y: scroll;
-    }
-    html {
-      zoom:80%;
-    }
-    .texts {
-      font-size:20px;
-    }
-</style>
+
 <body>
 
   <!-- Navbar -->
@@ -162,6 +143,24 @@ UserStore userStore = UserStore.getInstance();
 		</div>
 	</div>
 </body>
+<style>
+	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+	.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+	.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+<style>
+    #activityfeed {
+      background: linear-gradient( #FFA07A, white, turquoise);
+      height: 500px;
+      overflow-y: scroll;
+    }
+    html {
+      zoom:80%;
+    }
+    .texts {
+      font-size:20px;
+    }
+</style>
 </html>
 
 
