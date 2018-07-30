@@ -16,6 +16,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" 
+      type="image/png" 
+      href="https://images.vexels.com/media/users/3/145824/isolated/preview/3fe096b55537e8c0dd845224b3254d11-rocket-silhouette-by-vexels.png">
   <title>CodeU Chat App Team 34</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
