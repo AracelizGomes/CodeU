@@ -87,6 +87,7 @@ UserStore userStore = UserStore.getInstance();
 			
 			<% } else {
 					 if (sessionUser != null && sessionUser.equals(userProfile)){ %>
+					 	<br>
 						<h1 style="color:#3498DB" class="w3-xxlarge"><strong>Welcome To Your Profile Page!</strong></h1>
 						<hr class="section-heading-spacer">
 					<% } else { %>
@@ -96,7 +97,7 @@ UserStore userStore = UserStore.getInstance();
 		
 			<%/** defult profile pic is a cute puppy */ %>
 			<div id="avatar">
-				<img alt="cute dog" src = "https://www.android.com/static/2016/img/versions/oreo/security/animation-play-protect.gif" class="center w3-center" style="height:400px; width:400px">
+				<img alt="cute dog" src="https://www.android.com/static/2016/img/versions/oreo/security/animation-play-protect.gif" class="center w3-center" style="height:300px; width:300px; float: right;">
 			</div>
 			<br/>
 			
@@ -142,6 +143,8 @@ UserStore userStore = UserStore.getInstance();
 
 		</div>
 	</div>
+	<hr class="section-heading-spacer">
+  	<br><br><br>
 </body>
 <style>
 	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
@@ -153,9 +156,6 @@ UserStore userStore = UserStore.getInstance();
       background: linear-gradient( #FFA07A, white, turquoise);
       height: 500px;
       overflow-y: scroll;
-    }
-    html {
-      zoom:80%;
     }
     .texts {
       font-size:20px;
