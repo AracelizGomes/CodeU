@@ -29,6 +29,7 @@ UserStore userStore = UserStore.getInstance();
 <head>
   <title>Profile</title>
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/activityfeed.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
@@ -71,7 +72,7 @@ UserStore userStore = UserStore.getInstance();
     
   </div>
   </nav>
-  <br><br><br><br><br><br>
+  <br><br><br><br><br>
   <div id="w3-container" style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
   	<div
 			style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
@@ -87,7 +88,6 @@ UserStore userStore = UserStore.getInstance();
 			
 			<% } else {
 					 if (sessionUser != null && sessionUser.equals(userProfile)){ %>
-					 	<br>
 						<h1 style="color:#3498DB" class="w3-xxlarge"><strong>Welcome To Your Profile Page!</strong></h1>
 						<hr class="section-heading-spacer">
 					<% } else { %>
@@ -146,21 +146,7 @@ UserStore userStore = UserStore.getInstance();
 	<hr class="section-heading-spacer">
   	<br><br><br>
 </body>
-<style>
-	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-	.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
-	.fa-anchor,.fa-coffee {font-size:200px}
-</style>
-<style>
-    #activityfeed {
-      background: linear-gradient( #FFA07A, white, turquoise);
-      height: 500px;
-      overflow-y: scroll;
-    }
-    .texts {
-      font-size:20px;
-    }
-</style>
+
 </html>
 
 

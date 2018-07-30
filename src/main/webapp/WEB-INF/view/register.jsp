@@ -18,6 +18,7 @@
 <head>
   <title>Register</title>
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/body.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
@@ -81,9 +82,4 @@
     </form>
   </div>
 </body>
-<style>
-	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-	.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
-	.fa-anchor,.fa-coffee {font-size:200px}
-</style>
 </html>

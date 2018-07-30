@@ -29,6 +29,7 @@ List<User> users = (List<User>) request.getAttribute("users");
 <head>
 	<title>ActivityFeed</title>
 	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/activityfeed.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
@@ -112,20 +113,4 @@ List<User> users = (List<User>) request.getAttribute("users");
   <hr class="section-heading-spacer">
   <br><br><br>
 </body>
-<style>
-	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-	.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
-	.fa-anchor,.fa-coffee {font-size:200px}
-</style>
-
-<style>
-    #activityfeed {
-      background: linear-gradient( #FFA07A, white, turquoise);
-      height: 500px;
-      overflow-y: scroll
-    }
-    .texts {
-      font-size:20px;
-    }
-</style>
 </html>

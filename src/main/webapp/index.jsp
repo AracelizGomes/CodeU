@@ -18,6 +18,7 @@
 <head>
   <title>CodeU Chat App Team 34</title>
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/index.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
@@ -131,14 +132,4 @@
   </body>
 
 </body>
-<style>
-	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-	.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
-	.fa-anchor,.fa-coffee {font-size:200px}
-	
-	header {
-     width:100%;
-     background-image:url("https://ak8.picdn.net/shutterstock/videos/7020988/thumb/1.jpg");
-	}
-</style>
 </html>
