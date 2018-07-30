@@ -115,7 +115,7 @@ UserStore userStore = UserStore.getInstance();
 		
 			<%/** defult profile pic is a cute puppy */ %>
 			<div id="avatar">
-				<img alt="cute dog" src = "https://learnwebcode.com/images/lessons/insert-image-funny-dog.jpg" class="center w3-circle w3-center" style="height:400px; width:650px">
+				<img alt="cute dog" src = "https://www.android.com/static/2016/img/versions/oreo/security/animation-play-protect.gif" class="center w3-center" style="height:400px; width:400px">
 			</div>
 			<br/>
 			
