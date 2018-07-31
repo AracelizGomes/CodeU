@@ -27,50 +27,90 @@ List<User> users = (List<User>) request.getAttribute("users");
 <!DOCTYPE html>
 <html>
 <head>
-<title>ActivityFeed</title>
-<link rel="stylesheet" href="/css/main.css">
+	<title>ActivityFeed</title>
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/activityfeed.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="icon" type="image/png" href="https://images.vexels.com/media/users/3/145824/isolated/preview/3fe096b55537e8c0dd845224b3254d11-rocket-silhouette-by-vexels.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 
+  <!-- Navbar -->
   <nav>
-    <a id="navTitle" href="/">CodeU Chat App - Team 34</a>
-    <a href="/conversations">Conversations</a>
-    <% if (request.getSession().getAttribute("user") != null) { %>
-    	 <a href="/users/<%= request.getSession().getAttribute("user") %>" > <%= request.getSession().getAttribute("user") %>'s Profile</a>
-    <% } else { %>
-      	<a href="/login">Login</a>
-    <% } %>
-    <a href="/activityfeed">Activity Feed</a>
-    <a href="/about.jsp">About</a>
-    <a href="/interest">Interest Chats</a>
+  <div class="w3-top">
+ 	  <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+    	<a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    	<a href="/" class="w3-bar-item w3-button w3-padding-large w3-white">Team 34 Chat App <i class="fa fa-space-shuttle" style="font-size:36px;color:black"></i></a>
+    	<a href="/conversations" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Conversations</a>
+   		<% if (request.getSession().getAttribute("user") != null) { %>
+    		<a href="/users/<%= request.getSession().getAttribute("user") %>" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"> <%= request.getSession().getAttribute("user") %>'s Profile</a>
+    	<% } else { %>
+      	<a href="/login" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Login</a>
+   		<% } %>
+    	<a href="/activityfeed" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Activity Feed</a>
+    	<a href="/about.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">About</a>
+    	<a href="/interest" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Interest Chats</a>
+    </div>
+    
+    <!-- Navbar on smaller screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    	<a href="/conversations" class="w3-bar-item w3-button w3-padding-large">Conversations</a>
+    	<% if (request.getSession().getAttribute("user") != null) { %>
+    	 	<a href="/users/<%= request.getSession().getAttribute("user") %>" class="w3-bar-item w3-button w3-padding-large"> <%= request.getSession().getAttribute("user") %>'s Profile</a>
+    	<% } else { %>
+      	<a href="/login" class="w3-bar-item w3-button w3-padding-large">Login</a>
+    	<% } %>
+    	<a href="/activityfeed" class="w3-bar-item w3-button w3-padding-large">Activity Feed</a>
+    	<a href="/about.jsp" class="w3-bar-item w3-button w3-padding-large">About</a>
+    	<a href="/interest" class="w3-bar-item w3-button w3-padding-large">Interest Chats</a>
+    </div>	
+    
+  </div>
   </nav>
+  <br><br><br><br><br>
 
 
   <div id="container">
 
-	<h1>Activity Feed</h1>
+	<h1 class="w3-xxlarge">Activity Feed</h1>
 
-	<h2>This where you see what the world is up to!</h2>
-
-	<ul class="mdl-list">
+	<h2 class="w3-xxlarge">This where you see what the world is up to!</h2>
+	<hr class="section-heading-spacer">
+	<div id="activityfeed">
+	
+	<ul class="mdl-list w3-large">
+	
 	<%
 	  for (Conversation conversation : conversations) {
 	  	String owner = UserStore.getInstance()
 	  	  .getUser(conversation.getOwnerId()).getName();
 	  	String creation = conversation.getTime();
 	%>
-	<li><strong><a href="/users/<%=owner%>"><%=owner%></a></strong> created the conversation <a href="/chat/<%=conversation.getTitle()%>"> <%=conversation.getTitle()%></a> on <font style="color:blue"> <%=creation%> </font></li>
+	<hr class="section-heading-spacer">
+	<li class="w3-xlarge texts"><strong><a href="/users/<%=owner%>"><%=owner%></a></strong> created the conversation <a href="/chat/<%=conversation.getTitle()%>"> <%=conversation.getTitle()%></a> on <font style="color:blue"> <%=creation%> </font></li>
 	<% } %>
-	
+	<hr class="section-heading-spacer">
 	<%
 	  for (User user : users) {
 	  	String name = UserStore.getInstance()
 	  	  .getUser(user.getId()).getName();
 	  	String creation = user.getTime();
 	%>
-	<li><strong><a href="/users/<%=name%>"><%=name%></a></strong> joined CodeU Chat App Team 34 on <font style="color:blue"> <%=creation%> </font></li>
+	<li class="w3-xlarge texts"><strong><a href="/users/<%=name%>"><%=name%></a></strong> joined CodeU Chat App Team 34 on <font style="color:blue"> <%=creation%> </font></li>
+	<hr class="section-heading-spacer">
 	<% } %>
 	</ul>
+	</div>
   </div>
+  <hr class="section-heading-spacer">
+  <br><br><br>
 </body>
 </html>
