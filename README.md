@@ -1,8 +1,8 @@
-![animation-play-protect](https://user-images.githubusercontent.com/26611391/43545076-dc723130-95a2-11e8-896b-ae2a6dffe5b2.gif | width 100 )
-
 # Google CodeU - Team 34 Chat App
 
-One Paragraph of project description goes here
+![animation-play-protect](https://user-images.githubusercontent.com/26611391/43545076-dc723130-95a2-11e8-896b-ae2a6dffe5b2.gif =24x48))
+
+Hello! We are Team 34 and this is our Chat App. On our Chat App, you can connect with others through common interests, creating private and group messages, create and customize your own profile page and monitor your activity!
 
 ## Getting Started
 
@@ -10,7 +10,10 @@ One Paragraph of project description goes here
 
 ## Our Project
 
-Hello! We are Team 34 and this is our Chat App. On our Chat App, you can connect with others through common interests, creating private and group messages, create and customize your own profile page and monitor your activity!
+ Chat Application Features:
+ Connect with others through Interest Conversations
+ Create Private and Group Conversations
+ Customize their Profile Page and monitor their activity 
 
 
 ## Contributing
