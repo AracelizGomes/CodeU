@@ -23,8 +23,6 @@ Contributors: Araceliz, Tema, Justice and Lucy
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
 ## Acknowledgments
 
 * Big thank you to all of CodeU, we would not have been able to build our App without the help of our project advisor Julie Freeman, and the help of countless other advisors and participants in Google. Thank you so much!
