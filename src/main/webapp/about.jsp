@@ -107,6 +107,7 @@
                                 <span>Computer Science and Engineering UConn'20</span>
                             </div>
                         </div>
+                        
                         <div class="col-md-4 col-sm-4">
                             <div class="team-member">
                                 <div class="team-img">
@@ -114,8 +115,8 @@
                                 </div>
                                 <div class="team-hover">
                                     <div class="desk">
-                                        <h4>Hello World</h4>
-                                        <p>I love to introduce myself as a hardcore Web Designer.</p>
+                                        <h4>Hi!!!</h4>
+                                        <p>I love to walk my dog, play soccer, and eat cherry garcia ice cream.</p>
                                     </div>
                                     <div class="s-link">
                                         <a href="#"><i class="fa fa-facebook"></i></a>
@@ -126,9 +127,10 @@
                             </div>
                             <div class="team-title">
                                 <h5>Lucy</h5>
-                                <span>Google CodeUer</span>
+                                <span>Computer Science    Brown University '20</span>
                             </div>
                         </div>
+                        
                         <div class="col-md-4 col-sm-4">
                             <div class="team-member">
                                 <div class="team-img">
@@ -136,8 +138,8 @@
                                 </div>
                                 <div class="team-hover">
                                     <div class="desk">
-                                        <h4>I love to design</h4>
-                                        <p>I love to introduce myself as a hardcore Web Designer.</p>
+                                        <h4>Hey!</h4>
+                                        <p>I enjoy playing volleyball and basketball and my favorite color is orange!.</p>
                                     </div>
                                     <div class="s-link">
                                         <a href="#"><i class="fa fa-facebook"></i></a>
@@ -148,19 +150,19 @@
                             </div>
                             <div class="team-title">
                                 <h5>Justice</h5>
-                                <span>Google CodeUer</span>
+                                <span>Computer Engineering   Rutgers University</span>
                             </div>
                         </div>
                         
                          <div class="col-md-4 col-sm-4">
                             <div class="team-member">
                                 <div class="team-img">
-                                    <img src="https://imagesvc.timeincapp.com/v3/mm/image?url=https%3A%2F%2Fimages.hellogiggles.com%2Fuploads%2F2016%2F07%2F27033400%2Fteacup.jpg&w=700&q=85" alt="team member" class="img-responsive">
+                                    <img src="https://scontent.fzty2-1.fna.fbcdn.net/v/t31.0-8/19466633_1874240822899965_7535679176310870771_o.jpg?_nc_cat=0&oh=e8ea31c463ea2fed29d9965d91c5ba0c&oe=5C13CD99" alt="team member" class="img-responsive">
                                 </div>
                                 <div class="team-hover">
                                     <div class="desk">
-                                        <h4>I love to design</h4>
-                                        <p>I love to introduce myself as a hardcore Web Designer.</p>
+                                        <h4>What's Up!!</h4>
+                                        <p>Some people also call me The "Lion" Tema. I love competing in Track & Field, Data Science, music!!.</p>
                                     </div>
                                     <div class="s-link">
                                         <a href="#"><i class="fa fa-facebook"></i></a>
@@ -171,7 +173,7 @@
                             </div>
                             <div class="team-title">
                                 <h5>Tema</h5>
-                                <span>Google CodeUer</span>
+                                <span>Compueter Sciecnce, Economics, and Data Science  MIT'21</span>
                             </div>
                         </div>
                         
