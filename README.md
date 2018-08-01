@@ -1,4 +1,4 @@
-![animation-play-protect](https://user-images.githubusercontent.com/26611391/43545076-dc723130-95a2-11e8-896b-ae2a6dffe5b2.gif)
+![animation-play-protect](https://user-images.githubusercontent.com/26611391/43545076-dc723130-95a2-11e8-896b-ae2a6dffe5b2.gif =250x250)
 
 # Google CodeU - Team 34 Chat App
 
