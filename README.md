@@ -1,4 +1,5 @@
-![Alt text](CodeU/Team 34 CodeU Chat App.JPG?raw=true "Title")
+![animation-play-protect](https://user-images.githubusercontent.com/26611391/43545076-dc723130-95a2-11e8-896b-ae2a6dffe5b2.gif)
+
 # Google CodeU - Team 34 Chat App
 
 One Paragraph of project description goes here
