@@ -145,7 +145,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
                         </a>
                     </div>
                 </div>
-            <div class="panel-collapse collapse" id="collapseOne">
+            <div>
                 <div class="panel-body">
                     <ul class="chat">
                         <li class="left clearfix"><span class="chat-img pull-left">
