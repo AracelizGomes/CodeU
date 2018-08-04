@@ -89,10 +89,6 @@ public class MessageStore {
     this.messages = messages;
   }
 
-  public void deleteMessage(int messageIndex) {
-    persistentStorageAgent.deleteMessage(messageIndex);
-    messages.remove(messageIndex);
-  }
   
 
   //list of messages sent by user
@@ -107,8 +103,16 @@ public class MessageStore {
 	 return sentMessages;
   }
   
-  public void deleteLastMessage(List<Message> messages) {
-    System.out.println("he there");
-    messages.remove(messages.size()-1);
+  public void deleteMessage(UUID id) {
+  	persistentStorageAgent.deleteMessage();
+    for (Message message : messages) {
+    	if (message.getId().equals(id)) {
+    		messages.remove(message);
+        break;
+    	}
+    }
+    for (Message message : messages) {
+      persistentStorageAgent.writeThrough(message);
+    }
   }
 }

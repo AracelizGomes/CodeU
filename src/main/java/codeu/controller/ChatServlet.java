@@ -184,7 +184,7 @@ public class ChatServlet extends HttpServlet {
       messageStore.addMessage(message);
     } else { //the delete button was pressed
         if (deleteAction != null) {
-          messageStore.deleteMessage(Integer.parseInt(request.getParameter("delete")));
+        	messageStore.deleteMessage(UUID.fromString(request.getParameter("delete")));
         }
     }
 

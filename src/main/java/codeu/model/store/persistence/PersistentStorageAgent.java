@@ -111,7 +111,7 @@ public class PersistentStorageAgent {
 
 
   /** Delete a message from the PersistentDataStore. */
-  public void deleteMessage(int messageIndex) {
-    persistentDataStore.deleteMessage(messageIndex);
+  public void deleteMessage() {
+    persistentDataStore.deleteMessage();
   }
 }

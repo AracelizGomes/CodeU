@@ -168,7 +168,7 @@ ConversationStore conversationStore = ConversationStore.getInstance();
                                 <li class="w3-large"><strong><%= author %>:</strong> <%= message.getContentWithHtml() %> </li>
                    	            
                                 <form class="w3-xlarge" action="/chat/<%= conversation.getTitle() %>" method="POST">
-                                     <button name="delete" value="<%= messageIndex %>" class="btn btn-primary mb-2 w3-hover-white" type="submit">Delete</button>
+                                     <button name="delete" value="<%= message.getId() %>" class="btn btn-primary mb-2 w3-hover-white" type="submit">Delete</button>
                                 </form>
                             <% messageIndex ++; } %>
                             </ul>

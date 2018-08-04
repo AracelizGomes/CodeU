@@ -80,8 +80,14 @@ public class User {
       hr = hr % 12;
       AM = false;
     }
-    return localDate.getMonth().toString() + " " + localDate.getDayOfMonth() + ", " + localDate.getYear() + " ~ " + hr + ":" + localDate.getMinute() + " " + (AM ? "AM" : "PM");
-  }
+    if (localDate.getMinute() > 10) {
+    	return localDate.getMonth().toString() + " " + localDate.getDayOfMonth() + ", " + localDate.getYear() + " ~ " + hr + ":" + localDate.getMinute() + " " + (AM ? "AM" : "PM");
+    }
+    else {
+    	return localDate.getMonth().toString() + " " + localDate.getDayOfMonth() + ", " + localDate.getYear() + " ~ " + hr + ":0" + localDate.getMinute() + " " + (AM ? "AM" : "PM");
+    }
+    	
+   }
 }
 
 
