@@ -43,11 +43,28 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 	{
     margin-right: 5px;
 	}
+.collapsing {
+    -webkit-transition: none;
+    transition: none;
+    display: none;
+}
 
 .panel-body
 	{
     overflow-y: scroll;
-    height: 250px;
+    height: 500px;
+    width:800px;
+	}
+.panel.panel-primary
+	{
+	height: 600px;
+  width:800px;
+	}
+
+.panel-primary
+	{
+	height: 600px;
+  width:800px;
 	}
 
 	::-webkit-scrollbar-track

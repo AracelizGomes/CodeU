@@ -173,7 +173,7 @@
                             </div>
                             <div class="team-title">
                                 <h5>Tema</h5>
-                                <span>Compueter Sciecnce, Economics, and Data Science  MIT'21</span>
+                                <span>Computer Science, Economics, and Data Science  MIT'21</span>
                             </div>
                         </div>
                         
