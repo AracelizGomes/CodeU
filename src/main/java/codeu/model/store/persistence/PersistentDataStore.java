@@ -227,7 +227,10 @@ public class PersistentDataStore {
     }
 
   /** Delete message from Datastore service. */
-  public void deleteMessage(int messageIndex) {
-    datastore.delete(messageKeys.get(messageIndex));
+  public void deleteMessage() {
+  	for (Key key : messageKeys) {
+      datastore.delete(key);
+    }
+    messageKeys.clear();
   }
 }
